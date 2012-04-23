@@ -54,7 +54,7 @@
     <Compile Include="Apple\Push\PushNotificationSerializer.cs" />
     <Compile Include="Apple\Push\PushService.cs" />
     <Compile Include="Apple\Registration\DeleteRegistrationService.cs" />
-    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="..\AssemblyInfo.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Apple\Feedback\Feedback.cs" />
     <Compile Include="Apple\Feedback\FeedbackService.cs" />

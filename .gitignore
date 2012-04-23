@@ -5,6 +5,7 @@ obj
 _ReSharper*
 *.resharper
 packages/*
+NuGetBuild
 *.orig
 Packages/*
 UrbanAirshipRemoteSettings.txt

@@ -7,9 +7,9 @@
     <authors>Simon Cropp</authors>
     <owners>Simon Cropp</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
-    <projectUrl>http://code.google.com/p/propertychanged</projectUrl>
+    <projectUrl>https://github.com/SimonCropp/UrbanBlimp</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>.Net library fo UrbanAirship.</description>
+    <description>.Net library for UrbanAirship.</description>
     <summary />
     <language>en-AU</language>
     <tags>UrbanAirship</tags>

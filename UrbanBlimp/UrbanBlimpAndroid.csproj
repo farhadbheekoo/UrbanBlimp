@@ -60,7 +60,7 @@
     <Compile Include="Android\Registration\Registration.cs" />
     <Compile Include="Android\Registration\RegistrationDeSerializer.cs" />
     <Compile Include="Android\Registration\NewRegistrationSerializer.cs" />
-    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="..\AssemblyInfo.cs" />
     <Compile Include="DateTimeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
