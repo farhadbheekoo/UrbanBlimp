@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using NUnit.Framework;
-using UrbanBlimp.Android;
+using UrbanBlimp.Apple;
 
-namespace UrbanBlimp.Tests.Android
+namespace UrbanBlimp.Tests.Apple
 {
     [TestFixture]
-    public class RegistrationServiceTests
+    public class AddRegistrationServiceTests
     {
 
 
@@ -17,11 +17,12 @@ namespace UrbanBlimp.Tests.Android
                               {
                                   RequestBuilder = RequestBuilderHelper.Build()
                               };
-            var registration = new NewRegistration
+            var registration = new Registration
                                    {
                                        Tags = new List<string> {"bangladesh"}
                                    };
-            service.Execute(RemoteSettings.AndroidPushId, registration);
+            service.Execute(RemoteSettings.AppleDeviceId, registration);
         }
+
     }
 }

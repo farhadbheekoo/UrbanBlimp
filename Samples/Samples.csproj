@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A80AB19C-174F-4CDA-8925-6152A32D33CB}</ProjectGuid>
+    <ProjectGuid>{0348179C-7FA1-4074-B5B2-5E0A6B529241}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UrbanBlimp.Tests</RootNamespace>
-    <AssemblyName>UrbanBlimp.Tests</AssemblyName>
+    <RootNamespace>Samples</RootNamespace>
+    <AssemblyName>Samples</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -33,12 +33,6 @@
     <Reference Include="FluentDateTime">
       <HintPath>..\packages\FluentDateTime.1.5.0.0\Lib\NET\FluentDateTime.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Packages\Newtonsoft.Json.4.5.3\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnitLib.2.5.10.11092\lib\net\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,35 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Android\Push\PushNotificationSerializerTests.cs" />
-    <Compile Include="Android\Push\PushServiceTests.cs" />
-    <Compile Include="Android\Registration\RegistrationDeSerializerTests.cs" />
-    <Compile Include="Android\Registration\RegistrationSerializerTests.cs" />
-    <Compile Include="Android\Registration\AddRegistrationServiceTests.cs" />
-    <Compile Include="RemoteSettings.cs" />
-    <Compile Include="DateTimeExtensionsTests.cs" />
-    <Compile Include="ExecutingLocation.cs" />
-    <Compile Include="Apple\Feedback\FeedbackSerializerTests.cs" />
-    <Compile Include="Apple\Feedback\FeedbackServiceTests.cs" />
-    <Compile Include="JsonPretty.cs" />
-    <Compile Include="RequestBuilderHelper.cs" />
-    <Compile Include="StreamHelper.cs" />
-    <Compile Include="Apple\Push\PushServiceTests.cs" />
-    <Compile Include="Apple\Push\PushNotificationSerializerTests.cs" />
-    <Compile Include="Apple\Registration\AddRegistrationServiceTests.cs" />
-    <Compile Include="Apple\Registration\RegistrationDeSerializerTests.cs" />
-    <Compile Include="Apple\Registration\RegistrationSerializerTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <Compile Include="CustomRequestBuilder.cs" />
+    <Compile Include="Android\GetRegistrationServiceSamples.cs" />
+    <Compile Include="Android\PushServiceSamples.cs" />
+    <Compile Include="Android\AddRegistrationServiceSamples.cs" />
+    <Compile Include="Apple\FeedbackServiceSamples.cs" />
+    <Compile Include="Apple\GetRegistrationServiceSamples.cs" />
+    <Compile Include="Apple\PushServiceSamples.cs" />
+    <Compile Include="Apple\AddRegistrationServiceSamples.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UrbanBlimp\UrbanBlimpDotNet.csproj">
-      <Project>{05684e8a-4767-48f2-9f65-fa6eb44f37f5}</Project>
+      <Project>{05684E8A-4767-48F2-9F65-FA6EB44F37F5}</Project>
       <Name>UrbanBlimpDotNet</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="PepitaGet.RestorePackagesTask" AssemblyFile="..\Tools\PepitaGet.dll" />
