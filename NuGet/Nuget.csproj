@@ -23,15 +23,17 @@
     <MakeDir Directories="$(SolutionDir)NuGetBuild\Lib\net40" />
     <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\$(Configuration)DotNet\UrbanBlimp.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET40" />
     <Copy SourceFiles="$(SolutionDir)NuGet\UrbanBlimp.nuspec" DestinationFolder="$(SolutionDir)NuGetBuild" />
-    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\$(ConfigurationName)\UrbanBlimp.dll" DestinationFolder="$(SolutionDir)NuGetBuild" />
-    <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild" MetadataAssembly="$(SolutionDir)UrbanBlimp\bin\$(ConfigurationName)\UrbanBlimp.dll" />
+    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\$(ConfigurationName)DotNet\UrbanBlimp.dll" DestinationFolder="$(SolutionDir)NuGetBuild" />
+    <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild" MetadataAssembly="$(SolutionDir)UrbanBlimp\bin\$(ConfigurationName)DotNet\UrbanBlimp.dll" />
   </Target>
   <ItemGroup>
     <None Include="UrbanBlimp.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="$(SolutionDir)UrbanBlimp\UrbanBlimp.csproj">
+    <ProjectReference Include="..\UrbanBlimp\UrbanBlimpDotNet.csproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <Project>{05684E8A-4767-48F2-9F65-FA6EB44F37F5}</Project>
+      <Name>UrbanBlimpDotNet</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

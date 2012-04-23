@@ -34,7 +34,7 @@
       <HintPath>..\packages\FluentDateTime.1.5.0.0\Lib\NET\FluentDateTime.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\Packages\Newtonsoft.Json.4.5.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnitLib.2.5.10.11092\lib\net\nunit.framework.dll</HintPath>
@@ -71,9 +71,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UrbanAirship\UrbanBlimp.csproj">
-      <Project>{05684E8A-4767-48F2-9F65-FA6EB44F37F5}</Project>
-      <Name>UrbanBlimp</Name>
+    <ProjectReference Include="..\UrbanBlimp\UrbanBlimpDotNet.csproj">
+      <Project>{05684e8a-4767-48f2-9f65-fa6eb44f37f5}</Project>
+      <Name>UrbanBlimpDotNet</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

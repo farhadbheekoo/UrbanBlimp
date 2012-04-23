@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <BaseIntermediateOutputPath>obj\Silverlight5</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>obj\IOS</BaseIntermediateOutputPath>
     <FodyMessageImportance>High</FodyMessageImportance>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6AD44BD3-70BF-4DE9-A84E-1A19B74CB1E8}</ProjectGuid>
+    <ProjectGuid>{6223A897-759F-474E-AD22-6E585AE2DED6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UrbanBlimp</RootNamespace>
@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\DebugMonoTouch\</OutputPath>
+    <OutputPath>bin\DebugIOS\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\ReleaseMonoTouch\</OutputPath>
+    <OutputPath>bin\ReleaseIOS\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -48,18 +48,7 @@
   <ItemGroup>
     <Compile Include="RequestBuilder.cs" />
     <Compile Include="InnerPushService.cs" />
-    <Compile Include="Android\Push\PushNotification.cs" />
-    <Compile Include="Android\Push\PushNotificationSerializer.cs" />
-    <Compile Include="Android\Push\PushPayload.cs" />
-    <Compile Include="Android\Push\PushService.cs" />
-    <Compile Include="Android\Registration\AddRegistrationService.cs" />
     <Compile Include="Dynamic.cs" />
-    <Compile Include="Android\Registration\NewRegistration.cs" />
-    <Compile Include="Android\Registration\DeleteRegistrationService.cs" />
-    <Compile Include="Android\Registration\GetRegistrationService.cs" />
-    <Compile Include="Android\Registration\Registration.cs" />
-    <Compile Include="Android\Registration\RegistrationDeSerializer.cs" />
-    <Compile Include="Android\Registration\NewRegistrationSerializer.cs" />
     <Compile Include="Apple\Push\BatchPushService.cs" />
     <Compile Include="Apple\Feedback\FeedbackSerializer.cs" />
     <Compile Include="Apple\Push\PushNotificationSerializer.cs" />

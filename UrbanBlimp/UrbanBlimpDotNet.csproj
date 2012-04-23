@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <BaseIntermediateOutputPath>obj\DotNet</BaseIntermediateOutputPath>
     <FodyMessageImportance>High</FodyMessageImportance>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -25,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\ReleaseDotNet4\</OutputPath>
+    <OutputPath>bin\ReleaseDotNet\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -36,6 +37,7 @@
     <Reference Include="System.Json, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Json.4.0.20126.16343\lib\net40\System.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Data" />
@@ -81,6 +83,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <RemoveDir Directories="$(TargetDir)Merged" />
+    <MakeDir Directories="$(TargetDir)Merged" />
+    <CreateItem Include="@(ReferencePath)" Condition="'%(CopyLocal)'=='true'">
+      <Output TaskParameter="Include" ItemName="IlmergeAssemblies" />
+    </CreateItem>
+    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(TargetDir)Merged\$(TargetFileName)&quot; &quot;$(TargetPath)&quot; @(IlmergeAssemblies->'&quot;%(FullPath)&quot;', ' ') /target:library /internalize /targetplatform:v4,C:\Windows\Microsoft.NET\Framework\v4.0.30319" />
+    <ItemGroup>
+      <DeleteAfterBuild Include="$(TargetDir)*.*" />
+    </ItemGroup>
+	<Delete Files="@(DeleteAfterBuild)" />
+	<ItemGroup>
+        <MergedFiles Include="$(TargetDir)Merged\*.*"/>
+    </ItemGroup>
+	<Copy
+        SourceFiles="@(MergedFiles)"
+        DestinationFolder="$(TargetDir)"
+    />
+  </Target>
   <UsingTask TaskName="PepitaGet.RestorePackagesTask" AssemblyFile="..\Tools\PepitaGet.dll" />
   <Target Name="BeforeBuild">
     <PepitaGet.RestorePackagesTask />
