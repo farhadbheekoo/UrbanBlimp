@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Samples;
 using UrbanBlimp.Apple;
 
 public class AddRegistrationServiceSamples
