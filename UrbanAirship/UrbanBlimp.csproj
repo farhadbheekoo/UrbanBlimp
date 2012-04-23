@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FodyMessageImportance>High</FodyMessageImportance>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{05684E8A-4767-48F2-9F65-FA6EB44F37F5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UrbanBlimp</RootNamespace>
+    <AssemblyName>UrbanBlimp</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\DebugDotNet\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\ReleaseDotNet4\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Json, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Json.4.0.20126.16343\lib\net40\System.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Data" />
+    <None Include="FodyWeavers.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="RequestBuilder.cs" />
+    <Compile Include="InnerPushService.cs" />
+    <Compile Include="Android\Push\PushNotification.cs" />
+    <Compile Include="Android\Push\PushNotificationSerializer.cs" />
+    <Compile Include="Android\Push\PushPayload.cs" />
+    <Compile Include="Android\Push\PushService.cs" />
+    <Compile Include="Android\Registration\AddRegistrationService.cs" />
+    <Compile Include="Dynamic.cs" />
+    <Compile Include="Android\Registration\NewRegistration.cs" />
+    <Compile Include="Android\Registration\DeleteRegistrationService.cs" />
+    <Compile Include="Android\Registration\GetRegistrationService.cs" />
+    <Compile Include="Android\Registration\Registration.cs" />
+    <Compile Include="Android\Registration\RegistrationDeSerializer.cs" />
+    <Compile Include="Android\Registration\NewRegistrationSerializer.cs" />
+    <Compile Include="Apple\Push\BatchPushService.cs" />
+    <Compile Include="Apple\Feedback\FeedbackSerializer.cs" />
+    <Compile Include="Apple\Push\PushNotificationSerializer.cs" />
+    <Compile Include="Apple\Push\PushService.cs" />
+    <Compile Include="Apple\Registration\DeleteRegistrationService.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="Apple\Feedback\Feedback.cs" />
+    <Compile Include="Apple\Feedback\FeedbackService.cs" />
+    <Compile Include="Apple\Push\PushNotification.cs" />
+    <Compile Include="Apple\Push\PushPayload.cs" />
+    <Compile Include="Apple\Registration\GetRegistrationService.cs" />
+    <Compile Include="Apple\Registration\RegistrationDeSerializer.cs" />
+    <Compile Include="Apple\Registration\RegistrationSerializer.cs" />
+    <Compile Include="Apple\Registration\QuietTime.cs" />
+    <Compile Include="Apple\Registration\Registration.cs" />
+    <Compile Include="Apple\Registration\AddRegistrationService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <UsingTask TaskName="PepitaGet.RestorePackagesTask" AssemblyFile="..\Tools\PepitaGet.dll" />
+  <Target Name="BeforeBuild">
+    <PepitaGet.RestorePackagesTask />
+  </Target>
+  <Import Project="$(SolutionDir)\Tools\Fody\Fody.targets" />
+</Project>
