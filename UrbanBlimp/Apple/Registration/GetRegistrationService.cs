@@ -1,3 +1,6 @@
+using System;
+using System.Net;
+
 namespace UrbanBlimp.Apple
 {
     public class GetRegistrationService
@@ -8,10 +11,23 @@ namespace UrbanBlimp.Apple
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/device_tokens/" + deviceToken);
             request.Method = "Get";
-            using (var response = request.GetResponse())
-            using (var responseStream = response.GetResponseStream())
+            try
             {
-                return RegistrationDeSerializer.DeSerialize(responseStream);
+
+                using (var response = request.GetResponse())
+                using (var responseStream = response.GetResponseStream())
+                {
+                    return RegistrationDeSerializer.DeSerialize(responseStream);
+                }
+            }
+            catch (WebException webException)
+            {
+                var httpStatusCode = ((HttpWebResponse) (webException.Response)).StatusCode;
+                if (httpStatusCode == HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                throw;
             }
         }
     }

@@ -50,9 +50,11 @@
   <ItemGroup>
     <Compile Include="Android\Push\PushNotificationSerializerTests.cs" />
     <Compile Include="Android\Push\PushServiceTests.cs" />
+    <Compile Include="Android\Registration\GetRegistrationServiceTests.cs" />
     <Compile Include="Android\Registration\RegistrationDeSerializerTests.cs" />
     <Compile Include="Android\Registration\RegistrationSerializerTests.cs" />
     <Compile Include="Android\Registration\AddRegistrationServiceTests.cs" />
+    <Compile Include="Apple\Registration\GetRegistrationServiceTests.cs" />
     <Compile Include="RemoteSettings.cs" />
     <Compile Include="DateTimeExtensionsTests.cs" />
     <Compile Include="ExecutingLocation.cs" />
