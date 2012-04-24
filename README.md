@@ -3,6 +3,30 @@ UrbanBlimp
 
 A dot net library to talk to Urban Airship http://urbanairship.com/
 
+# Download
+
+Download from here https://github.com/SimonCropp/UrbanBlimp/downloads
+
+## .net4 or Mono
+
+If you are running full .net (Mono or MS) on Windows, Mac or Linux then your want to use
+
+`BackEnd\UrbanBlimp.dll`
+
+## MonoTouch
+
+If you are using MonoTouch (http://xamarin.com/monotouch) on IOS (http://www.apple.com/ios/) then you want to use 
+
+`FrontEnd\IOS\UrbanBlimp.dll`
+
+## Mono for Android
+
+If you are using Mono for Android (http://xamarin.com/monoforandroid) on Android (http://www.android.com/) then you want to use 
+
+`FrontEnd\Android\UrbanBlimp.dll`
+
+# Sample Code
+
 ## IRequestBuilder
 
 Define a way of build an IRequestBuilder. This will be re-used on all samples
@@ -16,6 +40,7 @@ Define a way of build an IRequestBuilder. This will be re-used on all samples
                        {
                            NetworkCredential = new NetworkCredential
                                                    {
+                                                       //TODO: use your Urban Airship settings here
                                                        UserName = "AirshipApplicationKey",
                                                        Password = "AirshipSecret"
                                                    }
