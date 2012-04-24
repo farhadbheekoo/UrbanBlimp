@@ -13,6 +13,8 @@ If you are running full .net (Mono or MS) on Windows, Mac or Linux then your wan
 
 `BackEnd\UrbanBlimp.dll`
 
+For users of nuget here is the package (http://nuget.org/packages/urbanblimp)
+
 ## MonoTouch
 
 If you are using MonoTouch (http://xamarin.com/monotouch) on IOS (http://www.apple.com/ios/) then you want to use 

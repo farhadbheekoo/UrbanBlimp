@@ -23,7 +23,6 @@
     <MakeDir Directories="$(SolutionDir)NuGetBuild\Lib\net40" />
     <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\$(Configuration)DotNet\UrbanBlimp.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET40" />
     <Copy SourceFiles="$(SolutionDir)NuGet\UrbanBlimp.nuspec" DestinationFolder="$(SolutionDir)NuGetBuild" />
-    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\$(ConfigurationName)DotNet\UrbanBlimp.dll" DestinationFolder="$(SolutionDir)NuGetBuild" />
     <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild" MetadataAssembly="$(SolutionDir)UrbanBlimp\bin\$(ConfigurationName)DotNet\UrbanBlimp.dll" />
   </Target>
   <ItemGroup>
