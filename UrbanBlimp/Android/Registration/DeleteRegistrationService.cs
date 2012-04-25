@@ -2,7 +2,7 @@ namespace UrbanBlimp.Android
 {
     public class DeleteRegistrationService
     {
-        public IRequestBuilder RequestBuilder { get; set; }
+        public IRequestBuilder RequestBuilder ;
 
         public void Execute(string pushId)
         {

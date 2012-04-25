@@ -3,7 +3,7 @@ namespace UrbanBlimp.Apple
     public class DeleteRegistrationService
     {
 
-        public IRequestBuilder RequestBuilder { get; set; }
+        public IRequestBuilder RequestBuilder ;
 
         public void Execute(string deviceToken)
         {

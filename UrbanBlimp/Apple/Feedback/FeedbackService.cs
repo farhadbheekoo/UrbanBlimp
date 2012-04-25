@@ -6,7 +6,7 @@ namespace UrbanBlimp.Apple
 {
     public class FeedbackService
     {
-        public IRequestBuilder RequestBuilder { get; set; }
+        public IRequestBuilder RequestBuilder ;
 
         public IEnumerable<DeviceFeedback> Execute(DateTime dateTime)
         {

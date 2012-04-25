@@ -4,7 +4,7 @@ namespace UrbanBlimp.Apple
 {
     public class AddRegistrationService
     {
-        public IRequestBuilder RequestBuilder { get; set; }
+        public IRequestBuilder RequestBuilder ;
 
         public void Execute(string deviceToken, Registration registration)
         {

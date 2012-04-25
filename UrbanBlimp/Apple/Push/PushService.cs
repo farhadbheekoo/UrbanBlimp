@@ -2,7 +2,7 @@
 {
     public class PushService
     {
-        public IRequestBuilder RequestBuilder { get; set; }
+        public IRequestBuilder RequestBuilder ;
 
         public void Execute(PushNotification notification)
         {

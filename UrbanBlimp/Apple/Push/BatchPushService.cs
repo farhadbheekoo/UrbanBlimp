@@ -5,7 +5,7 @@ namespace UrbanBlimp.Apple
 {
     public class BatchPushService
     {
-        public IRequestBuilder RequestBuilder { get; set; }
+        public IRequestBuilder RequestBuilder ;
 
         public void Execute(IEnumerable<PushNotification> notifications)
         {

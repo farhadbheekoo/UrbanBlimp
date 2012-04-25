@@ -33,8 +33,9 @@
     <Reference Include="FluentDateTime">
       <HintPath>..\packages\FluentDateTime.1.5.0.0\Lib\NET\FluentDateTime.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Packages\Newtonsoft.Json.4.5.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.4\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnitLib.2.5.10.11092\lib\net\nunit.framework.dll</HintPath>

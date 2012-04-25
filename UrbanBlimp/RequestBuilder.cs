@@ -4,7 +4,7 @@ namespace UrbanBlimp
 {
     public class RequestBuilder : IRequestBuilder
     {
-        public NetworkCredential NetworkCredential{ get; set; }
+        public NetworkCredential NetworkCredential;
         public WebRequest Build(string url)
         {
             var request = WebRequest.Create(url);

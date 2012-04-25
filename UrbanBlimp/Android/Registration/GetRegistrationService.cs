@@ -4,7 +4,7 @@ namespace UrbanBlimp.Android
 {
     public class GetRegistrationService
     {
-        public IRequestBuilder RequestBuilder { get; set; }
+        public IRequestBuilder RequestBuilder ;
 
         public Registration Execute(string pushId)
         {
