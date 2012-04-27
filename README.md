@@ -3,6 +3,11 @@ UrbanBlimp
 
 A dot net library to talk to Urban Airship http://urbanairship.com/
 
+# License 
+
+MIT License
+http://www.opensource.org/licenses/mit-license.php
+
 # Download
 
 Download from here https://github.com/SimonCropp/UrbanBlimp/downloads
