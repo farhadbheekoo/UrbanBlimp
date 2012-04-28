@@ -10,8 +10,7 @@ namespace UrbanBlimp.Tests.Apple
         [Test]
         public void Simple()
         {
-            Registration registration;
-            using (var stream = @"
+            var value = @"
 {
     'quiettime': {
         'start': '22:00',
@@ -24,11 +23,8 @@ namespace UrbanBlimp.Tests.Apple
         'tag1',
         'tag2'
     ]
-}".GetStream())
-            {
-                registration = RegistrationDeSerializer.DeSerialize(stream);
-            }
-
+}";
+            var registration = value.ToObject(RegistrationDeSerializer.DeSerialize);
             Assert.AreEqual("alias", registration.Alias);
             Assert.AreEqual(2, registration.Badge);
             Assert.AreEqual("America/Los_Angeles", registration.TimeZone);

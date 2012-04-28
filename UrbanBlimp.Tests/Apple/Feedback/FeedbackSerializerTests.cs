@@ -15,16 +15,16 @@ namespace UrbanBlimp.Tests.Apple
             List<DeviceFeedback> feedbacks;
             using (var stream = @"
 {
-    ""device_tokens"": 
+    'device_tokens': 
 [
    {
-       ""device_token"": ""1234123412341234123412341234123412341234123412341234123412341234"",
-       ""marked_inactive_on"": ""2009-06-22 10:05:00"",
-       ""alias"": ""bob""
+       'device_token': '1234123412341234123412341234123412341234123412341234123412341234',
+       'marked_inactive_on': '2009-06-22 10:05:00',
+       'alias': 'bob'
    }
 ],
-    ""device_tokens_count"": 0,
-    ""active_device_tokens_count"": 0
+    'device_tokens_count': 0,
+    'active_device_tokens_count': 0
 }".GetStream())
             {
                 feedbacks = FeedbackSerializer.DeSerialize(stream).ToList();
@@ -41,16 +41,16 @@ namespace UrbanBlimp.Tests.Apple
             List<DeviceFeedback> feedbacks;
             using (var stream = @"
 {
-    ""device_tokens"": [
+    'device_tokens': [
         {
-            ""device_token"": ""6334C016FC643BAA340ECA25BC661D15055A07B475E9A6108F3F644B15DD05AC"",
-            ""active"": true,
-            ""alias"": null,
-            ""tags"": []
+            'device_token': '6334C016FC643BAA340ECA25BC661D15055A07B475E9A6108F3F644B15DD05AC',
+            'active': true,
+            'alias': null,
+            'tags': []
         }
     ],
-    ""device_tokens_count"": 1,
-    ""active_device_tokens_count"": 1
+    'device_tokens_count': 1,
+    'active_device_tokens_count': 1
 }".GetStream())
             {
                 feedbacks = FeedbackSerializer.DeSerialize(stream).ToList();
