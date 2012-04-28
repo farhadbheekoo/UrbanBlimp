@@ -46,8 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HttpExtensions.cs" />
     <Compile Include="RequestBuilder.cs" />
-    <Compile Include="InnerPushService.cs" />
     <Compile Include="Dynamic.cs" />
     <Compile Include="Apple\Push\BatchPushService.cs" />
     <Compile Include="Apple\Feedback\FeedbackSerializer.cs" />

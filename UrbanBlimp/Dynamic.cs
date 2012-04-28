@@ -1,23 +1,50 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Json;
 
 namespace UrbanBlimp
 {
     static class Dynamic
     {
-        
 
-        public static List<string> ToList(JsonValue value)
+        public static DateTime? DateValue(this JsonValue json, string key)
         {
-            if (value == null)
+
+            if (!json.ContainsKey(key))
             {
                 return null;
             }
+            var value = (string)json[key];
 
+            return DateTime.ParseExact(value, "yyyy-MM-dd hh:mm:ss", CultureInfo.InvariantCulture);
+        }
+
+        public static int? IntValue(this JsonValue json, string key)
+        {
+            if (json.ContainsKey(key))
+            {
+                // ReSharper disable RedundantCast
+                return (int?) json[key];
+                // ReSharper restore RedundantCast
+            }
+            return null;
+        }
+
+        public static List<string> ListValue(this JsonValue jsonValue, string key)
+        {
+
+            if (!jsonValue.ContainsKey(key))
+            {
+                return null;
+            }
+            var value = jsonValue[key];
             var list = new List<string>();
             for (var index = 0; index < value.Count; index++)
             {
+// ReSharper disable RedundantCast
                 list.Add((string) value[index]);
+// ReSharper restore RedundantCast
             }
             return list;
         }
@@ -32,20 +59,28 @@ namespace UrbanBlimp
             return tagArray;
 
         }
-        public static JsonValue Value(this JsonValue jsonValue, string key)
+
+        public static string StringValue(this JsonValue jsonValue, string key)
         {
-            if (key == null)
-            {
-                return null;
-            }
             if (jsonValue.ContainsKey(key))
             {
-                return jsonValue[key];
+                // ReSharper disable RedundantCast
+                return (string) jsonValue[key];
+                // ReSharper restore RedundantCast
             }
             return null;
         }
 
- 
+        public static bool BoolValue(this JsonValue jsonValue, string key)
+        {
+            if (jsonValue.ContainsKey(key))
+            {
+                // ReSharper disable RedundantCast
+                return (bool) jsonValue[key];
+                // ReSharper restore RedundantCast
+            }
+            return false;
+        }
 
     }
 }

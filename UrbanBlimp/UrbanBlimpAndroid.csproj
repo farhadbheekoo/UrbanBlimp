@@ -46,8 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HttpExtensions.cs" />
     <Compile Include="RequestBuilder.cs" />
-    <Compile Include="InnerPushService.cs" />
     <Compile Include="Android\Push\PushNotification.cs" />
     <Compile Include="Android\Push\PushNotificationSerializer.cs" />
     <Compile Include="Android\Push\PushPayload.cs" />

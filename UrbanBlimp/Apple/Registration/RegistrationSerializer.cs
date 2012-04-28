@@ -37,7 +37,7 @@ namespace UrbanBlimp.Apple
             {
                 jsonObj["tz"] = registration.TimeZone;
             }
-           // jsonObj.tags = Dynamic.ToList(registration.Tags);
+           // jsonObj.tags = Dynamic.ListValue(registration.Tags);
             if (registration.Tags != null)
             {
                 var tagArray = new JsonArray();

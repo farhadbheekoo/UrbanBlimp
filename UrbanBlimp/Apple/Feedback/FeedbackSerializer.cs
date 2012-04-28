@@ -18,9 +18,9 @@ namespace UrbanBlimp.Apple
                 var token = tokens[index];
                 yield return new DeviceFeedback
                                  {
-                                     Alias = (string)token.Value("alias"),
-                                     DeviceToken = (string)token.Value("device_token"),
-                                     MakedInactiveOn = DateTimeExtensions.ParseDate((string)token.Value("marked_inactive_on"))
+                                     Alias = token.StringValue("alias"),
+                                     DeviceToken = token.StringValue("device_token"),
+                                     MakedInactiveOn = token.DateValue("marked_inactive_on")
                                  };
             }
         }

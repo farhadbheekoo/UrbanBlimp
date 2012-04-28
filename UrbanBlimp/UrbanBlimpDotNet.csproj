@@ -47,8 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Feed\Feed.cs" />
+    <Compile Include="Feed\FeedDeSerializer.cs" />
+    <Compile Include="Feed\GetFeedService.cs" />
+    <Compile Include="Feed\NewFeed.cs" />
+    <Compile Include="Feed\NewFeedId.cs" />
+    <Compile Include="Feed\NewFeedIdDeSerializer.cs" />
+    <Compile Include="Feed\NewFeedSerializer.cs" />
+    <Compile Include="Feed\NewFeedService.cs" />
+    <Compile Include="Feed\FeedPayload.cs" />
+    <Compile Include="Feed\Template.cs" />
     <Compile Include="RequestBuilder.cs" />
-    <Compile Include="InnerPushService.cs" />
+    <Compile Include="HttpExtensions.cs" />
     <Compile Include="Android\Push\PushNotification.cs" />
     <Compile Include="Android\Push\PushNotificationSerializer.cs" />
     <Compile Include="Android\Push\PushPayload.cs" />
@@ -78,9 +88,22 @@
     <Compile Include="Apple\Registration\QuietTime.cs" />
     <Compile Include="Apple\Registration\Registration.cs" />
     <Compile Include="Apple\Registration\AddRegistrationService.cs" />
+    <Compile Include="Tag\AddTagsService.cs" />
+    <Compile Include="Tag\TagDeSerializer.cs" />
+    <Compile Include="Tag\GetTagsService.cs" />
+    <Compile Include="Tag\ModifyTagsService.cs" />
+    <Compile Include="Tag\RemoveTagsService.cs" />
+    <Compile Include="Tag\Tokens.cs" />
+    <Compile Include="Tag\TokenSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="InAppPurchase\" />
+    <Folder Include="Partner\" />
+    <Folder Include="RishPush\" />
+    <Folder Include="Subscription\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
@@ -93,13 +116,11 @@
     <ItemGroup>
       <DeleteAfterBuild Include="$(TargetDir)*.*" />
     </ItemGroup>
-	<Delete Files="@(DeleteAfterBuild)" />
-	<ItemGroup>
-        <MergedFiles Include="$(TargetDir)Merged\*.*"/>
+    <Delete Files="@(DeleteAfterBuild)" />
+    <ItemGroup>
+      <MergedFiles Include="$(TargetDir)Merged\*.*" />
     </ItemGroup>
-	<Copy
-        SourceFiles="@(MergedFiles)"
-        DestinationFolder="$(TargetDir)"/>
+    <Copy SourceFiles="@(MergedFiles)" DestinationFolder="$(TargetDir)" />
   </Target>
   <UsingTask TaskName="PepitaGet.RestorePackagesTask" AssemblyFile="..\Tools\PepitaGet.dll" />
   <Target Name="BeforeBuild">

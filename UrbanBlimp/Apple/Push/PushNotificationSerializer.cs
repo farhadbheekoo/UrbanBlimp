@@ -18,21 +18,7 @@ namespace UrbanBlimp.Apple
         {
             var jsonObj = new JsonObject();
 
-            var aps = new JsonObject();
-
-            if (notification.Payload.Alert != null)
-            {
-                aps["alert"] = notification.Payload.Alert;
-            }
-            if (notification.Payload.Badge != null)
-            {
-                aps["badge"] = notification.Payload.Badge;
-            }
-            if (notification.Payload.Sound != null)
-            {
-                aps["sound"] = notification.Payload.Sound;
-            }
-            jsonObj["aps"] = aps;
+            jsonObj["aps"] = JsonObject(notification.Payload);
             if (notification.DeviceTokens != null)
             {
                 jsonObj["device_tokens"] = notification.DeviceTokens.ToJsonArray();
@@ -60,6 +46,25 @@ namespace UrbanBlimp.Apple
             }
 
             return jsonObj;
+        }
+
+       public static JsonObject JsonObject(PushPayload pushPayload)
+        {
+            var aps = new JsonObject();
+
+            if (pushPayload.Alert != null)
+            {
+                aps["alert"] = pushPayload.Alert;
+            }
+            if (pushPayload.Badge != null)
+            {
+                aps["badge"] = pushPayload.Badge;
+            }
+            if (pushPayload.Sound != null)
+            {
+                aps["sound"] = pushPayload.Sound;
+            }
+            return aps;
         }
 
         public static string Serialize(IEnumerable<PushNotification> notifications)
