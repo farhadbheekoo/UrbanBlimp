@@ -11,8 +11,8 @@ namespace UrbanBlimp.Feed
             var jsonValue = JsonValue.Load(content);
             return new NewFeedId
                        {
-                           Url = (string) jsonValue.Value("url"),
-                           Id = (string)jsonValue.Value("id"),
+                           Url = jsonValue.StringValue("url"),
+                           Id = jsonValue.StringValue("id"),
                            LastChecked = jsonValue.DateValue("last_checked")
                        };
         }

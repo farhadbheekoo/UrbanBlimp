@@ -22,11 +22,11 @@ namespace UrbanBlimp.Feed
         {
             return new Feed
                        {
-                           Url = (string) value.Value("url"),
-                           Id = (string) value.Value("id"),
-                           Template = DeSerializeTemplate(value.Value("template")),
-                           FeedUrl = (string) value.Value("feed_url"),
-                           BroadCast = (bool)value.Value("broadcast"),
+                           Url = value.StringValue("url"),
+                           Id = value.StringValue("id"),
+                           Template = DeSerializeTemplate(value["template"]),
+                           FeedUrl = value.StringValue("feed_url"),
+                           BroadCast = value.BoolValue("broadcast"),
                            LastChecked = value.DateValue("last_checked").Value
                        };
         }
@@ -35,7 +35,7 @@ namespace UrbanBlimp.Feed
         {
             return new Template
                        {
-                           FeedPayload = DeSerializePayload(value.Value("aps")),
+                           FeedPayload = DeSerializePayload(value["aps"]),
                            Tags = value.ListValue("tags")
                        };
         }
@@ -44,9 +44,9 @@ namespace UrbanBlimp.Feed
         {
             return new FeedPayload
                        {
-                           Alert = (string) value.Value("alert"),
-                           Badge = (int?) value.Value("badge"),
-                           Sound = (string) value.Value("sound"),
+                           Alert = value.StringValue("alert"),
+                           Badge = value.IntValue("badge"),
+                           Sound = value.StringValue("sound"),
                        };
         }
     }
