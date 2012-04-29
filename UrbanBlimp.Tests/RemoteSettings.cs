@@ -6,52 +6,13 @@ using System.Net;
 
 public static class RemoteSettings
 {
-    public static NetworkCredential ApplicationMasterCredential
-    {
-        get
-        {
-            Init();
-            return applicationMasterCredential;
-        }
-    }
+    public static NetworkCredential ApplicationMasterCredential;
+    public static NetworkCredential ApplicationCredential;
+    public static string AppleDeviceId;
+    public static string AndroidPushId;
 
-    public static NetworkCredential ApplicationCredential
+    static RemoteSettings()
     {
-        get
-        {
-            Init();
-            return applicationCredential;
-        }
-    }
-    public static string AppleDeviceId
-    {
-        get
-        {
-            Init();
-            return appleDeviceId;
-        }
-    }
-    public static string AndroidPushId
-    {
-        get
-        {
-            Init();
-            return appleDeviceId;
-        }
-    }
-    static NetworkCredential applicationMasterCredential;
-    static string appleDeviceId;
-    static string androidPushId;
-    static NetworkCredential applicationCredential;
-    static bool isInit;
-
-    static void Init()
-    {
-        if (isInit)
-        {
-            return;
-        }
-        isInit = true;
         var filePath = Path.GetFullPath(Path.Combine(ExecutingLocation.Location, @"..\..\..\UrbanAirshipRemoteSettings.txt"));
         if (!File.Exists(filePath))
         {
@@ -59,14 +20,14 @@ public static class RemoteSettings
         }
         var lines = File.ReadAllLines(filePath);
         var applicationKey = GetValue(lines, "ApplicationKey");
-        appleDeviceId = GetValue(lines, "AppleDeviceId");
-        androidPushId = GetValue(lines, "AndroidPushId");
-        applicationMasterCredential = new NetworkCredential
+        AppleDeviceId = GetValue(lines, "AppleDeviceId");
+        AndroidPushId = GetValue(lines, "AndroidPushId");
+        ApplicationMasterCredential = new NetworkCredential
                                           {
                                               UserName = applicationKey,
                                               Password = GetValue(lines, "ApplicationMasterSecret")
                                           };
-        applicationCredential = new NetworkCredential
+        ApplicationCredential = new NetworkCredential
                                     {
                                         UserName = applicationKey,
                                         Password = GetValue(lines, "ApplicationSecret")
