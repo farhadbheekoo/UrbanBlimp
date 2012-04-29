@@ -11,7 +11,7 @@ namespace UrbanBlimp.Tests.Apple
     {
         [Test]
         [Ignore]
-        public void Foo()
+        public void Integration()
         {
             var feedbackService = new FeedbackService
                                       {
