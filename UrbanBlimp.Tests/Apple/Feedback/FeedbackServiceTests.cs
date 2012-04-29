@@ -6,6 +6,7 @@ using UrbanBlimp.Apple;
 namespace UrbanBlimp.Tests.Apple
 {
     [TestFixture]
+    [Ignore]
     public class FeedbackServiceTests
     {
         [Test]
