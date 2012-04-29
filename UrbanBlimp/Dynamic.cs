@@ -17,7 +17,7 @@ namespace UrbanBlimp
             }
             var value = (string)json[key];
 
-            return DateTime.ParseExact(value, "yyyy-MM-dd hh:mm:ss", CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(value, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
         }
 
         public static int? IntValue(this JsonValue json, string key)
