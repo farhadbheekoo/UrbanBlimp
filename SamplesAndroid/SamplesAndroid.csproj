@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomRequestBuilder.cs" />
+    <Compile Include="DeleteRegistrationServiceSamples.cs" />
     <Compile Include="GetRegistrationServiceSamples.cs" />
     <Compile Include="PushServiceSamples.cs" />
     <Compile Include="AddRegistrationServiceSamples.cs" />

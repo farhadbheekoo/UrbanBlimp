@@ -1,6 +1,6 @@
 using System.Json;
 
-namespace UrbanBlimp.Tags
+namespace UrbanBlimp.Tag
 {
     internal static class TokenSerializer
     {

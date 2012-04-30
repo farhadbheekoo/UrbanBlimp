@@ -30,7 +30,7 @@ namespace UrbanBlimp.Feed
             }
             if (feedPayload.Badge != null)
             {
-                aps["badge"] = feedPayload.Badge;
+                aps["badge"] = feedPayload.Badge.Value;
             }
             if (feedPayload.Sound != null)
             {

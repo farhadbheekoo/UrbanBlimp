@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Feed\UpdateFeed.cs" />
+    <Compile Include="Feed\UpdateFeedSerializer.cs" />
+    <Compile Include="Feed\DeleteFeedService.cs" />
     <Compile Include="Feed\Feed.cs" />
     <Compile Include="Feed\FeedDeSerializer.cs" />
     <Compile Include="Feed\GetFeedService.cs" />
@@ -54,7 +57,7 @@
     <Compile Include="Feed\NewFeedId.cs" />
     <Compile Include="Feed\NewFeedIdDeSerializer.cs" />
     <Compile Include="Feed\NewFeedSerializer.cs" />
-    <Compile Include="Feed\NewFeedService.cs" />
+    <Compile Include="Feed\CreateFeedService.cs" />
     <Compile Include="Feed\FeedPayload.cs" />
     <Compile Include="Feed\Template.cs" />
     <Compile Include="RequestBuilder.cs" />
@@ -88,11 +91,13 @@
     <Compile Include="Apple\Registration\QuietTime.cs" />
     <Compile Include="Apple\Registration\Registration.cs" />
     <Compile Include="Apple\Registration\AddRegistrationService.cs" />
-    <Compile Include="Tag\AddTagsService.cs" />
+    <Compile Include="Tag\CreateTagService.cs" />
+    <Compile Include="Tag\AddTagToDeviceService.cs" />
+    <Compile Include="Tag\DeleteTagService.cs" />
     <Compile Include="Tag\TagDeSerializer.cs" />
-    <Compile Include="Tag\GetTagsService.cs" />
-    <Compile Include="Tag\ModifyTagsService.cs" />
-    <Compile Include="Tag\RemoveTagsService.cs" />
+    <Compile Include="Tag\GetTagService.cs" />
+    <Compile Include="Tag\ModifyTagService.cs" />
+    <Compile Include="Tag\RemoveTagFromDeviceService.cs" />
     <Compile Include="Tag\Tokens.cs" />
     <Compile Include="Tag\TokenSerializer.cs" />
   </ItemGroup>

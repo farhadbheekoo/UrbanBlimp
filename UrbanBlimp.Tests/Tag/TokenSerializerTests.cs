@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using NUnit.Framework;
-using UrbanBlimp.Tags;
+using UrbanBlimp.Tag;
 
 namespace UrbanBlimp.Tests.Tag
 {

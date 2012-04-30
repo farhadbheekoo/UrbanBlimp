@@ -57,6 +57,7 @@
     <Compile Include="Android\Registration\RegistrationSerializerTests.cs" />
     <Compile Include="Android\Registration\AddRegistrationServiceTests.cs" />
     <Compile Include="Apple\Registration\GetRegistrationServiceTests.cs" />
+    <Compile Include="Feed\UpdateFeedSerializerTests.cs" />
     <Compile Include="Feed\NewFeedIdDeSerializerTests.cs" />
     <Compile Include="Feed\NewFeedSerializerTests.cs" />
     <Compile Include="Feed\FeedDeSerializerTests.cs" />
@@ -73,11 +74,13 @@
     <Compile Include="Apple\Registration\AddRegistrationServiceTests.cs" />
     <Compile Include="Apple\Registration\RegistrationDeSerializerTests.cs" />
     <Compile Include="Apple\Registration\RegistrationSerializerTests.cs" />
-    <Compile Include="Tag\AddTagsServiceTests.cs" />
-    <Compile Include="Tag\GetTagsServiceTests.cs" />
+    <Compile Include="Tag\CreateTagServiceTests.cs" />
+    <Compile Include="Tag\AddTagToDeviceServiceTests.cs" />
+    <Compile Include="Tag\DeleteTagServiceTests.cs" />
+    <Compile Include="Tag\GetTagServiceTests.cs" />
     <Compile Include="Tag\TokenSerializerTests.cs" />
     <Compile Include="Tag\TagDeSerializerTests.cs" />
-    <Compile Include="Tag\RemoveTagsServiceTests.cs" />
+    <Compile Include="Tag\RemoveTagFromDeviceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

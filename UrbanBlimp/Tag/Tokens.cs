@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace UrbanBlimp.Tags
+namespace UrbanBlimp.Tag
 {
     public class Tokens
     {
