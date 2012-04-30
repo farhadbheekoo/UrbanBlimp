@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0348179C-7FA1-4074-B5B2-5E0A6B529241}</ProjectGuid>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{84D1B56E-B6B2-44E7-9A6A-6DEBCB59143F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Samples</RootNamespace>
     <AssemblyName>Samples</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,20 +36,32 @@
       <HintPath>..\packages\FluentDateTime.1.5.0.0\Lib\NET\FluentDateTime.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
+    <Compile Include="Android\AddRegistrationServiceSamples.cs" />
     <Compile Include="CustomRequestBuilder.cs" />
-    <Compile Include="DeleteRegistrationServiceSamples.cs" />
-    <Compile Include="FeedbackServiceSamples.cs" />
-    <Compile Include="GetRegistrationServiceSamples.cs" />
-    <Compile Include="PushServiceSamples.cs" />
-    <Compile Include="AddRegistrationServiceSamples.cs" />
+    <Compile Include="Android\DeleteRegistrationServiceSamples.cs" />
+    <Compile Include="Android\GetRegistrationServiceSamples.cs" />
+    <Compile Include="Android\PushServiceSamples.cs" />
+    <Compile Include="Apple\AddRegistrationServiceSamples.cs" />
+    <Compile Include="Apple\CustomRequestBuilder.cs" />
+    <Compile Include="Apple\DeleteRegistrationServiceSamples.cs" />
+    <Compile Include="Apple\FeedbackServiceSamples.cs" />
+    <Compile Include="Apple\GetRegistrationServiceSamples.cs" />
+    <Compile Include="Apple\PushServiceSamples.cs" />
+    <Compile Include="Feed\DeleteFeedServiceSamples.cs" />
+    <Compile Include="Feed\CreateFeedServiceSamples.cs" />
+    <Compile Include="Feed\GetFeedServiceSamples.cs" />
+    <Compile Include="Feed\ModifyFeedServiceSamples.cs" />
+    <Compile Include="Tag\AddTagToDeviceServiceSamples.cs" />
+    <Compile Include="Tag\CreateTagSamples.cs" />
+    <Compile Include="Tag\DeleteTagSamples.cs" />
+    <Compile Include="Tag\GetTagServiceSamples.cs" />
+    <Compile Include="Tag\ModifyTagServiceSamples.cs" />
+    <Compile Include="Tag\RemoveTagFromDeviceServiceSamples.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UrbanBlimp\UrbanBlimpDotNet.csproj">
@@ -58,8 +72,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <UsingTask TaskName="PepitaGet.RestorePackagesTask" AssemblyFile="..\Tools\PepitaGet.dll" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />  <UsingTask TaskName="PepitaGet.RestorePackagesTask" AssemblyFile="$(SolutionDir)Tools\PepitaGet.dll" />
   <Target Name="BeforeBuild">
     <PepitaGet.RestorePackagesTask />
   </Target>

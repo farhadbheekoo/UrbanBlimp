@@ -8,7 +8,7 @@ namespace UrbanBlimp.Feed
     static class FeedDeSerializer
     {
 
-        public static IEnumerable<Feed> DeSerialize(Stream content)
+        public static IEnumerable<Feed> DeSerializeMultiple(Stream content)
         {
             var array = JsonValue.Load(content);
 
@@ -16,6 +16,10 @@ namespace UrbanBlimp.Feed
             {
                 yield return DeSerializeFeed(value);
             }
+        }
+        public static Feed DeSerialize(Stream content)
+        {
+                return DeSerializeFeed(JsonValue.Load(content));
         }
 
         static Feed DeSerializeFeed(JsonValue value)

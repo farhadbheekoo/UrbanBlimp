@@ -29,7 +29,7 @@ namespace UrbanBlimp.Tests.Feed
         'broadcast': true
     }
 ]";
-            var feeds = value.ToObject(FeedDeSerializer.DeSerialize);
+            var feeds = value.ToObject(FeedDeSerializer.DeSerializeMultiple);
             var feed0 = feeds[0];
             Assert.AreEqual("1", feed0.Id);
             var feedPayload = feed0.Template.FeedPayload;
