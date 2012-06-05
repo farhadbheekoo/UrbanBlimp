@@ -47,7 +47,6 @@
     <Compile Include="Android\GetRegistrationServiceSamples.cs" />
     <Compile Include="Android\PushServiceSamples.cs" />
     <Compile Include="Apple\AddRegistrationServiceSamples.cs" />
-    <Compile Include="Apple\CustomRequestBuilder.cs" />
     <Compile Include="Apple\DeleteRegistrationServiceSamples.cs" />
     <Compile Include="Apple\FeedbackServiceSamples.cs" />
     <Compile Include="Apple\GetRegistrationServiceSamples.cs" />
@@ -59,7 +58,7 @@
     <Compile Include="Tag\AddTagToDeviceServiceSamples.cs" />
     <Compile Include="Tag\CreateTagSamples.cs" />
     <Compile Include="Tag\DeleteTagSamples.cs" />
-    <Compile Include="Tag\ExceptionHandler.cs" />
+    <Compile Include="ExceptionHandler.cs" />
     <Compile Include="Tag\GetTagServiceSamples.cs" />
     <Compile Include="Tag\ModifyTagServiceSamples.cs" />
     <Compile Include="Tag\RemoveTagFromDeviceServiceSamples.cs" />

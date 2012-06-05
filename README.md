@@ -55,29 +55,50 @@ Define a way of build an IRequestBuilder. This will be re-used on all samples
         }
     }
     
+## Exception Callback
+
+All service calls take a callback of Action{WebException} as the final parameter. this will be called if a WebException occurs during communication with UrbanAirship. For my samples I am just stubbing out the callback using 
+
+    public class ExceptionHandler
+    {
+        public static void Handle(WebException obj)
+        {
+            //Handle exceptions here 
+        }
+    }
+    
 ## Apple IOS Samples 
 
 ### AddRegistrationService 
 
+    public void Simple()
+    {
         var service = new AddRegistrationService
-                          {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
-                          };
+                            {
+                                RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                            };
         var registration = new Registration
-                               {
-                                   Tags = new List<string> {"MyTag"},
-                                   Alias = "MyAlias",
-                                   Badge = 10
-                               };
-        service.Execute("AppleDeviceId", registration);
+                                {
+                                    Tags = new List<string> {"MyTag"},
+                                    Alias = "MyAlias",
+                                    Badge = 10
+                                };
+        service.Execute("AppleDeviceId", registration, () => Debug.WriteLine("Success"), ExceptionHandler.Handle);
+    }
         
 ### FeedbackService
 
+    public void Simple()
+    {
         var feedbackService = new FeedbackService
-                                  {
-                                      RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
-                                  };
-        var feedback = feedbackService.Execute(10.Days().Ago());
+                                    {
+                                        RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                    };
+        feedbackService.Execute(10.Days().Ago(), Callback, ExceptionHandler.Handle);
+    }
+
+    void Callback(List<DeviceFeedback> feedback)
+    {
         foreach (var deviceFeedback in feedback)
         {
             Debug.WriteLine(deviceFeedback.Alias);
@@ -85,40 +106,52 @@ Define a way of build an IRequestBuilder. This will be re-used on all samples
             Debug.WriteLine(deviceFeedback.IsActive);
             Debug.WriteLine(deviceFeedback.MakedInactiveOn);
         }
+    }
         
 ### GetRegistrationService
 
+    public void Tags()
+    {
         var service = new GetRegistrationService
-                          {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
-                          };
-        var registration = service.Execute("ApplePushId");
+                            {
+                                RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                            };
+            service.Execute("ApplePushId",Callback,ExceptionHandler.Handle);
+    }
+
+    void Callback(Registration registration)
+    {
         Debug.WriteLine(registration.Badge);
         Debug.WriteLine(registration.Alias);
         Debug.WriteLine(registration.QuietTime);
         Debug.WriteLine(registration.TimeZone);
         Debug.WriteLine(string.Join(" ", registration.Tags));
+    }
         
 ### PushService
 
+    public void Simple()
+    {
         var service = new PushService
-                          {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
-                          };
+                            {
+                                RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                            };
         var notification = new PushNotification
-                               {
-                                   Tags = new List<string> {"MyTag"},
-                                   ExcludeTokens = new List<string> {"TokenToExclude"},
-                                   DeviceTokens = new List<string> {"AppleDeviceId"},
-                                   Aliases = new List<string> {"MyAlias"},
-                                   Payload = new PushPayload
-                                                 {
-                                                     Alert = "Alert 2",
-                                                     Badge = "2",
-                                                     Sound = "Sound1"
-                                                 }
-                               };
-        service.Execute(notification);
+                                {
+                                    Tags = new List<string> {"MyTag"},
+                                    ExcludeTokens = new List<string> {"TokenToExclude"},
+                                    DeviceTokens = new List<string> {"AppleDeviceId"},
+                                    Aliases = new List<string> {"MyAlias"},
+                                    Payload = new PushPayload
+                                                    {
+                                                        Alert = "Alert 2",
+                                                        Badge = "2",
+                                                        Sound = "Sound1"
+                                                    }
+                                };
+        service.Execute(notification,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
+    }
+
         
 ## Android       
 
@@ -128,49 +161,53 @@ Define a way of build an IRequestBuilder. This will be re-used on all samples
         
 ### AddRegistrationService
 
+    public void Simple()
+    {
         var service = new AddRegistrationService
-                          {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
-                          };
+                            {
+                                RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                            };
         var registration = new NewRegistration
-                               {
-                                   Tags = new List<string> {"MyTag"},
-                                   Alias = "MyAlias"
-                               };
-        service.Execute("AndroidPushId", registration);
+                                {
+                                    Tags = new List<string> {"MyTag"},
+                                    Alias = "MyAlias"
+                                };
+        service.Execute("AndroidPushId", registration,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
+    }
         
 ### GetRegistrationService
         
-        var service = new GetRegistrationService
-                          {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
-                          };
-        var registration = service.Execute("AndroidPushId");
-        Debug.WriteLine(registration.Active);
-        Debug.WriteLine(registration.Alias);
-        Debug.WriteLine(registration.Created);
-        Debug.WriteLine(string.Join(" ", registration.Tags));
-        
+    public void Simple()
+    {
+        var service = new AddRegistrationService
+                            {
+                                RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                            };
+        var registration = new NewRegistration
+                                {
+                                    Tags = new List<string> {"MyTag"},
+                                    Alias = "MyAlias"
+                                };
+        service.Execute("AndroidPushId", registration,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
+    }
+    
 ### PushService
         
+    public void Simple()
+    {
         var service = new PushService
-                          {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
-                          };
+                            {
+                                RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                            };
         var notification = new PushNotification
-                               {
-                                   Tags = new List<string> {"MyTag"},
-                                   PushIds = new List<string> {"AndroidPushId"},
-                                   Payload = new PushPayload
-                                                 {
-                                                     Alert = "Alert 2"
-                                                 }
-                               };
-        service.Execute(notification);
-        
-        
-        
-        
-        
-        
-        
+                                {
+                                    Tags = new List<string> {"MyTag"},
+                                    PushIds = new List<string> {"AndroidPushId"},
+                                    Payload = new PushPayload
+                                                    {
+                                                        Alert = "Alert 2"
+                                                    }
+                                };
+        service.Execute(notification,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
+    }        
+         
