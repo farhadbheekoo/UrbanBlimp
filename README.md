@@ -57,7 +57,7 @@ Define a way of build an IRequestBuilder. This will be re-used on all samples
     
 ## Exception Callback
 
-All service calls take a callback of Action{WebException} as the final parameter. this will be called if a WebException occurs during communication with UrbanAirship. For my samples I am just stubbing out the callback using 
+All service calls take a callback of Action{WebException} as the final parameter. This will be called if a WebException occurs during communication with UrbanAirship. For my samples I am just stubbing out the callback using 
 
     public class ExceptionHandler
     {
@@ -68,6 +68,10 @@ All service calls take a callback of Action{WebException} as the final parameter
     }
     
 ## Apple IOS Samples 
+
+### Using statement
+
+    using UrbanBlimp.Apple;
 
 ### AddRegistrationService 
 
