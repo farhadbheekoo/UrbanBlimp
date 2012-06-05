@@ -21,7 +21,11 @@ namespace UrbanBlimp.Tests.Apple
                                    {
                                        Tags = new List<string> {"bangladesh"}
                                    };
-            service.Execute(RemoteSettings.AppleDeviceId, registration);
+
+
+            var helper = new AsyncTestHelper();
+            service.Execute(RemoteSettings.AppleDeviceId, registration, helper.Callback, helper.HandleException);
+            helper.Wait();
         }
 
     }

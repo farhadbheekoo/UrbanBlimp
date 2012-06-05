@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using UrbanBlimp.Apple;
 
 namespace Apple
@@ -25,7 +26,7 @@ namespace Apple
                                                          Sound = "Sound1"
                                                      }
                                    };
-            service.Execute(notification);
+            service.Execute(notification,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
         }
 
     }

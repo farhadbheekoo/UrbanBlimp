@@ -11,7 +11,11 @@ namespace Apple
                               {
                                   RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                               };
-            var registration = service.Execute("ApplePushId");
+             service.Execute("ApplePushId",Callback,ExceptionHandler.Handle);
+        }
+
+        void Callback(Registration registration)
+        {
             Debug.WriteLine(registration.Badge);
             Debug.WriteLine(registration.Alias);
             Debug.WriteLine(registration.QuietTime);

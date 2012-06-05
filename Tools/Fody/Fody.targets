@@ -3,10 +3,9 @@
   <PropertyGroup>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">$(MSBuildProjectDirectory)\..\</SolutionDir>
     <BinObj>$(ProjectDir)$(IntermediateOutputPath)</BinObj>
-    <FodyAssemblyPath Condition="$(FodyAssemblyPath) == '' Or $(FodyAssemblyPath) == '*Undefined*'">$(SolutionDir)Tools\Fody\Fody.dll</FodyAssemblyPath>
     <FodyMessageImportance Condition="$(FodyMessageImportance) == '' Or $(FodyMessageImportance) == '*Undefined*'">Low</FodyMessageImportance>
   </PropertyGroup>
-  <UsingTask TaskName="Fody.WeavingTask" AssemblyFile="$(FodyAssemblyPath)" />
+  <UsingTask TaskName="Fody.WeavingTask" AssemblyFile="$(MSBuildThisFileDirectory)\Fody.dll" />
   <Target AfterTargets="CopyFilesToOutputDirectory" Name="FodyTarget">
     <Fody.WeavingTask AssemblyPath="$(TargetPath)" SolutionDir="$(SolutionDir)" ProjectPath="$(ProjectPath)" References="@(ReferencePath)" MessageImportance="$(FodyMessageImportance)"   KeyFilePath="$(KeyOriginatorFile)"/>
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(BinObj)" />

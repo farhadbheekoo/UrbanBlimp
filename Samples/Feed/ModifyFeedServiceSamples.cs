@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UrbanBlimp.Feed;
 
 public class ModifyFeedServiceSamples
@@ -23,7 +24,7 @@ public class ModifyFeedServiceSamples
                                                 },
                                  BroadCast = true
                              };
-        service.Execute("feedId", updateFeed);
+        service.Execute("feedId", updateFeed,() => Debug.WriteLine("Success"), ExceptionHandler.Handle);
     }
 
 }

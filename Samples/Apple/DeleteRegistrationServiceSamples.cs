@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UrbanBlimp.Apple;
 
 namespace Apple
@@ -10,7 +11,7 @@ namespace Apple
                               {
                                   RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                               };
-            service.Execute("ApplePushId");
+            service.Execute("ApplePushId",() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
         }
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="Tag\AddTagToDeviceServiceSamples.cs" />
     <Compile Include="Tag\CreateTagSamples.cs" />
     <Compile Include="Tag\DeleteTagSamples.cs" />
+    <Compile Include="Tag\ExceptionHandler.cs" />
     <Compile Include="Tag\GetTagServiceSamples.cs" />
     <Compile Include="Tag\ModifyTagServiceSamples.cs" />
     <Compile Include="Tag\RemoveTagFromDeviceServiceSamples.cs" />
@@ -72,7 +73,8 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />  <UsingTask TaskName="PepitaGet.RestorePackagesTask" AssemblyFile="$(SolutionDir)Tools\PepitaGet.dll" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <UsingTask TaskName="PepitaGet.RestorePackagesTask" AssemblyFile="$(SolutionDir)Tools\PepitaGet.dll" />
   <Target Name="BeforeBuild">
     <PepitaGet.RestorePackagesTask />
   </Target>

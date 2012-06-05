@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UrbanBlimp.Tag;
 
 public class DeleteTagSamples
@@ -9,6 +10,6 @@ public class DeleteTagSamples
                           {
                               RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                           };
-        service.Execute("tag1");
+        service.Execute("tag1",wasDeleted => Debug.WriteLine(wasDeleted),ExceptionHandler.Handle);
     }
 }

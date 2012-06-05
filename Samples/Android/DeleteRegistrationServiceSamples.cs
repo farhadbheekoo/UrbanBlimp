@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UrbanBlimp.Android;
 
 namespace Android
@@ -10,7 +11,7 @@ namespace Android
                               {
                                   RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                               };
-            service.Execute("AndroidPushId");
+            service.Execute("AndroidPushId", wasDeleted => Debug.WriteLine(wasDeleted), ExceptionHandler.Handle);
         }
     }
 }

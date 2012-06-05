@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using UrbanBlimp.Tag;
 
 public class ModifyTagServiceSamples
@@ -19,6 +20,6 @@ public class ModifyTagServiceSamples
                              AddPushIds = new List<string> {"AddPushId1", "AddPushId2"},
                              RemovePushIds = new List<string> {"RemovePushId1", "RemovePushId2"}
                          };
-        service.Execute("tage1", tokens);
+        service.Execute("tage1", tokens,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
     }
 }

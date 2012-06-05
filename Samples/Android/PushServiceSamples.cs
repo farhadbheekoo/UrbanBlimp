@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using UrbanBlimp.Android;
 
 namespace Android
@@ -21,7 +22,7 @@ namespace Android
                                                          Alert = "Alert 2"
                                                      }
                                    };
-            service.Execute(notification);
+            service.Execute(notification,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
         }
 
     }

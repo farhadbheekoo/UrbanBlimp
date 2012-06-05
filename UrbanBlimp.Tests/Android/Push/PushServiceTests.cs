@@ -13,18 +13,20 @@ namespace UrbanBlimp.Tests.Android
         public void Simple()
         {
             var service = new PushService
-                              {
-                                  RequestBuilder = RequestBuilderHelper.Build()
-                              };
-            service.Execute(new PushNotification
-                                {
-                                    PushIds = new List<string> {RemoteSettings.AndroidPushId},
-                                    Payload = new PushPayload
-                                                  {
-                                                      Alert = "Alert 2"
-                                                  }
-
-                                });
+                {
+                    RequestBuilder = RequestBuilderHelper.Build()
+                };
+            var pushNotification = new PushNotification
+                {
+                    PushIds = new List<string> {RemoteSettings.AndroidPushId},
+                    Payload = new PushPayload
+                        {
+                            Alert = "Alert 2"
+                        }
+                };
+            var asyncTestHelper = new AsyncTestHelper();
+            service.Execute(pushNotification, asyncTestHelper.Callback, asyncTestHelper.HandleException);
+            asyncTestHelper.Wait();
         }
 
         [Test]
@@ -32,18 +34,20 @@ namespace UrbanBlimp.Tests.Android
         public void ToTag()
         {
             var service = new PushService
-                              {
-                                  RequestBuilder = RequestBuilderHelper.Build()
-                              };
-            service.Execute(new PushNotification
-                                {
-                                    Tags = new List<string> {"africa"},
-                                    Payload = new PushPayload
-                                                  {
-                                                      Alert = "Alert 2"
-                                                  }
-
-                                });
+                {
+                    RequestBuilder = RequestBuilderHelper.Build()
+                };
+            var pushNotification = new PushNotification
+                {
+                    Tags = new List<string> {"africa"},
+                    Payload = new PushPayload
+                        {
+                            Alert = "Alert 2"
+                        }
+                };
+            var asyncTestHelper = new AsyncTestHelper();
+            service.Execute(pushNotification, asyncTestHelper.Callback, asyncTestHelper.HandleException);
+            asyncTestHelper.Wait();
         }
     }
 }

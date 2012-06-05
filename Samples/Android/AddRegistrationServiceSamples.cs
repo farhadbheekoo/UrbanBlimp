@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using UrbanBlimp.Android;
 
 namespace Android
@@ -16,7 +17,7 @@ namespace Android
                                        Tags = new List<string> {"MyTag"},
                                        Alias = "MyAlias"
                                    };
-            service.Execute("AndroidPushId", registration);
+            service.Execute("AndroidPushId", registration,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
         }
     }
 }

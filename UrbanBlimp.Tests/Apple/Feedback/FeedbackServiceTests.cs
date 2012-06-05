@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using FluentDateTime;
 using NUnit.Framework;
@@ -17,8 +18,15 @@ namespace UrbanBlimp.Tests.Apple
                                       {
                                           RequestBuilder = RequestBuilderHelper.Build()
                                       };
-            var feedback = feedbackService.Execute(10.Days().Ago());
-            Debug.WriteLine(feedback.Count);
+
+            var helper = new AsyncTestHelper<List<DeviceFeedback>>();
+            feedbackService.Execute(10.Days().Ago(),helper.Callback, helper.HandleException);
+            helper.Wait();
+            Debug.WriteLine(helper.Response.Count);   
+            foreach (var deviceFeedback in helper.Response)
+            {
+                Debug.WriteLine(deviceFeedback.DeviceToken);   
+            }
         }
     }
 }

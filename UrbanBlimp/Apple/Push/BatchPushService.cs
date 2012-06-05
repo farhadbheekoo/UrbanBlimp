@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Net;
 
 namespace UrbanBlimp.Apple
 {
@@ -6,12 +8,12 @@ namespace UrbanBlimp.Apple
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(IEnumerable<PushNotification> notifications)
+        public void Execute(IEnumerable<PushNotification> notifications, Action<WebException> exceptionCallback)
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/push/batch/");
             request.Method = "POST";
             var postData = PushNotificationSerializer.Serialize(notifications);
-            request.DoRequest(postData);
+            request.DoRequest(postData,b => {}, exceptionCallback);
         }
     }
 }

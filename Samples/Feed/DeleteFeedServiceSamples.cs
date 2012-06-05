@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UrbanBlimp.Feed;
 
 public class DeleteFeedServiceSamples
@@ -9,7 +10,7 @@ public class DeleteFeedServiceSamples
                           {
                               RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                           };
-        service.Execute("feedId");
+        service.Execute("feedId", wasDeleted => Debug.WriteLine(wasDeleted),ExceptionHandler.Handle);
     }
 
 }

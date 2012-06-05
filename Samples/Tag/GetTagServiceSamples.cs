@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using UrbanBlimp.Tag;
 
@@ -10,7 +11,12 @@ public class GetTagServiceSamples
                           {
                               RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                           };
-        foreach (var tag in service.Execute())
+        service.Execute(Callback, ExceptionHandler.Handle);
+    }
+
+    void Callback(List<string> list)
+    {
+        foreach (var tag in list)
         {
             Debug.WriteLine(tag);
         }

@@ -21,7 +21,10 @@ namespace UrbanBlimp.Tests.Android
                                    {
                                        Tags = new List<string> {"bangladesh"}
                                    };
-            service.Execute(RemoteSettings.AndroidPushId, registration);
+
+            var helper = new AsyncTestHelper();
+            service.Execute(RemoteSettings.AndroidPushId, registration, helper.Callback, helper.HandleException);
+            helper.Wait();
         }
     }
 }

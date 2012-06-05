@@ -15,8 +15,9 @@ namespace UrbanBlimp.Tests.Android
                               {
                                   RequestBuilder = RequestBuilderHelper.Build()
                               };
-            var registration = service.Execute(RemoteSettings.AndroidPushId);
-
+            var helper = new AsyncTestHelper<Registration>();
+            service.Execute(RemoteSettings.AndroidPushId, helper.Callback, helper.HandleException);
+            helper.Wait();
         }
         [Test]
         [Ignore]
@@ -26,8 +27,11 @@ namespace UrbanBlimp.Tests.Android
                               {
                                   RequestBuilder = RequestBuilderHelper.Build()
                               };
-            var registration = service.Execute("Foo");
-            Assert.IsNull(registration);
+
+            var helper = new AsyncTestHelper<Registration>();
+            service.Execute(RemoteSettings.AndroidPushId, helper.Callback, helper.HandleException);
+            helper.Wait();
+            Assert.IsNull(helper.Response);
         }
     }
 }

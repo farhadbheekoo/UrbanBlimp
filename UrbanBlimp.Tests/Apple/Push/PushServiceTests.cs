@@ -13,18 +13,21 @@ namespace UrbanBlimp.Tests.Apple
         public void Simple()
         {
             var service = new PushService
-                              {
-                                  RequestBuilder = RequestBuilderHelper.Build()
-                              };
-            service.Execute(new PushNotification
-                                {
-                                    DeviceTokens = new List<string> {RemoteSettings.AppleDeviceId},
-                                    Payload = new PushPayload
-                                                  {
-                                                      Alert = "Alert 2"
-                                                  }
+                {
+                    RequestBuilder = RequestBuilderHelper.Build()
+                };
+            var pushNotification = new PushNotification
+                {
+                    DeviceTokens = new List<string> {RemoteSettings.AppleDeviceId},
+                    Payload = new PushPayload
+                        {
+                            Alert = "Alert 2"
+                        }
+                };
 
-                                });
+            var helper = new AsyncTestHelper();
+            service.Execute(pushNotification, helper.Callback, helper.HandleException);
+            helper.Wait();
         }
 
         [Test]
@@ -32,18 +35,21 @@ namespace UrbanBlimp.Tests.Apple
         public void ToTag()
         {
             var service = new PushService
-                              {
-                                  RequestBuilder = RequestBuilderHelper.Build()
-                              };
-            service.Execute(new PushNotification
-                                {
-                                    Tags = new List<string> {"africa"},
-                                    Payload = new PushPayload
-                                                  {
-                                                      Alert = "Alert 2"
-                                                  }
+                {
+                    RequestBuilder = RequestBuilderHelper.Build()
+                };
+            var pushNotification = new PushNotification
+                {
+                    Tags = new List<string> {"africa"},
+                    Payload = new PushPayload
+                        {
+                            Alert = "Alert 2"
+                        }
+                };
 
-                                });
+            var helper = new AsyncTestHelper();
+            service.Execute(pushNotification, helper.Callback, helper.HandleException);
+            helper.Wait();
         }
     }
 }

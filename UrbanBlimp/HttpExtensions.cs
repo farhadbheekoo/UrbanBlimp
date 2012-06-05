@@ -7,18 +7,16 @@ namespace UrbanBlimp
 {
     static class HttpExtensions
     {
-        public static bool DoRequest(this WebRequest request, string postData)
+        public static void DoRequest(this WebRequest request, string postData, Action<bool> convertStream, Action<WebException> exceptionCallback)
         {
             request.WriteToRequest(postData);
-
-            return request.DoRequest();
+            request.DoRequest(convertStream, exceptionCallback);
         }
 
-        public static T DoRequest<T>(this WebRequest request, string postData, Func<Stream, T> action)
+        public static void DoRequest<T>(this WebRequest request, string postData, Func<Stream, T> convertStream, Action<T> callback, Action<WebException> exceptionCallback)
         {
             request.WriteToRequest(postData);
-
-            return request.DoRequest(action);
+            request.DoRequest(convertStream, callback,exceptionCallback);
         }
 
         static void WriteToRequest(this WebRequest request, string postData)
@@ -33,52 +31,64 @@ namespace UrbanBlimp
             }
         }
 
-        public static bool DoRequest(this WebRequest webRequest)
+        public static void DoRequest(this WebRequest webRequest, Action<bool> callback, Action<WebException> exceptionCallback)
+        {
+            webRequest.BeginGetResponse(ar => DoRequestCallback(ar, callback, exceptionCallback), webRequest);
+        }
+
+        static void DoRequestCallback(IAsyncResult asynResult, Action<bool> callback, Action<WebException> exceptionCallback)
         {
             try
             {
-                using (webRequest.GetResponse())
+                var request = (HttpWebRequest)asynResult.AsyncState;
+                using (request.EndGetResponse(asynResult))
                 {
-                    return true;
+                    callback(true);
                 }
             }
             catch (WebException webException)
             {
-                if (webException.StatusCode() == HttpStatusCode.NotFound)
+                if (webException.IsNotFound())
                 {
-                    return false;
+                    callback(false);
                 }
-                throw;
+                exceptionCallback(webException);
             }
         }
 
-        public static T DoRequest<T>(this WebRequest webRequest, Func<Stream, T> action)
+
+        public static void DoRequest<T>(this WebRequest webRequest, Func<Stream, T> convertStream, Action<T> callback, Action<WebException> exceptionCallback)
+        {
+            webRequest.BeginGetResponse(ar => DoRequestCallback(ar, convertStream, callback, exceptionCallback), webRequest);
+        }
+
+        static void DoRequestCallback<T>(IAsyncResult asynResult, Func<Stream, T> convertStream, Action<T> callback, Action<WebException> exceptionCallback)
         {
             try
             {
-                using (var response = webRequest.GetResponse())
+                var request = (HttpWebRequest) asynResult.AsyncState;
+                using (var endGetResponse = request.EndGetResponse(asynResult))
+                using (var responseStream = endGetResponse.GetResponseStream())
                 {
-
-                    using (var responseStream = response.GetResponseStream())
-                    {
-                        return action(responseStream);
-                    }
+                    var result = convertStream(responseStream);
+                    callback(result);
                 }
             }
             catch (WebException webException)
             {
-                if (webException.StatusCode() == HttpStatusCode.NotFound)
+                if (webException.IsNotFound())
                 {
-                    return default(T);
+                    //TODO: perhaps should be null??
+                    callback(default(T));
                 }
-                throw;
+                exceptionCallback(webException);
             }
         }
 
-        static HttpStatusCode StatusCode(this WebException webException)
+        static bool IsNotFound(this WebException webException)
         {
-            var httpWebResponse = ((HttpWebResponse) (webException.Response));
-            return httpWebResponse.StatusCode;
+            var httpWebResponse = (HttpWebResponse)webException.Response;
+            return httpWebResponse.StatusCode == HttpStatusCode.NotFound;
         }
     }
 }

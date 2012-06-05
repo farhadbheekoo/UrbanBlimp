@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using UrbanBlimp.Feed;
 
@@ -9,7 +10,11 @@ public class GetFeedServiceSamples
                           {
                               RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                           };
-        var feed = service.Execute("feedId");
+        service.Execute("feedId",Callback,ExceptionHandler.Handle);
+    }
+
+    void Callback(Feed feed)
+    { 
         Debug.WriteLine(feed.FeedUrl);
     }
 
@@ -19,7 +24,13 @@ public class GetFeedServiceSamples
                           {
                               RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                           };
-        foreach (var feed in service.Execute())
+        service.Execute(Callback, ExceptionHandler.Handle);
+
+    }
+
+    void Callback(List<Feed> feeds)
+    {
+        foreach (var feed in feeds)
         {
             Debug.WriteLine(feed.FeedUrl);
         }

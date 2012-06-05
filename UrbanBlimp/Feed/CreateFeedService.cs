@@ -1,15 +1,18 @@
-﻿namespace UrbanBlimp.Feed
+﻿using System;
+using System.Net;
+
+namespace UrbanBlimp.Feed
 {
     public class CreateFeedService
     {
         public IRequestBuilder RequestBuilder;
 
-        public NewFeedId Execute(NewFeed newFeed)
+        public void Execute(NewFeed newFeed, Action<NewFeedId> callback, Action<WebException> exceptionCallback)
         {
             var postData = NewFeedSerializer.Serialize(newFeed);
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/");
             request.Method = "POST";
-            return request.DoRequest(postData, NewFeedIdDeSerializer.DeSerialize);
+            request.DoRequest(postData, NewFeedIdDeSerializer.DeSerialize, callback, exceptionCallback);
         }
     }
 }

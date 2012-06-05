@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UrbanBlimp.Tag;
 
 public class AddTagToDeviceServiceSamples
@@ -9,6 +10,6 @@ public class AddTagToDeviceServiceSamples
                           {
                               RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                           };
-        service.Execute("DeviceToken", "tag1");
+        service.Execute("DeviceToken", "tag1",() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
     }
 }

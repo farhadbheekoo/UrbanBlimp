@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using NUnit.Framework;
 using UrbanBlimp.Tag;
@@ -16,9 +17,31 @@ namespace UrbanBlimp.Tests.Tag
                               {
                                   RequestBuilder = RequestBuilderHelper.Build()
                               };
-            ;
-            var enumerable = service.Execute();
-            foreach (var tag in enumerable)
+            var helper = new AsyncTestHelper<List<string>>();
+            service.Execute(helper.Callback, helper.HandleException);
+            helper.Wait();
+
+            foreach (var tag in helper.Response)
+            {
+                Debug.WriteLine(tag);
+            }
+        }
+
+        [Test]
+        [Ignore]
+        public void TagsForDevices()
+        {
+            var service = new GetTagService
+                              {
+                                  RequestBuilder = RequestBuilderHelper.Build()
+                              };
+
+
+            var helper = new AsyncTestHelper<List<string>>();
+            service.Execute("tag1434", helper.Callback, helper.HandleException);
+            helper.Wait();
+
+            foreach (var tag in helper.Response)
             {
                 Debug.WriteLine(tag);
             }

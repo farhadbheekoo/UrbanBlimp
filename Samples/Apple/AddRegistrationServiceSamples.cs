@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using UrbanBlimp.Apple;
 
 namespace Apple
@@ -18,7 +19,7 @@ namespace Apple
                                        Alias = "MyAlias",
                                        Badge = 10
                                    };
-            service.Execute("AppleDeviceId", registration);
+            service.Execute("AppleDeviceId", registration, () => Debug.WriteLine("Success"), ExceptionHandler.Handle);
         }
 
     }

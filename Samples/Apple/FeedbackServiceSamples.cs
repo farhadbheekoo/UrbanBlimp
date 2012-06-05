@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using FluentDateTime;
 using UrbanBlimp.Apple;
@@ -12,7 +13,11 @@ namespace Apple
                                       {
                                           RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                                       };
-            var feedback = feedbackService.Execute(10.Days().Ago());
+            feedbackService.Execute(10.Days().Ago(), Callback, ExceptionHandler.Handle);
+        }
+
+        void Callback(List<DeviceFeedback> feedback)
+        {
             foreach (var deviceFeedback in feedback)
             {
                 Debug.WriteLine(deviceFeedback.Alias);

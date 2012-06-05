@@ -16,7 +16,13 @@ namespace UrbanBlimp.Tests.Apple
                               {
                                   RequestBuilder = RequestBuilderHelper.Build()
                               };
-            var registration = service.Execute(RemoteSettings.AppleDeviceId);
+
+
+            var helper = new AsyncTestHelper<Registration>();
+            service.Execute(RemoteSettings.AppleDeviceId, helper.Callback, helper.HandleException);
+            helper.Wait();
+
+            var registration = helper.Response;
             Debug.WriteLine(registration.Alias);
             Debug.WriteLine(registration.Badge);
             Debug.WriteLine(registration.QuietTime.Start);
@@ -34,8 +40,12 @@ namespace UrbanBlimp.Tests.Apple
                               {
                                   RequestBuilder = RequestBuilderHelper.Build()
                               };
-            var registration = service.Execute("foo");
-            Assert.IsNull(registration);
+
+
+            var helper = new AsyncTestHelper<Registration>();
+            service.Execute("foo", helper.Callback, helper.HandleException);
+            helper.Wait();
+            Assert.IsNull(helper.Response);
         }
 
     }

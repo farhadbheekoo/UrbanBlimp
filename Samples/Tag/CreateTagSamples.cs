@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UrbanBlimp.Tag;
 
 public class CreateTagSamples
@@ -9,6 +10,6 @@ public class CreateTagSamples
                           {
                               RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                           };
-        service.Execute("tag1");
+        service.Execute("tag1", () => Debug.WriteLine("Success"), ExceptionHandler.Handle);
     }
 }

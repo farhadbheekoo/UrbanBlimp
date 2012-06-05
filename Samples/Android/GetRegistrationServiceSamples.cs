@@ -8,10 +8,14 @@ namespace Android
         public void Simple()
         {
             var service = new GetRegistrationService
-                              {
-                                  RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
-                              };
-            var registration = service.Execute("AndroidPushId");
+                {
+                    RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                };
+            service.Execute("AndroidPushId", Callback, ExceptionHandler.Handle);
+        }
+
+        void Callback(Registration registration)
+        {
             Debug.WriteLine(registration.Active);
             Debug.WriteLine(registration.Alias);
             Debug.WriteLine(registration.Created);

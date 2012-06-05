@@ -1,15 +1,18 @@
 
+using System;
+using System.Net;
+
 namespace UrbanBlimp.Android
 {
     public class GetRegistrationService
     {
         public IRequestBuilder RequestBuilder;
 
-        public Registration Execute(string pushId)
+        public void Execute(string pushId, Action<Registration> callback, Action<WebException> exceptionCallback)
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/apids/" + pushId);
             request.Method = "Get";
-            return request.DoRequest(RegistrationDeSerializer.DeSerialize);
+            request.DoRequest(RegistrationDeSerializer.DeSerialize, callback,exceptionCallback);
         }
     }
 }
