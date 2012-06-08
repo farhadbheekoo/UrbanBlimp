@@ -57,11 +57,11 @@ Define a way of build an IRequestBuilder. This will be re-used on all samples
     
 ## Exception Callback
 
-All service calls take a callback of Action{WebException} as the final parameter. This will be called if a WebException occurs during communication with UrbanAirship. For my samples I am just stubbing out the callback using 
+All service calls take a callback of Action{Exception} as the final parameter. This will be called if a Exception occurs during communication with UrbanAirship. For my samples I am just stubbing out the callback using 
 
     public class ExceptionHandler
     {
-        public static void Handle(WebException obj)
+        public static void Handle(Exception obj)
         {
             //Handle exceptions here 
         }
