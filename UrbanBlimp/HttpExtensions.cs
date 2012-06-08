@@ -7,23 +7,15 @@ namespace UrbanBlimp
 {
     static class HttpExtensions
     {
-        public static void DoRequest(this WebRequest request, string postData, Action<bool> callback, Action<Exception> exceptionCallback)
+        public static void DoRequest(this WebRequest request, string postData, Action<bool> convertStream, Action<Exception> exceptionCallback)
         {
-            DoRequest(request, postData, stream => true, callback, exceptionCallback);
+            request.WriteToRequest(postData);
+            request.DoRequest(convertStream, exceptionCallback);
         }
 
         public static void DoRequest<T>(this WebRequest request, string postData, Func<Stream, T> convertStream, Action<T> callback, Action<Exception> exceptionCallback)
         {
-            //TODO: unit test to hit this try catch
-            try
-            {
-                request.WriteToRequest(postData);
-            }
-            catch (Exception exception)
-            {
-                exceptionCallback(exception);
-                return;
-            }
+            request.WriteToRequest(postData);
             request.DoRequest(convertStream, callback, exceptionCallback);
         }
 
@@ -41,7 +33,27 @@ namespace UrbanBlimp
 
         public static void DoRequest(this WebRequest webRequest, Action<bool> callback, Action<Exception> exceptionCallback)
         {
-            webRequest.BeginGetResponse(ar => DoRequestCallback(ar, stream => true, callback, exceptionCallback), webRequest);
+            webRequest.BeginGetResponse(ar => DoRequestCallback(ar, callback, exceptionCallback), webRequest);
+        }
+
+        static void DoRequestCallback(IAsyncResult asynResult, Action<bool> callback, Action<Exception> exceptionCallback)
+        {
+            try
+            {
+                var request = (HttpWebRequest)asynResult.AsyncState;
+                using (request.EndGetResponse(asynResult))
+                {
+                    callback(true);
+                }
+            }
+            catch (WebException webException)
+            {
+                if (webException.IsNotFound())
+                {
+                    callback(false);
+                }
+                exceptionCallback(webException);
+            }
         }
 
 
@@ -54,7 +66,7 @@ namespace UrbanBlimp
         {
             try
             {
-                var request = (HttpWebRequest) asynResult.AsyncState;
+                var request = (HttpWebRequest)asynResult.AsyncState;
                 using (var endGetResponse = request.EndGetResponse(asynResult))
                 using (var responseStream = endGetResponse.GetResponseStream())
                 {
