@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading;
 
 namespace UrbanBlimp
 {
@@ -49,11 +50,7 @@ namespace UrbanBlimp
             }
         }
 
-        public static void DoRequest(this WebRequest webRequest, Action<bool> callback, Action<Exception> exceptionCallback)
-        {
-            webRequest.BeginGetResponse(ar => DoRequestCallback(ar, callback, exceptionCallback), webRequest);
-        }
-
+        
         static void DoRequestCallback(IAsyncResult asynResult, Action<bool> callback, Action<Exception> exceptionCallback)
         {
             try
@@ -74,10 +71,25 @@ namespace UrbanBlimp
             }
         }
 
-
-        public static void DoRequest<T>(this WebRequest webRequest, Func<Stream, T> convertStream, Action<T> callback, Action<Exception> exceptionCallback)
+        public static void DoRequest(this WebRequest request, Action<bool> callback, Action<Exception> exceptionCallback)
         {
-            webRequest.BeginGetResponse(ar => DoRequestCallback(ar, convertStream, callback, exceptionCallback), webRequest);
+            var asyncResult = request.BeginGetResponse(ar => DoRequestCallback(ar, callback, exceptionCallback), request);
+            ThreadPool.RegisterWaitForSingleObject(asyncResult.AsyncWaitHandle, TimeOutCallback, request, request.Timeout, true);
+        }
+        
+        public static void DoRequest<T>(this WebRequest request, Func<Stream, T> convertStream, Action<T> callback, Action<Exception> exceptionCallback)
+        {
+            var asyncResult = request.BeginGetResponse(ar => DoRequestCallback(ar, convertStream, callback, exceptionCallback), request);
+            ThreadPool.RegisterWaitForSingleObject(asyncResult.AsyncWaitHandle, TimeOutCallback, request, request.Timeout, true);
+        }
+
+        static void TimeOutCallback(object state, bool timedOut)
+        {
+            if (timedOut)
+            {
+                var request = (HttpWebRequest) state;
+                request.Abort();
+            }
         }
 
         static void DoRequestCallback<T>(IAsyncResult asynResult, Func<Stream, T> convertStream, Action<T> callback, Action<Exception> exceptionCallback)
