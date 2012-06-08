@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 
 namespace UrbanBlimp.Android
 {
@@ -7,7 +6,7 @@ namespace UrbanBlimp.Android
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string pushId, NewRegistration registration, Action callback, Action<WebException> exceptionCallback)
+        public void Execute(string pushId, NewRegistration registration, Action callback, Action<Exception> exceptionCallback)
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/apids/" + pushId);
             request.Method = "PUT";
@@ -15,7 +14,7 @@ namespace UrbanBlimp.Android
             request.DoRequest(postData, b => callback(), exceptionCallback);
         }
 
-        public void Execute(string pushId, Action callback, Action<WebException> exceptionCallback)
+        public void Execute(string pushId, Action callback, Action<Exception> exceptionCallback)
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/apids/" + pushId);
             request.Method = "PUT";

@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 
 namespace UrbanBlimp.Apple
 {
@@ -7,7 +6,7 @@ namespace UrbanBlimp.Apple
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string deviceToken, Registration registration, Action callback, Action<WebException> exceptionCallback)
+        public void Execute(string deviceToken, Registration registration, Action callback, Action<Exception> exceptionCallback)
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/device_tokens/" + deviceToken);
             request.Method = "PUT";
@@ -15,7 +14,7 @@ namespace UrbanBlimp.Apple
             request.DoRequest(postData, b => callback(), exceptionCallback);
         }
 
-        public void Execute(string deviceToken, Action callback, Action<WebException> exceptionCallback)
+        public void Execute(string deviceToken, Action callback, Action<Exception> exceptionCallback)
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/device_tokens/" + deviceToken);
             request.Method = "PUT";

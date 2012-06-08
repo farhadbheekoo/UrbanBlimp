@@ -1,15 +1,14 @@
 using System;
-using System.Net;
 using System.Threading;
 
 public class AsyncTestHelper<T>
 {
     public ManualResetEvent allDone = new ManualResetEvent(false);
 
-    public Action<WebException> HandleException;
+    public Action<Exception> HandleException;
     public Action<T> Callback;
     public T Response;
-    WebException exception;
+    Exception exception;
 
     public AsyncTestHelper()
     {
@@ -39,9 +38,9 @@ public class AsyncTestHelper
 {
     public ManualResetEvent allDone = new ManualResetEvent(false);
 
-    public Action<WebException> HandleException;
+    public Action<Exception> HandleException;
     public Action Callback;
-    WebException exception;
+    Exception exception;
 
     public AsyncTestHelper()
     {

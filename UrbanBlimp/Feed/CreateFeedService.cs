@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 
 namespace UrbanBlimp.Feed
 {
@@ -7,7 +6,7 @@ namespace UrbanBlimp.Feed
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(NewFeed newFeed, Action<NewFeedId> callback, Action<WebException> exceptionCallback)
+        public void Execute(NewFeed newFeed, Action<NewFeedId> callback, Action<Exception> exceptionCallback)
         {
             var postData = NewFeedSerializer.Serialize(newFeed);
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/");

@@ -1,8 +1,8 @@
-using System.Net;
+using System;
 
 public class ExceptionHandler
 {
-    public static void Handle(WebException obj)
+    public static void Handle(Exception obj)
     {
         //Handle exceptions here 
     }

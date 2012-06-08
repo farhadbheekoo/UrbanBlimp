@@ -7,21 +7,21 @@ namespace UrbanBlimp
 {
     static class HttpExtensions
     {
-        public static void DoRequest(this WebRequest request, string postData, Action<bool> callback, Action<WebException> exceptionCallback)
+        public static void DoRequest(this WebRequest request, string postData, Action<bool> callback, Action<Exception> exceptionCallback)
         {
             DoRequest(request, postData, stream => true, callback, exceptionCallback);
         }
 
-        public static void DoRequest<T>(this WebRequest request, string postData, Func<Stream, T> convertStream, Action<T> callback, Action<WebException> exceptionCallback)
+        public static void DoRequest<T>(this WebRequest request, string postData, Func<Stream, T> convertStream, Action<T> callback, Action<Exception> exceptionCallback)
         {
             //TODO: unit test to hit this try catch
             try
             {
                 request.WriteToRequest(postData);
             }
-            catch (WebException webException)
+            catch (Exception exception)
             {
-                exceptionCallback(webException);
+                exceptionCallback(exception);
                 return;
             }
             request.DoRequest(convertStream, callback, exceptionCallback);
@@ -39,18 +39,18 @@ namespace UrbanBlimp
             }
         }
 
-        public static void DoRequest(this WebRequest webRequest, Action<bool> callback, Action<WebException> exceptionCallback)
+        public static void DoRequest(this WebRequest webRequest, Action<bool> callback, Action<Exception> exceptionCallback)
         {
             webRequest.BeginGetResponse(ar => DoRequestCallback(ar, stream => true, callback, exceptionCallback), webRequest);
         }
 
 
-        public static void DoRequest<T>(this WebRequest webRequest, Func<Stream, T> convertStream, Action<T> callback, Action<WebException> exceptionCallback)
+        public static void DoRequest<T>(this WebRequest webRequest, Func<Stream, T> convertStream, Action<T> callback, Action<Exception> exceptionCallback)
         {
             webRequest.BeginGetResponse(ar => DoRequestCallback(ar, convertStream, callback, exceptionCallback), webRequest);
         }
 
-        static void DoRequestCallback<T>(IAsyncResult asynResult, Func<Stream, T> convertStream, Action<T> callback, Action<WebException> exceptionCallback)
+        static void DoRequestCallback<T>(IAsyncResult asynResult, Func<Stream, T> convertStream, Action<T> callback, Action<Exception> exceptionCallback)
         {
             try
             {
@@ -70,6 +70,10 @@ namespace UrbanBlimp
                     callback(default(T));
                 }
                 exceptionCallback(webException);
+            }
+            catch (Exception exception)
+            {
+                exceptionCallback(exception);
             }
         }
 

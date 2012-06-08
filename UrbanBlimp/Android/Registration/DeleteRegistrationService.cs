@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 
 namespace UrbanBlimp.Android
 {
@@ -7,7 +6,7 @@ namespace UrbanBlimp.Android
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string pushId, Action<bool> callback, Action<WebException> exceptionCallback)
+        public void Execute(string pushId, Action<bool> callback, Action<Exception> exceptionCallback)
         {
             //TODO: validate args
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/apids/" + pushId);

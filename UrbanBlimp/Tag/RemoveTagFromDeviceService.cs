@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 
 namespace UrbanBlimp.Tag
 {
@@ -7,7 +6,7 @@ namespace UrbanBlimp.Tag
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string deviceToken, string tagToRemove, Action<bool> callback, Action<WebException> exceptionCallback)
+        public void Execute(string deviceToken, string tagToRemove, Action<bool> callback, Action<Exception> exceptionCallback)
         {
             var url = string.Format("https://go.urbanairship.com/api/device_tokens/{0}/tags/{1}", deviceToken, tagToRemove);
             var request = RequestBuilder.Build(url);
