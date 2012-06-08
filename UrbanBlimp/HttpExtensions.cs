@@ -7,15 +7,33 @@ namespace UrbanBlimp
 {
     static class HttpExtensions
     {
-        public static void DoRequest(this WebRequest request, string postData, Action<bool> convertStream, Action<Exception> exceptionCallback)
+        public static void DoRequest(this WebRequest request, string postData, Action<bool> callback, Action<Exception> exceptionCallback)
         {
-            request.WriteToRequest(postData);
-            request.DoRequest(convertStream, exceptionCallback);
+    
+            try
+            {
+                request.WriteToRequest(postData);
+            }
+            catch (WebException webException)
+            {
+                exceptionCallback(webException);
+                return;
+            }
+            request.DoRequest(callback, exceptionCallback);
+
         }
 
         public static void DoRequest<T>(this WebRequest request, string postData, Func<Stream, T> convertStream, Action<T> callback, Action<Exception> exceptionCallback)
         {
-            request.WriteToRequest(postData);
+            try
+            {
+                request.WriteToRequest(postData);
+            }
+            catch (WebException webException)
+            {
+                exceptionCallback(webException);
+                return;
+            }
             request.DoRequest(convertStream, callback, exceptionCallback);
         }
 
