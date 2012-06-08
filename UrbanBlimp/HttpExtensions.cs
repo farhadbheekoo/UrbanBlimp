@@ -13,13 +13,13 @@ namespace UrbanBlimp
             try
             {
                 request.WriteToRequest(postData);
+                request.DoRequest(callback, exceptionCallback);
             }
-            catch (WebException webException)
+            catch (Exception exception)
             {
-                exceptionCallback(webException);
+                exceptionCallback(exception);
                 return;
             }
-            request.DoRequest(callback, exceptionCallback);
 
         }
 
@@ -28,13 +28,13 @@ namespace UrbanBlimp
             try
             {
                 request.WriteToRequest(postData);
+                request.DoRequest(convertStream, callback, exceptionCallback);
             }
-            catch (WebException webException)
+            catch (Exception exception)
             {
-                exceptionCallback(webException);
+                exceptionCallback(exception);
                 return;
             }
-            request.DoRequest(convertStream, callback, exceptionCallback);
         }
 
         static void WriteToRequest(this WebRequest request, string postData)
