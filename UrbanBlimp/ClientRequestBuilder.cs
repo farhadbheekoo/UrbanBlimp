@@ -1,14 +1,17 @@
+using System;
 using System.Net;
 
 namespace UrbanBlimp
 {
     public class RequestBuilder : IRequestBuilder
     {
-        public NetworkCredential NetworkCredential;
+
+        public Func<NetworkCredential> BuildApplicationCredentials { get; set; }
+
         public WebRequest Build(string url)
         {
             var request = WebRequest.Create(url);
-            request.Credentials = NetworkCredential;
+            request.Credentials = BuildApplicationCredentials();
             request.PreAuthenticate = true;
             return request;
         }
@@ -16,6 +19,10 @@ namespace UrbanBlimp
 
     public interface IRequestBuilder
     {
+        Func<NetworkCredential> BuildApplicationCredentials { get; set; }
         WebRequest Build(string url);
     }
+
+
+
 }

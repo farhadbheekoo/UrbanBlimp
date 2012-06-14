@@ -6,7 +6,7 @@ public static class RequestBuilderHelper
     {
         return new RequestBuilder
                    {
-                       NetworkCredential = RemoteSettings.ApplicationMasterCredential
+                       BuildApplicationMasterCredentials = () => { return RemoteSettings.ApplicationMasterCredential; }
                    };
     }
 }

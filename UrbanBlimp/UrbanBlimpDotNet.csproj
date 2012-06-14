@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\DebugDotNet\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;Server</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -62,7 +62,7 @@
     <Compile Include="Feed\CreateFeedService.cs" />
     <Compile Include="Feed\FeedPayload.cs" />
     <Compile Include="Feed\Template.cs" />
-    <Compile Include="RequestBuilder.cs" />
+    <Compile Include="ServerRequestBuilder.cs" />
     <Compile Include="HttpExtensions.cs" />
     <Compile Include="Android\Push\PushNotification.cs" />
     <Compile Include="Android\Push\PushNotificationSerializer.cs" />

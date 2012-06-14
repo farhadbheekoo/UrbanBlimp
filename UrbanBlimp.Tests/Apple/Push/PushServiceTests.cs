@@ -26,9 +26,9 @@ namespace UrbanBlimp.Tests.Apple
                         {
                             Alert = "Alert 2"
                         },
-                    CustomData = new Dictionary<string, string>()
+                    CustomData = new Dictionary<string, string>
                         {
-                         {"permalink", "/advice/ivory_coast?20000801"}
+                         {"Key", "Value"}
                         }
                 };
 

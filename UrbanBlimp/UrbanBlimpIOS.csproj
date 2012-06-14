@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\DebugIOS\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;Client</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -47,8 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncRequest.cs" />
+    <Compile Include="ClientRequestBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HttpExtensions.cs" />
-    <Compile Include="RequestBuilder.cs" />
     <Compile Include="Dynamic.cs" />
     <Compile Include="Apple\Push\BatchPushService.cs" />
     <Compile Include="Apple\Feedback\FeedbackSerializer.cs" />
