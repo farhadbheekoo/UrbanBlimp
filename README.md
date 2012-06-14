@@ -36,7 +36,9 @@ If you are using Mono for Android (http://xamarin.com/monoforandroid) on Android
 
 ## IRequestBuilder
 
-Define a way of build an IRequestBuilder. This will be re-used on all samples
+Define a way of build an IRequestBuilder. The IRequestBuilder implementation differs slightly between the "back end" and "front end" APIs. The reason for this is to make the difference between using the ApplicationMasterSecret and the ApplicationSecret explicit. 
+
+### FrontEnd RequestBuilder
 
     using UrbanBlimp;
     public static class CustomRequestBuilder
@@ -44,14 +46,37 @@ Define a way of build an IRequestBuilder. This will be re-used on all samples
         public static IRequestBuilder GetRequestBuilder()
         {
             return new RequestBuilder
-                       {
-                           NetworkCredential = new NetworkCredential
-                                                   {
-                                                       //TODO: use your Urban Airship settings here
-                                                       UserName = "AirshipApplicationKey",
-                                                       Password = "AirshipSecret"
-                                                   }
-                       };
+            {
+                BuildApplicationCredentials = () =>
+                    {
+                        return new NetworkCredential
+                        {
+                            UserName = "AirshipApplicationKey",
+                            Password = "AirshipApplicationSecret"
+                        };
+                    }
+            };
+        }
+    }
+    
+### BackEnd RequestBuilder
+
+    using UrbanBlimp;
+    public static class CustomRequestBuilder
+    {
+        public static IRequestBuilder GetRequestBuilder()
+        {
+            return new RequestBuilder
+            {
+                BuildApplicationMasterCredentials = () =>
+                    {
+                        return new NetworkCredential
+                            {
+                                UserName = "AirshipApplicationKey",
+                                Password = "AirshipApplicationMasterSecret"
+                            };
+                    }
+            };
         }
     }
     
