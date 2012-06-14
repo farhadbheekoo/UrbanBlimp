@@ -38,7 +38,7 @@ namespace UrbanBlimp.Tests.Tag
 
 
             var helper = new AsyncTestHelper<List<string>>();
-            service.Execute("tag1434", helper.Callback, helper.HandleException);
+            service.Execute(RemoteSettings.AppleDeviceId, helper.Callback, helper.HandleException);
             helper.Wait();
 
             foreach (var tag in helper.Response)

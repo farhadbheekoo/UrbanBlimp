@@ -10,7 +10,17 @@ namespace UrbanBlimp.Android
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/apids/" + pushId);
             request.Method = "Get";
-            request.DoRequest(RegistrationDeSerializer.DeSerialize, callback, exceptionCallback);
+
+
+            var asyncRequest = new AsyncRequest<Registration>
+            {
+                Request = request,
+                Callback = callback,
+                ExceptionCallback = exceptionCallback,
+                ConvertStream = RegistrationDeSerializer.DeSerialize
+            };
+            asyncRequest.Execute();
+
         }
     }
 }

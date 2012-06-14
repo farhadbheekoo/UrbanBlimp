@@ -11,7 +11,17 @@ namespace UrbanBlimp.Apple
             var postData = PushNotificationSerializer.Serialize(notification);
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/push/");
             request.Method = "POST";
-            request.DoRequest(postData, b => callback(), exceptionCallback);
+
+
+            var asyncRequest = new AsyncRequest
+            {
+                PostData = postData,
+                Request = request,
+                Callback = o => callback(),
+                ExceptionCallback = exceptionCallback,
+            };
+
+            asyncRequest.Execute(); ;
         }
     }
 }

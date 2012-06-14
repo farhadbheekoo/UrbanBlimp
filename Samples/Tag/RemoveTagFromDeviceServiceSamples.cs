@@ -10,6 +10,6 @@ public class RemoveTagFromDeviceServiceSamples
                           {
                               RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                           };
-        service.Execute("DeviceToken", "tag1",wasRemoved => Debug.WriteLine(wasRemoved),ExceptionHandler.Handle);
+        service.Execute("DeviceToken", "tag1", () => Debug.WriteLine("Deleted"), ExceptionHandler.Handle);
     }
 }

@@ -26,9 +26,9 @@ namespace UrbanBlimp.Tests.Apple
                                    };
 
 
-            var helper = new AsyncTestHelper();
-            service.Execute(RemoteSettings.AppleDeviceId, registration, helper.Callback, helper.HandleException);
-            helper.Wait();
+            var asyncTestHelper = new AsyncTestHelper();
+            service.Execute(RemoteSettings.AppleDeviceId, registration, () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
+            asyncTestHelper.Wait();
         }
 
     }

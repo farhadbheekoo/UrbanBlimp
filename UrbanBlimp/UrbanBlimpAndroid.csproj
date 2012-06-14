@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncRequest.cs" />
     <Compile Include="HttpExtensions.cs" />
     <Compile Include="RequestBuilder.cs" />
     <Compile Include="Android\Push\PushNotification.cs" />

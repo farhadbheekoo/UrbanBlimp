@@ -11,7 +11,7 @@ namespace Android
                               {
                                   RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                               };
-            service.Execute("AndroidPushId", wasDeleted => Debug.WriteLine(wasDeleted), ExceptionHandler.Handle);
+            service.Execute("AndroidPushId", () => Debug.WriteLine("Deleted"), ExceptionHandler.Handle);
         }
     }
 }

@@ -9,7 +9,13 @@ namespace UrbanBlimp.Tag
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/tags/" + tag);
             request.Method = "PUT";
-            request.DoRequest(b => callback(), exceptionCallback);
+            var asyncRequest = new AsyncRequest
+            {
+                Request = request,
+                Callback = o => callback(),
+                ExceptionCallback = exceptionCallback,
+            };
+            asyncRequest.Execute(); 
         }
     }
 }

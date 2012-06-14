@@ -16,9 +16,9 @@ namespace UrbanBlimp.Tests.Tag
                                   RequestBuilder = RequestBuilderHelper.Build()
                               };
 
-            var helper = new AsyncTestHelper();
-            service.Execute(RemoteSettings.AppleDeviceId, "africa", helper.Callback, helper.HandleException);
-            helper.Wait();
+            var asyncTestHelper = new AsyncTestHelper();
+            service.Execute(RemoteSettings.AppleDeviceId, "africa", () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
+            asyncTestHelper.Wait();
         }
 
     }

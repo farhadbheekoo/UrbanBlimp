@@ -11,7 +11,18 @@ namespace UrbanBlimp.Feed
             var postData = NewFeedSerializer.Serialize(newFeed);
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/");
             request.Method = "POST";
-            request.DoRequest(postData, NewFeedIdDeSerializer.DeSerialize, callback, exceptionCallback);
+
+            var asyncRequest = new AsyncRequest<NewFeedId>
+            {
+                PostData = postData,
+                ConvertStream = NewFeedIdDeSerializer.DeSerialize,
+                Request = request,
+                Callback = callback,
+                ExceptionCallback = exceptionCallback,
+            };
+
+            asyncRequest.Execute(); 
+            
         }
     }
 }

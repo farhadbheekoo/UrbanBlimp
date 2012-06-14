@@ -11,7 +11,14 @@ namespace UrbanBlimp.Tag
             var url = string.Format("https://go.urbanairship.com/api/device_tokens/{0}/tags/{1}", deviceToken, tag);
             var request = RequestBuilder.Build(url);
             request.Method = "PUT";
-            request.DoRequest(b => callback(), exceptionCallback);
+
+            var asyncRequest = new AsyncRequest
+            {
+                Request = request,
+                Callback = o => callback(),
+                ExceptionCallback = exceptionCallback,
+            };
+            asyncRequest.Execute(); 
         }
 
     }

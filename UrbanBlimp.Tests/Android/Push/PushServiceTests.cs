@@ -25,7 +25,7 @@ namespace UrbanBlimp.Tests.Android
                         }
                 };
             var asyncTestHelper = new AsyncTestHelper();
-            service.Execute(pushNotification, asyncTestHelper.Callback, asyncTestHelper.HandleException);
+            service.Execute(pushNotification, () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
             asyncTestHelper.Wait();
         }
 
@@ -46,7 +46,7 @@ namespace UrbanBlimp.Tests.Android
                         }
                 };
             var asyncTestHelper = new AsyncTestHelper();
-            service.Execute(pushNotification, asyncTestHelper.Callback, asyncTestHelper.HandleException);
+            service.Execute(pushNotification, () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
             asyncTestHelper.Wait();
         }
     }

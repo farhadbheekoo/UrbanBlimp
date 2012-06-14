@@ -34,30 +34,6 @@ public class AsyncTestHelper<T>
     }
 }
 
-public class AsyncTestHelper
+public class AsyncTestHelper : AsyncTestHelper<object>
 {
-    public ManualResetEvent allDone = new ManualResetEvent(false);
-
-    public Action<Exception> HandleException;
-    public Action Callback;
-    Exception exception;
-
-    public AsyncTestHelper()
-    {
-        HandleException = exception =>
-        {
-            allDone.Set();
-            this.exception = exception;
-        };
-        Callback = () => allDone.Set();
-    }
-
-    public void Wait()
-    {
-        allDone.WaitOne();
-        if (exception != null)
-        {
-            throw exception;
-        }
-    }
 }

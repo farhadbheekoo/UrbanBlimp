@@ -11,7 +11,14 @@ namespace UrbanBlimp.Apple
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/device_tokens/" + deviceToken);
             request.Method = "Delete";
-            request.DoRequest(b => callback(), exceptionCallback);
+            var asyncRequest = new AsyncRequest
+            {
+                Request = request,
+                Callback = o => callback(),
+                ExceptionCallback = exceptionCallback,
+            };
+
+            asyncRequest.Execute();
         }
     }
 }

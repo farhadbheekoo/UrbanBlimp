@@ -11,7 +11,14 @@ namespace UrbanBlimp.Tag
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/tags/" + tag);
             request.Method = "POST";
             var postData = TokenSerializer.Serialize(tokens);
-            request.DoRequest(postData, b => callback(), exceptionCallback);
+            var asyncRequest = new AsyncRequest
+            {
+                PostData = postData,
+                Request = request,
+                Callback = o => callback(),
+                ExceptionCallback = exceptionCallback,
+            };
+            asyncRequest.Execute(); 
         }
     }
 }

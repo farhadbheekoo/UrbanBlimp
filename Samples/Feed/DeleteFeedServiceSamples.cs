@@ -10,7 +10,7 @@ public class DeleteFeedServiceSamples
                           {
                               RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
                           };
-        service.Execute("feedId", wasDeleted => Debug.WriteLine(wasDeleted),ExceptionHandler.Handle);
+        service.Execute("feedId", () => Debug.WriteLine("Deleted"), ExceptionHandler.Handle);
     }
 
 }

@@ -6,12 +6,19 @@ namespace UrbanBlimp.Android
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string pushId, Action<bool> callback, Action<Exception> exceptionCallback)
+        public void Execute(string pushId, Action callback, Action<Exception> exceptionCallback)
         {
             //TODO: validate args
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/apids/" + pushId);
             request.Method = "Delete";
-            request.DoRequest(callback, exceptionCallback);
+
+            var asyncRequest = new AsyncRequest
+            {
+                Request = request,
+                Callback = o => callback(),
+                ExceptionCallback = exceptionCallback,
+            };
+            asyncRequest.Execute();
         }
     }
 }

@@ -5,11 +5,17 @@ namespace UrbanBlimp.Tag
     public class DeleteTagService
     {
         public IRequestBuilder RequestBuilder;
-        public void Execute(string tag, Action<bool> callback, Action<Exception> exceptionCallback)
+        public void Execute(string tag, Action callback, Action<Exception> exceptionCallback)
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/tags/" + tag);
             request.Method = "DELETE";
-            request.DoRequest(callback, exceptionCallback);
+            var asyncRequest = new AsyncRequest
+            {
+                Request = request,
+                Callback = o => callback(),
+                ExceptionCallback = exceptionCallback,
+            };
+            asyncRequest.Execute(); 
         }
 
     }

@@ -12,14 +12,32 @@ namespace UrbanBlimp.Tag
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/tags/");
             request.Method = "GET";
-            request.DoRequest(stream => TagDeSerializer.DeSerialize(stream).ToList(), callback, exceptionCallback);
+
+            var asyncRequest = new AsyncRequest<List<string>>
+            {
+                ConvertStream = stream => TagDeSerializer.DeSerialize(stream).ToList(),
+                Request = request,
+                Callback = callback,
+                ExceptionCallback = exceptionCallback,
+            };
+            asyncRequest.Execute(); 
+
         }
 
         public void Execute(string deviceToken, Action<List<string>> callback, Action<Exception> exceptionCallback)
         {
             var request = RequestBuilder.Build(string.Format("https://go.urbanairship.com/api/device_tokens/{0}/tags/", deviceToken));
-            request.Method = "GET";
-            request.DoRequest(stream => TagDeSerializer.DeSerialize(stream).ToList(), callback, exceptionCallback);
+            request.Method = "GET"; 
+            
+            var asyncRequest = new AsyncRequest<List<string>>
+            {
+                ConvertStream = stream => TagDeSerializer.DeSerialize(stream).ToList(),
+                Request = request,
+                Callback = callback,
+                ExceptionCallback = exceptionCallback,
+            };
+            asyncRequest.Execute(); 
+
         }
     }
 }

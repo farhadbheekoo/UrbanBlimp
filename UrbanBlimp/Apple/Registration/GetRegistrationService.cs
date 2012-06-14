@@ -10,8 +10,16 @@ namespace UrbanBlimp.Apple
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/device_tokens/" + deviceToken);
             request.Method = "Get";
-            request.DoRequest(RegistrationDeSerializer.DeSerialize, callback, exceptionCallback);
 
+            var asyncRequest = new AsyncRequest<Registration>
+            {
+                ConvertStream = RegistrationDeSerializer.DeSerialize,
+                Request = request,
+                Callback = callback,
+                ExceptionCallback = exceptionCallback,
+            };
+
+            asyncRequest.Execute(); 
         }
     }
 }

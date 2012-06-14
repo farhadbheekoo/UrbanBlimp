@@ -16,8 +16,8 @@ namespace UrbanBlimp.Tests.Tag
                                   RequestBuilder = RequestBuilderHelper.Build()
                               };
 
-            var helper = new AsyncTestHelper<bool>();
-            service.Execute("tag1434", helper.Callback, helper.HandleException);
+            var helper = new AsyncTestHelper();
+            service.Execute("tag1434", () => { helper.Callback(null); }, helper.HandleException);
             helper.Wait();
         }
     }

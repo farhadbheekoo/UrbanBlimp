@@ -13,7 +13,15 @@ namespace UrbanBlimp.Apple
             var url = "https://go.urbanairship.com/api/device_tokens/?since" + dateTime.ToIso8601();
             var request = RequestBuilder.Build(url);
             request.Method = "GET";
-            request.DoRequest(stream => FeedbackSerializer.DeSerialize(stream).ToList(), callback, exceptionCallback);
+
+            var asyncRequest = new AsyncRequest<List<DeviceFeedback>>
+                {
+                    ConvertStream = stream => FeedbackSerializer.DeSerialize(stream).ToList(),
+                    Request = request,
+                    Callback = callback,
+                    ExceptionCallback = exceptionCallback,
+                };
+            asyncRequest.Execute();
         }
     }
 }

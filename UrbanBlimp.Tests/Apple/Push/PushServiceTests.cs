@@ -18,16 +18,23 @@ namespace UrbanBlimp.Tests.Apple
                 };
             var pushNotification = new PushNotification
                 {
-                    DeviceTokens = new List<string> {RemoteSettings.AppleDeviceId},
+                    DeviceTokens = new List<string>
+                        {
+                            RemoteSettings.AppleDeviceId
+                        },
                     Payload = new PushPayload
                         {
                             Alert = "Alert 2"
+                        },
+                    CustomData = new Dictionary<string, string>()
+                        {
+                         {"permalink", "/advice/ivory_coast?20000801"}
                         }
                 };
 
-            var helper = new AsyncTestHelper();
-            service.Execute(pushNotification, helper.Callback, helper.HandleException);
-            helper.Wait();
+            var asyncTestHelper = new AsyncTestHelper();
+            service.Execute(pushNotification, () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
+            asyncTestHelper.Wait();
         }
 
         [Test]
@@ -40,16 +47,16 @@ namespace UrbanBlimp.Tests.Apple
                 };
             var pushNotification = new PushNotification
                 {
-                    Tags = new List<string> {"africa"},
+                    Tags = new List<string> { "africa" },
                     Payload = new PushPayload
                         {
                             Alert = "Alert 2"
                         }
                 };
 
-            var helper = new AsyncTestHelper();
-            service.Execute(pushNotification, helper.Callback, helper.HandleException);
-            helper.Wait();
+            var asyncTestHelper = new AsyncTestHelper();
+            service.Execute(pushNotification, () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
+            asyncTestHelper.Wait();
         }
     }
 }
