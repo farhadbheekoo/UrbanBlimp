@@ -13,7 +13,7 @@ public static class RemoteSettings
 
     static RemoteSettings()
     {
-        var filePath = Path.GetFullPath(Path.Combine(ExecutingLocation.Location, @"..\..\..\UrbanAirshipRemoteSettings.txt"));
+        var filePath = Path.GetFullPath(Path.Combine(ExecutingLocation.Location, @"..\..\..\..\UrbanAirshipRemoteSettings.txt"));
         if (!File.Exists(filePath))
         {
             throw new Exception("Could not find config file " + filePath);
