@@ -2,6 +2,7 @@
 bin
 obj
 *.user
+*.suo
 _ReSharper*
 *.resharper
 packages/*

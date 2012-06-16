@@ -63,6 +63,7 @@
     <Compile Include="Android\Registration\NewRegistrationSerializer.cs" />
     <Compile Include="..\AssemblyInfo.cs" />
     <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="IRequestBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
