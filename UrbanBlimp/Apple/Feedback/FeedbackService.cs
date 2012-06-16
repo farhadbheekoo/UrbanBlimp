@@ -16,7 +16,7 @@ namespace UrbanBlimp.Apple
 
             var asyncRequest = new AsyncRequest
                 {
-                    Callback = stream => callback( FeedbackSerializer.DeSerialize(stream).ToList()),
+                    ReadFromResponse = stream => callback( FeedbackSerializer.DeSerialize(stream).ToList()),
                     Request = request,
                     ExceptionCallback = exceptionCallback,
                 };

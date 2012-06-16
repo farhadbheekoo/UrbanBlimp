@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Json;
 using System.Linq;
 
@@ -12,6 +13,11 @@ namespace UrbanBlimp.Apple
         {
             var jsonObj = JsonObj(notification);
             return jsonObj.ToString();
+        }
+        public static void Serialize(this PushNotification notification, Stream stream)
+        {
+            var jsonObj = JsonObj(notification);
+            jsonObj.Save(stream);
         }
 
         static JsonObject JsonObj(PushNotification notification)
@@ -67,11 +73,16 @@ namespace UrbanBlimp.Apple
             return aps;
         }
 
-        public static string Serialize(IEnumerable<PushNotification> notifications)
-        {
+       public static string Serialize(IEnumerable<PushNotification> notifications)
+       {
 
-            return new JsonArray(notifications.Select(JsonObj)).ToString();
-        }
+           return new JsonArray(notifications.Select(JsonObj)).ToString();
+       }
+       public static void Serialize(IEnumerable<PushNotification> notifications, Stream stream)
+       {
+           var jsonArray = new JsonArray(notifications.Select(JsonObj));
+           jsonArray.Save(stream);
+       }
 
 
         static void ValidateKey(string key)

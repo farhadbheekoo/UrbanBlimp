@@ -1,3 +1,4 @@
+using System.IO;
 using System.Json;
 
 namespace UrbanBlimp.Feed
@@ -9,6 +10,11 @@ namespace UrbanBlimp.Feed
         {
             var jsonObj = JsonObj(newFeed);
             return jsonObj.ToString();
+        }
+        public static void Serialize(this NewFeed newFeed, Stream stream)
+        {
+            var jsonObj = JsonObj(newFeed);
+            jsonObj.Save(stream);
         }
 
         static JsonObject JsonObj(NewFeed newFeed)

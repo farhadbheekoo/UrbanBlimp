@@ -1,3 +1,4 @@
+using System.IO;
 using System.Json;
 
 namespace UrbanBlimp.Apple
@@ -9,6 +10,12 @@ namespace UrbanBlimp.Apple
         {
             var jsonObj = JsonObj(registration);
             return jsonObj.ToString();
+        }
+
+        public static void Serialize(this Registration registration, Stream stream)
+        {
+            var jsonObj = JsonObj(registration);
+            jsonObj.Save(stream);
         }
 
         static JsonObject JsonObj(Registration registration)

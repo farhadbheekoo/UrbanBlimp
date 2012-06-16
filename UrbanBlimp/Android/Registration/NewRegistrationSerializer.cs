@@ -1,3 +1,4 @@
+using System.IO;
 using System.Json;
 
 namespace UrbanBlimp.Android
@@ -9,6 +10,11 @@ namespace UrbanBlimp.Android
         {
             var jsonObj = JsonObj(registration);
             return jsonObj.ToString();
+        }
+        public static void Serialize(this NewRegistration registration, Stream stream)
+        {
+            var jsonObj = JsonObj(registration);
+            jsonObj.Save(stream);
         }
 
         static JsonObject JsonObj(NewRegistration registration)

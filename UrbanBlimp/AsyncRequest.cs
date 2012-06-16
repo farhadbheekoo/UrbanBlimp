@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Net;
-using System.Text;
 using System.Threading;
 
 namespace UrbanBlimp
@@ -9,38 +8,34 @@ namespace UrbanBlimp
    
     class AsyncRequest
     {
-        public WebRequest Request;
-        public string PostData;
+        public HttpWebRequest Request;
         public Action<Exception> ExceptionCallback;
-        public Action<Stream> Callback;
+        public Action<Stream> ReadFromResponse;
+        public Action<Stream> WriteToRequest;
         IAsyncResult requestAsyncResult;
         IAsyncResult responseAsyncResult;
-        byte[] byteArray;
 
         public void Execute()
         {
-            if (PostData == null)
+            if (WriteToRequest == null)
             {
                 DoRequest();
             }
             else
             {
-                byteArray = Encoding.UTF8.GetBytes(PostData);
-                Request.ContentType = "application/json";
-                requestAsyncResult = Request.BeginGetRequestStream(x => WriteToRequest(), null);
+                requestAsyncResult = Request.BeginGetRequestStream(x => WriteToRequestCallback(), null);
                 ThreadPool.RegisterWaitForSingleObject(requestAsyncResult.AsyncWaitHandle, TimeOutCallback, null, Request.Timeout, true);
             }
         }
 
-        void WriteToRequest()
+        void WriteToRequestCallback()
         {
             try
             {
                 using (var requestStream = Request.GetRequestStream())
                 {
-                    requestStream.Write(byteArray, 0, byteArray.Length);
+                    WriteToRequest(requestStream);
                 }
-                byteArray = null;
                 DoRequest();
             }
             catch (Exception exception)
@@ -74,17 +69,17 @@ namespace UrbanBlimp
                     {
                         using (var responseStream = endGetResponse.GetResponseStream())
                         {
-                            Callback(responseStream);
+                            ReadFromResponse(responseStream);
                         }
                     }
                 }
-                Callback(null);
+                ReadFromResponse(null);
             }
             catch (WebException webException)
             {
                 if (webException.IsNotFound())
                 {
-                    Callback(null);
+                    ReadFromResponse(null);
                     return;
                 }
                 ExceptionCallback(webException);

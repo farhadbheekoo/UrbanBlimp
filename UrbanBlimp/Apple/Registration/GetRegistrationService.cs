@@ -13,7 +13,7 @@ namespace UrbanBlimp.Apple
 
             var asyncRequest = new AsyncRequest
             {
-                Callback = stream => callback( RegistrationDeSerializer.DeSerialize(stream)),
+                ReadFromResponse = stream => callback( RegistrationDeSerializer.DeSerialize(stream)),
                 Request = request,
                 ExceptionCallback = exceptionCallback,
             };

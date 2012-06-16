@@ -10,14 +10,13 @@ namespace UrbanBlimp.Apple
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/device_tokens/" + deviceToken);
             request.Method = "PUT";
-            var postData = RegistrationSerializer.Serialize(registration);
-
+            request.ContentType = "application/json";
 
             var asyncRequest = new AsyncRequest
             {
-                PostData = postData,
+                WriteToRequest = stream => registration.Serialize(stream),
                 Request = request,
-                Callback = o => callback(),
+                ReadFromResponse = o => callback(),
                 ExceptionCallback = exceptionCallback,
             };
 
@@ -32,7 +31,7 @@ namespace UrbanBlimp.Apple
             var asyncRequest = new AsyncRequest
             {
                 Request = request,
-                Callback = o => callback(),
+                ReadFromResponse = o => callback(),
                 ExceptionCallback = exceptionCallback,
             };
 

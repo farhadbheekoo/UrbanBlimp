@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Json;
 using System.Linq;
 
@@ -11,6 +12,11 @@ namespace UrbanBlimp.Android
         {
             var jsonObj = JsonObj(notification);
             return jsonObj.ToString();
+        }
+        public static void Serialize(this PushNotification notification, Stream stream)
+        {
+            var jsonObj = JsonObj(notification);
+            jsonObj.Save(stream);
         }
 
         static JsonObject JsonObj(PushNotification notification)
