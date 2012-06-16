@@ -12,12 +12,11 @@ namespace UrbanBlimp.Android
             request.Method = "Get";
 
 
-            var asyncRequest = new AsyncRequest<Registration>
+            var asyncRequest = new AsyncRequest
             {
                 Request = request,
-                Callback = callback,
+                Callback = stream => callback(RegistrationDeSerializer.DeSerialize(stream)),
                 ExceptionCallback = exceptionCallback,
-                ConvertStream = RegistrationDeSerializer.DeSerialize
             };
             asyncRequest.Execute();
 

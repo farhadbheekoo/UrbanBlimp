@@ -13,11 +13,10 @@ namespace UrbanBlimp.Tag
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/tags/");
             request.Method = "GET";
 
-            var asyncRequest = new AsyncRequest<List<string>>
+            var asyncRequest = new AsyncRequest
             {
-                ConvertStream = stream => TagDeSerializer.DeSerialize(stream).ToList(),
+                Callback = stream => callback(TagDeSerializer.DeSerialize(stream).ToList()),
                 Request = request,
-                Callback = callback,
                 ExceptionCallback = exceptionCallback,
             };
             asyncRequest.Execute(); 
@@ -29,11 +28,10 @@ namespace UrbanBlimp.Tag
             var request = RequestBuilder.Build(string.Format("https://go.urbanairship.com/api/device_tokens/{0}/tags/", deviceToken));
             request.Method = "GET"; 
             
-            var asyncRequest = new AsyncRequest<List<string>>
+            var asyncRequest = new AsyncRequest
             {
-                ConvertStream = stream => TagDeSerializer.DeSerialize(stream).ToList(),
+                Callback = stream => callback(TagDeSerializer.DeSerialize(stream).ToList()),
                 Request = request,
-                Callback = callback,
                 ExceptionCallback = exceptionCallback,
             };
             asyncRequest.Execute(); 

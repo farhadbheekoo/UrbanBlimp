@@ -13,11 +13,10 @@ namespace UrbanBlimp.Feed
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/");
             request.Method = "Get";
 
-            var asyncRequest = new AsyncRequest<List<Feed>>
+            var asyncRequest = new AsyncRequest
             {
-                 ConvertStream = stream => FeedDeSerializer.DeSerializeMultiple(stream).ToList(),
+                Callback = stream => callback(FeedDeSerializer.DeSerializeMultiple(stream).ToList()),
                 Request = request,
-                Callback = callback,
                 ExceptionCallback = exceptionCallback,
             };
             asyncRequest.Execute(); 
@@ -28,11 +27,10 @@ namespace UrbanBlimp.Feed
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/" + feedId);
             request.Method = "Get";
 
-            var asyncRequest = new AsyncRequest<Feed>
+            var asyncRequest = new AsyncRequest
             {
-                ConvertStream = stream => FeedDeSerializer.DeSerialize(stream),
+                Callback = stream => callback(FeedDeSerializer.DeSerialize(stream)),
                 Request = request,
-                Callback = callback,
                 ExceptionCallback = exceptionCallback,
             };
             asyncRequest.Execute(); 

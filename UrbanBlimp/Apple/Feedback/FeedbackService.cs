@@ -14,11 +14,10 @@ namespace UrbanBlimp.Apple
             var request = RequestBuilder.Build(url);
             request.Method = "GET";
 
-            var asyncRequest = new AsyncRequest<List<DeviceFeedback>>
+            var asyncRequest = new AsyncRequest
                 {
-                    ConvertStream = stream => FeedbackSerializer.DeSerialize(stream).ToList(),
+                    Callback = stream => callback( FeedbackSerializer.DeSerialize(stream).ToList()),
                     Request = request,
-                    Callback = callback,
                     ExceptionCallback = exceptionCallback,
                 };
             asyncRequest.Execute();

@@ -6,18 +6,13 @@ using System.Threading;
 
 namespace UrbanBlimp
 {
-    class AsyncRequest : AsyncRequest<object>
-    {
-    }
-
-    class AsyncRequest<T>
+   
+    class AsyncRequest
     {
         public WebRequest Request;
         public string PostData;
         public Action<Exception> ExceptionCallback;
-        public T Response;
-        public Func<Stream, T> ConvertStream;
-        public Action<T> Callback;
+        public Action<Stream> Callback;
         IAsyncResult requestAsyncResult;
         IAsyncResult responseAsyncResult;
         byte[] byteArray;
@@ -32,7 +27,6 @@ namespace UrbanBlimp
             {
                 byteArray = Encoding.UTF8.GetBytes(PostData);
                 Request.ContentType = "application/json";
-                Request.ContentLength = byteArray.Length;
                 requestAsyncResult = Request.BeginGetRequestStream(x => WriteToRequest(), null);
                 ThreadPool.RegisterWaitForSingleObject(requestAsyncResult.AsyncWaitHandle, TimeOutCallback, null, Request.Timeout, true);
             }
@@ -76,21 +70,21 @@ namespace UrbanBlimp
             {
                 using (var endGetResponse = Request.EndGetResponse(responseAsyncResult))
                 {
-                    if (ConvertStream != null)
+                    if (Request.Method == "get" || Request.Method == "post")
                     {
                         using (var responseStream = endGetResponse.GetResponseStream())
                         {
-                            Response = ConvertStream(responseStream);
+                            Callback(responseStream);
                         }
                     }
                 }
-                Callback(Response);
+                Callback(null);
             }
             catch (WebException webException)
             {
                 if (webException.IsNotFound())
                 {
-                    Callback(Response);
+                    Callback(null);
                     return;
                 }
                 ExceptionCallback(webException);

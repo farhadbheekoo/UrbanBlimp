@@ -24,7 +24,7 @@ namespace UrbanBlimp.Tests.Apple
                         },
                     Payload = new PushPayload
                         {
-                            Alert = "Alert 2"
+                            Alert = "Alert"
                         },
                     CustomData = new Dictionary<string, string>
                         {
