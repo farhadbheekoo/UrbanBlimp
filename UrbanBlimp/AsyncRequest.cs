@@ -70,6 +70,7 @@ namespace UrbanBlimp
                         using (var responseStream = endGetResponse.GetResponseStream())
                         {
                             ReadFromResponse(responseStream);
+                            return;
                         }
                     }
                 }

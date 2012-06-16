@@ -5,11 +5,13 @@ using UrbanBlimp.Apple;
 namespace UrbanBlimp.Tests.Apple
 {
     [TestFixture]
+#if (RELEASE)
+[Ignore]
+#endif
     public class GetRegistrationServiceTests
     {
 
         [Test]
-        [Ignore]
         public void Simple()
         {
             var service = new GetRegistrationService
@@ -33,7 +35,6 @@ namespace UrbanBlimp.Tests.Apple
 
 
         [Test]
-        [Ignore]
         public void NotFound()
         {
             var service = new GetRegistrationService

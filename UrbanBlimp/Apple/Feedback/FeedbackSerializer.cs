@@ -10,6 +10,10 @@ namespace UrbanBlimp.Apple
 
         public static IEnumerable<DeviceFeedback> DeSerialize(Stream content)
         {
+            if (content == null)
+            {
+                yield break;
+            }
             var jsonValue = JsonValue.Load(content);
 
             var tokens = jsonValue["device_tokens"];

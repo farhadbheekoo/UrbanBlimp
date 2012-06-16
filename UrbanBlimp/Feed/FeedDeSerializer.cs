@@ -10,6 +10,10 @@ namespace UrbanBlimp.Feed
 
         public static IEnumerable<Feed> DeSerializeMultiple(Stream content)
         {
+            if (content == null)
+            {
+                yield break;
+            }
             var array = JsonValue.Load(content);
 
             foreach (var value in array.Select(x => x.Value))
@@ -19,6 +23,10 @@ namespace UrbanBlimp.Feed
         }
         public static Feed DeSerialize(Stream content)
         {
+            if (content == null)
+            {
+                return null;
+            }
                 return DeSerializeFeed(JsonValue.Load(content));
         }
 

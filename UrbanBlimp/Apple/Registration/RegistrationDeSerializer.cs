@@ -8,6 +8,10 @@ namespace UrbanBlimp.Apple
 
         public static Registration DeSerialize(Stream content)
         {
+            if (content == null)
+            {
+                return null;
+            }
             var jsonValue = JsonValue.Load(content);
             return new Registration
                        {

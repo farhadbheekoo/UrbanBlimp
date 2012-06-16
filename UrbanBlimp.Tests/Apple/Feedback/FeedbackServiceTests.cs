@@ -7,11 +7,13 @@ using UrbanBlimp.Apple;
 namespace UrbanBlimp.Tests.Apple
 {
     [TestFixture]
-    [Ignore]
+
+#if (RELEASE)
+[Ignore]
+#endif
     public class FeedbackServiceTests
     {
         [Test]
-        [Ignore]
         public void Integration()
         {
             var feedbackService = new FeedbackService

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UrbanBlimp;
@@ -8,7 +9,9 @@ public class RemoteExceptionTests
 {
 
     [Test]
+#if(RELEASE)
     [Ignore]
+#endif
     public void Simple()
     {
         var service = new PushService
@@ -27,12 +30,20 @@ public class RemoteExceptionTests
                     },
             };
 
-        
+        Exception exception = null;
+        try
+        {
+
             var asyncTestHelper = new AsyncTestHelper();
             service.Execute(pushNotification, () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
             asyncTestHelper.Wait();
+        }
+        catch (Exception e)
+        {
+            exception = e;
+        }
 
-        var remoteException = asyncTestHelper.Exception as RemoteException;
+        var remoteException = exception as RemoteException;
         Assert.IsNotNull(remoteException);
         Assert.AreEqual("{\"error_code\": 40001, \"details\": {\"device_tokens.0.device_token\": [\"device_token contains an invalid device token: BADTOKEN\"]}, \"error\": \"Data validation error\"}", remoteException.Message);
     }

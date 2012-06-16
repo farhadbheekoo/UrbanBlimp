@@ -5,12 +5,14 @@ using UrbanBlimp.Apple;
 namespace UrbanBlimp.Tests.Apple
 {
     [TestFixture]
+#if (RELEASE)
+[Ignore]
+#endif
     public class AddRegistrationServiceTests
     {
 
 
         [Test]
-        [Ignore]
         public void Tags()
         {
             var service = new AddRegistrationService

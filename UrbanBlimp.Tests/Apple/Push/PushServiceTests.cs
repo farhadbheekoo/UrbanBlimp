@@ -5,11 +5,13 @@ using UrbanBlimp.Apple;
 namespace UrbanBlimp.Tests.Apple
 {
     [TestFixture]
+#if (RELEASE)
+[Ignore]
+#endif
     public class PushServiceTests
     {
 
         [Test]
-        [Ignore]
         public void Simple()
         {
             var service = new PushService
@@ -38,7 +40,6 @@ namespace UrbanBlimp.Tests.Apple
         }
 
         [Test]
-        [Ignore]
         public void ToTag()
         {
             var service = new PushService
