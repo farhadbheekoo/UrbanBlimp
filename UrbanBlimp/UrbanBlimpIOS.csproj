@@ -70,6 +70,8 @@
     <Compile Include="Apple\Registration\Registration.cs" />
     <Compile Include="Apple\Registration\AddRegistrationService.cs" />
     <Compile Include="IRequestBuilder.cs" />
+    <Compile Include="RemoteErrorInformation.cs" />
+    <Compile Include="RemoteException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -8,7 +8,6 @@ namespace UrbanBlimp
         {
             return dateTime.ToUniversalTime().ToString("o");
         }
-
         
     }
 }

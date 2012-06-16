@@ -7,11 +7,11 @@ namespace UrbanBlimp
     {
 
         public Func<NetworkCredential> BuildApplicationCredentials;
-        public Action<WebRequest> ConfigureRequest;
+        public Action<HttpWebRequest> ConfigureRequest;
 
-        public WebRequest Build(string url)
+        public HttpWebRequest Build(string url)
         {
-            var request = WebRequest.Create(url); 
+            var request = (HttpWebRequest)WebRequest.Create(url); 
             if (BuildApplicationCredentials == null)
             {
                 throw new Exception("You need to define a 'RequestBuilder.BuildApplicationCredentials'.");

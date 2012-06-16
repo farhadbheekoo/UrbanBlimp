@@ -63,6 +63,8 @@
     <Compile Include="Feed\FeedPayload.cs" />
     <Compile Include="Feed\Template.cs" />
     <Compile Include="IRequestBuilder.cs" />
+    <Compile Include="RemoteErrorInformation.cs" />
+    <Compile Include="RemoteException.cs" />
     <Compile Include="ServerRequestBuilder.cs" />
     <Compile Include="HttpExtensions.cs" />
     <Compile Include="Android\Push\PushNotification.cs" />

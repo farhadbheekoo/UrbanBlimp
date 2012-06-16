@@ -8,13 +8,13 @@ public class AsyncTestHelper<T>
     public Action<Exception> HandleException;
     public Action<T> Callback;
     public T Response;
-    Exception exception;
+    public Exception Exception;
 
     public AsyncTestHelper()
     {
         HandleException = exception =>
             {
-                this.exception = exception;
+                Exception = exception;
                 allDone.Set();
             };
         Callback = value =>
@@ -27,10 +27,6 @@ public class AsyncTestHelper<T>
     public void Wait()
     {
         allDone.WaitOne();
-        if (exception != null)
-        {
-            throw exception;
-        }
     }
 }
 

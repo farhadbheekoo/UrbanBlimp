@@ -4,6 +4,6 @@ namespace UrbanBlimp
 {
     public interface IRequestBuilder
     {
-        WebRequest Build(string url);
+        HttpWebRequest Build(string url);
     }
 }

@@ -9,9 +9,9 @@ namespace UrbanBlimp
         public Action<WebRequest> ConfigureRequest;
 
 
-        public WebRequest Build(string url)
+        public HttpWebRequest Build(string url)
         {
-            var request = WebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(url);
             if (BuildApplicationMasterCredentials == null)
             {
                 throw new Exception("You need to define a 'RequestBuilder.BuildApplicationMasterCredentials'.");

@@ -64,6 +64,8 @@
     <Compile Include="..\AssemblyInfo.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="IRequestBuilder.cs" />
+    <Compile Include="RemoteErrorInformation.cs" />
+    <Compile Include="RemoteException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

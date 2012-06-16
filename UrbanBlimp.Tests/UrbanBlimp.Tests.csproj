@@ -63,6 +63,7 @@
     <Compile Include="Feed\NewFeedIdDeSerializerTests.cs" />
     <Compile Include="Feed\NewFeedSerializerTests.cs" />
     <Compile Include="Feed\FeedDeSerializerTests.cs" />
+    <Compile Include="RemoteExceptionTests.cs" />
     <Compile Include="RemoteSettings.cs" />
     <Compile Include="DateTimeExtensionsTests.cs" />
     <Compile Include="ExecutingLocation.cs" />

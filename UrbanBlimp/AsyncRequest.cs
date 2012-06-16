@@ -82,7 +82,16 @@ namespace UrbanBlimp
                     ReadFromResponse(null);
                     return;
                 }
-                ExceptionCallback(webException);
+                string remoteError;
+                if ( webException.TryReadRemoteError(out remoteError))
+                {
+                    var remoteException = new RemoteException(remoteError, webException);
+                    ExceptionCallback(remoteException);
+                }
+                else
+                {
+                    ExceptionCallback(webException);   
+                }
             }
             catch (Exception exception)
             {
