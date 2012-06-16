@@ -8,7 +8,7 @@ public class ModifyFeedServiceSamples
     {
         var service = new ModifyFeedService
                           {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                              RequestBuilder = ServerRequestBuilder.Instance
                           };
         var updateFeed = new UpdateFeed
                              {

@@ -8,7 +8,7 @@ public class CreateFeedServiceSamples
     {
         var service = new CreateFeedService
                           {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                              RequestBuilder = ServerRequestBuilder.Instance
                           };
         var notification = new NewFeed
                                {

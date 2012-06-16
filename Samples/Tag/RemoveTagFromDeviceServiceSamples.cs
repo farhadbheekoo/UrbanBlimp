@@ -8,7 +8,7 @@ public class RemoveTagFromDeviceServiceSamples
     {
         var service = new RemoveTagFromDeviceService
                           {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                              RequestBuilder = ServerRequestBuilder.Instance
                           };
         service.Execute("DeviceToken", "tag1", () => Debug.WriteLine("Deleted"), ExceptionHandler.Handle);
     }

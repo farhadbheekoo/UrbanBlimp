@@ -8,7 +8,7 @@ public class DeleteTagSamples
     {
         var service = new DeleteTagService
                           {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                              RequestBuilder = ServerRequestBuilder.Instance
                           };
         service.Execute("tag1", () => Debug.WriteLine("Deleted"), ExceptionHandler.Handle);
     }

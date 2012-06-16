@@ -8,7 +8,7 @@ public class AddTagToDeviceServiceSamples
     {
         var service = new AddTagToDeviceService
                           {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                              RequestBuilder = ServerRequestBuilder.Instance
                           };
         service.Execute("DeviceToken", "tag1",() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
     }

@@ -8,7 +8,7 @@ public class DeleteFeedServiceSamples
     {
         var service = new DeleteFeedService
                           {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                              RequestBuilder = ServerRequestBuilder.Instance
                           };
         service.Execute("feedId", () => Debug.WriteLine("Deleted"), ExceptionHandler.Handle);
     }

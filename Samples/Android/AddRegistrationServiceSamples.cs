@@ -10,7 +10,7 @@ namespace Android
         {
             var service = new AddRegistrationService
                               {
-                                  RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                  RequestBuilder = ServerRequestBuilder.Instance
                               };
             var registration = new NewRegistration
                                    {

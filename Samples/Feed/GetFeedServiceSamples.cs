@@ -8,7 +8,7 @@ public class GetFeedServiceSamples
     {
         var service = new GetFeedService
                           {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                              RequestBuilder = ServerRequestBuilder.Instance
                           };
         service.Execute("feedId",Callback,ExceptionHandler.Handle);
     }
@@ -22,7 +22,7 @@ public class GetFeedServiceSamples
     {
         var service = new GetFeedService
                           {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                              RequestBuilder = ServerRequestBuilder.Instance
                           };
         service.Execute(Callback, ExceptionHandler.Handle);
 

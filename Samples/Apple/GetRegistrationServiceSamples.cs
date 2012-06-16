@@ -9,7 +9,7 @@ namespace Apple
         {
             var service = new GetRegistrationService
                               {
-                                  RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                  RequestBuilder = ServerRequestBuilder.Instance
                               };
              service.Execute("ApplePushId",Callback,ExceptionHandler.Handle);
         }

@@ -9,7 +9,7 @@ public class ModifyTagServiceSamples
     {
         var service = new ModifyTagService
                           {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                              RequestBuilder = ServerRequestBuilder.Instance
                           };
         var tokens = new Tokens
                          {

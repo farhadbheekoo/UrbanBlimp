@@ -8,7 +8,7 @@ public class CreateTagSamples
     {
         var service = new CreateTagService
                           {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                              RequestBuilder = ServerRequestBuilder.Instance
                           };
         service.Execute("tag1", () => Debug.WriteLine("Success"), ExceptionHandler.Handle);
     }

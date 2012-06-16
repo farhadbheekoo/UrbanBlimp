@@ -38,46 +38,70 @@ If you are using Mono for Android (http://xamarin.com/monoforandroid) on Android
 
 Define a way of build an IRequestBuilder. The IRequestBuilder implementation differs slightly between the "back end" and "front end" APIs. The reason for this is to make the difference between using the ApplicationMasterSecret and the ApplicationSecret explicit. 
 
-### FrontEnd RequestBuilder
+### IOS Sample RequestBuilder
 
-    using UrbanBlimp;
-    public static class CustomRequestBuilder
+	using System.Net;
+	using MonoTouch.CoreFoundation;
+	using UrbanBlimp;
+
+    public class IOSRequestBuilder : RequestBuilder
     {
-        public static IRequestBuilder GetRequestBuilder()
+        //Singleton for convenience. If use an IOC or prefer instance based this is not required
+        public static IOSRequestBuilder Instance;
+
+        static IOSRequestBuilder()
         {
-            return new RequestBuilder
-            {
-                BuildApplicationCredentials = () =>
-                    {
-                        return new NetworkCredential
-                        {
-                            UserName = "AirshipApplicationKey",
-                            Password = "AirshipApplicationSecret"
-                        };
-                    }
-            };
+            Instance = new IOSRequestBuilder();
+        }
+
+
+        public IOSRequestBuilder()
+        {
+            //NOTE: DO NOT USE YOUR MASTER CREDENTIALS HERE
+            BuildApplicationCredentials = () => new NetworkCredential("ApplicationName", "ApplicationSecret");
+            ConfigureRequest = request =>
+                {
+                    request.Proxy = CFNetwork.GetDefaultProxy();
+                    //only a suggested timeout
+                    request.Timeout = 30000;
+                };
         }
     }
-    
-### BackEnd RequestBuilder
 
+### Android Sample RequestBuilder
+
+TODO
+    
+### Server Sample RequestBuilder
+
+    using System.Net;
     using UrbanBlimp;
-    public static class CustomRequestBuilder
+
+    public class ServerRequestBuilder : RequestBuilder
     {
-        public static IRequestBuilder GetRequestBuilder()
+        //Singleton for convenience. If use an IOC or prefer instance based this is not required
+        public static ServerRequestBuilder Instance;
+
+        static ServerRequestBuilder()
         {
-            return new RequestBuilder
+            Instance = new ServerRequestBuilder();
+        }
+
+
+        public ServerRequestBuilder()
+        {
+            //NOTE: Be careful about managing your master secret. Consider reading it from an encrypted setting on the server
+            BuildApplicationMasterCredentials = () => new NetworkCredential("ApplicationName", "ApplicationMasterSecret");
+            ConfigureRequest = request =>
             {
-                BuildApplicationMasterCredentials = () =>
-                    {
-                        return new NetworkCredential
-                            {
-                                UserName = "AirshipApplicationKey",
-                                Password = "AirshipApplicationMasterSecret"
-                            };
-                    }
+                //TODO: configure proxy if necessary
+                //request.Proxy = XXX
+
+                //only a suggested timeout
+                request.Timeout = 30000;
             };
         }
+
     }
     
 ## Exception Callback
@@ -104,7 +128,7 @@ All service calls take a callback of Action{Exception} as the final parameter. T
     {
         var service = new AddRegistrationService
                             {
-                                RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                RequestBuilder = ServerRequestBuilder.Instance
                             };
         var registration = new Registration
                                 {
@@ -121,7 +145,7 @@ All service calls take a callback of Action{Exception} as the final parameter. T
     {
         var feedbackService = new FeedbackService
                                     {
-                                        RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                        RequestBuilder = ServerRequestBuilder.Instance
                                     };
         feedbackService.Execute(10.Days().Ago(), Callback, ExceptionHandler.Handle);
     }
@@ -143,7 +167,7 @@ All service calls take a callback of Action{Exception} as the final parameter. T
     {
         var service = new GetRegistrationService
                             {
-                                RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                RequestBuilder = ServerRequestBuilder.Instance
                             };
             service.Execute("ApplePushId",Callback,ExceptionHandler.Handle);
     }
@@ -163,7 +187,7 @@ All service calls take a callback of Action{Exception} as the final parameter. T
     {
         var service = new PushService
                             {
-                                RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                RequestBuilder = ServerRequestBuilder.Instance
                             };
         var notification = new PushNotification
                                 {
@@ -194,7 +218,7 @@ All service calls take a callback of Action{Exception} as the final parameter. T
     {
         var service = new AddRegistrationService
                             {
-                                RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                RequestBuilder = ServerRequestBuilder.Instance
                             };
         var registration = new NewRegistration
                                 {
@@ -210,7 +234,7 @@ All service calls take a callback of Action{Exception} as the final parameter. T
     {
         var service = new AddRegistrationService
                             {
-                                RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                RequestBuilder = ServerRequestBuilder.Instance
                             };
         var registration = new NewRegistration
                                 {
@@ -226,7 +250,7 @@ All service calls take a callback of Action{Exception} as the final parameter. T
     {
         var service = new PushService
                             {
-                                RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                RequestBuilder = ServerRequestBuilder.Instance
                             };
         var notification = new PushNotification
                                 {

@@ -11,7 +11,7 @@ namespace Android
         {
             var service = new PushService
                               {
-                                  RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                  RequestBuilder = ServerRequestBuilder.Instance
                               };
             var notification = new PushNotification
                                    {

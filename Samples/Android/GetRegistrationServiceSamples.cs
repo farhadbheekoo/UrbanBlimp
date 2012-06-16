@@ -9,7 +9,7 @@ namespace Android
         {
             var service = new GetRegistrationService
                 {
-                    RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                    RequestBuilder = ServerRequestBuilder.Instance
                 };
             service.Execute("AndroidPushId", Callback, ExceptionHandler.Handle);
         }

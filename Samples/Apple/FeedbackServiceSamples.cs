@@ -11,7 +11,7 @@ namespace Apple
         {
             var feedbackService = new FeedbackService
                                       {
-                                          RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                          RequestBuilder = ServerRequestBuilder.Instance
                                       };
             feedbackService.Execute(10.Days().Ago(), Callback, ExceptionHandler.Handle);
         }

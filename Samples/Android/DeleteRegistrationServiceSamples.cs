@@ -9,7 +9,7 @@ namespace Android
         {
             var service = new DeleteRegistrationService
                               {
-                                  RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                  RequestBuilder = ServerRequestBuilder.Instance
                               };
             service.Execute("AndroidPushId", () => Debug.WriteLine("Deleted"), ExceptionHandler.Handle);
         }

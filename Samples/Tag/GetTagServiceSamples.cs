@@ -9,7 +9,7 @@ public class GetTagServiceSamples
     {
         var service = new GetTagService
                           {
-                              RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                              RequestBuilder = ServerRequestBuilder.Instance
                           };
         service.Execute(Callback, ExceptionHandler.Handle);
     }

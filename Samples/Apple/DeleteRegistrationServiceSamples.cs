@@ -9,7 +9,7 @@ namespace Apple
         {
             var service = new DeleteRegistrationService
                               {
-                                  RequestBuilder = CustomRequestBuilder.GetRequestBuilder()
+                                  RequestBuilder = ServerRequestBuilder.Instance
                               };
             service.Execute("ApplePushId",() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
         }
