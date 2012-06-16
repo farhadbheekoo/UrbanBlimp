@@ -15,9 +15,9 @@ namespace UrbanBlimp.Android
             var asyncRequest = new AsyncRequest
                 {
                     Request = request,
-                    Callback = o => callback(),
+                    ReadFromResponse = o => callback(),
                     ExceptionCallback = exceptionCallback,
-                    WriteToRequestStream = stream => notification.Serialize(stream)
+                    WriteToRequest = stream => notification.Serialize(stream)
                 };
             asyncRequest.Execute();
         }

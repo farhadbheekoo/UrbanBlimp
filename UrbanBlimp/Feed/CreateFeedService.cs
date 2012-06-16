@@ -14,9 +14,9 @@ namespace UrbanBlimp.Feed
 
             var asyncRequest = new AsyncRequest
             {
-                WriteToRequestStream = stream => newFeed.Serialize(stream),
+                WriteToRequest = stream => newFeed.Serialize(stream),
                 Request = request,
-                Callback = stream => callback(NewFeedIdDeSerializer.DeSerialize(stream)),
+                ReadFromResponse = stream => callback(NewFeedIdDeSerializer.DeSerialize(stream)),
                 ExceptionCallback = exceptionCallback,
             };
 

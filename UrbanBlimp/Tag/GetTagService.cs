@@ -15,7 +15,7 @@ namespace UrbanBlimp.Tag
 
             var asyncRequest = new AsyncRequest
             {
-                Callback = stream => callback(TagDeSerializer.DeSerialize(stream).ToList()),
+                ReadFromResponse = stream => callback(TagDeSerializer.DeSerialize(stream).ToList()),
                 Request = request,
                 ExceptionCallback = exceptionCallback,
             };
@@ -30,7 +30,7 @@ namespace UrbanBlimp.Tag
             
             var asyncRequest = new AsyncRequest
             {
-                Callback = stream => callback(TagDeSerializer.DeSerialize(stream).ToList()),
+                ReadFromResponse = stream => callback(TagDeSerializer.DeSerialize(stream).ToList()),
                 Request = request,
                 ExceptionCallback = exceptionCallback,
             };

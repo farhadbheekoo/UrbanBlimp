@@ -15,7 +15,7 @@ namespace UrbanBlimp.Feed
 
             var asyncRequest = new AsyncRequest
             {
-                Callback = stream => callback(FeedDeSerializer.DeSerializeMultiple(stream).ToList()),
+                ReadFromResponse = stream => callback(FeedDeSerializer.DeSerializeMultiple(stream).ToList()),
                 Request = request,
                 ExceptionCallback = exceptionCallback,
             };
@@ -29,7 +29,7 @@ namespace UrbanBlimp.Feed
 
             var asyncRequest = new AsyncRequest
             {
-                Callback = stream => callback(FeedDeSerializer.DeSerialize(stream)),
+                ReadFromResponse = stream => callback(FeedDeSerializer.DeSerialize(stream)),
                 Request = request,
                 ExceptionCallback = exceptionCallback,
             };

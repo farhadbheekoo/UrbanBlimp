@@ -8,7 +8,7 @@ namespace UrbanBlimp
    
     class AsyncRequest
     {
-        public HttpWebRequest Request;
+        public WebRequest Request;
         public Action<Exception> ExceptionCallback;
         public Action<Stream> ReadFromResponse;
         public Action<Stream> WriteToRequest;

@@ -14,9 +14,9 @@ namespace UrbanBlimp.Tag
 
             var asyncRequest = new AsyncRequest
             {
-                WriteToRequestStream = stream => TokenSerializer.Serialize(tokens,stream),
+                WriteToRequest = stream => TokenSerializer.Serialize(tokens,stream),
                 Request = request,
-                Callback = o => callback(),
+                ReadFromResponse = o => callback(),
                 ExceptionCallback = exceptionCallback,
             };
             asyncRequest.Execute(); 

@@ -12,7 +12,7 @@ namespace UrbanBlimp.Tag
             var asyncRequest = new AsyncRequest
             {
                 Request = request,
-                Callback = o => callback(),
+                ReadFromResponse = o => callback(),
                 ExceptionCallback = exceptionCallback,
             };
             asyncRequest.Execute(); 
