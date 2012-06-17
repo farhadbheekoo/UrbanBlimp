@@ -27,7 +27,8 @@ namespace UrbanBlimp.Tests.Apple
             Debug.WriteLine(helper.Response.Count);   
             foreach (var deviceFeedback in helper.Response)
             {
-                Debug.WriteLine(deviceFeedback.DeviceToken);   
+				Debug.WriteLine(deviceFeedback.DeviceToken);
+				Debug.WriteLine(deviceFeedback.MakedInactiveOn);   
             }
         }
     }

@@ -5,8 +5,7 @@ using System.Threading;
 
 namespace UrbanBlimp
 {
-   
-    class AsyncRequest
+	class AsyncRequest
     {
         public WebRequest Request;
         public Action<Exception> ExceptionCallback;

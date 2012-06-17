@@ -1,4 +1,3 @@
-using System.IO;
 using System.Json;
 
 namespace UrbanBlimp.Feed
@@ -6,16 +5,12 @@ namespace UrbanBlimp.Feed
     internal static class NewFeedSerializer
     {
 
-        public static string Serialize(NewFeed newFeed)
+        public static string Serialize(this NewFeed newFeed)
         {
             var jsonObj = JsonObj(newFeed);
             return jsonObj.ToString();
         }
-        public static void Serialize(this NewFeed newFeed, Stream stream)
-        {
-            var jsonObj = JsonObj(newFeed);
-            jsonObj.Save(stream);
-        }
+
 
         static JsonObject JsonObj(NewFeed newFeed)
         {

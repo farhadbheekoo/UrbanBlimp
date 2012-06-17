@@ -14,7 +14,7 @@ namespace UrbanBlimp.Apple
 
             var asyncRequest = new AsyncRequest
             {
-                WriteToRequest = stream => notification.Serialize(stream),
+				WriteToRequest = stream => stream.WriteToStream(notification.Serialize),
                 Request = request,
                 ReadFromResponse = o => callback(),
                 ExceptionCallback = exceptionCallback,

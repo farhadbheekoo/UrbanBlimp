@@ -1,4 +1,3 @@
-using System.IO;
 using System.Json;
 
 namespace UrbanBlimp.Apple
@@ -6,19 +5,13 @@ namespace UrbanBlimp.Apple
     internal static class RegistrationSerializer
     {
 
-        public static string Serialize(Registration registration)
+        public static string Serialize(this Registration registration)
         {
             var jsonObj = JsonObj(registration);
             return jsonObj.ToString();
         }
 
-        public static void Serialize(this Registration registration, Stream stream)
-        {
-            var jsonObj = JsonObj(registration);
-            jsonObj.Save(stream);
-        }
-
-        static JsonObject JsonObj(Registration registration)
+		static JsonObject JsonObj(Registration registration)
         {
             var jsonObj = new JsonObject();
 

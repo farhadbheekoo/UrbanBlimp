@@ -66,6 +66,7 @@
     <Compile Include="IRequestBuilder.cs" />
     <Compile Include="RemoteErrorInformation.cs" />
     <Compile Include="RemoteException.cs" />
+    <Compile Include="StreamExtensiosn.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

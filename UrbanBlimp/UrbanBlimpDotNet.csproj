@@ -96,6 +96,7 @@
     <Compile Include="Apple\Registration\QuietTime.cs" />
     <Compile Include="Apple\Registration\Registration.cs" />
     <Compile Include="Apple\Registration\AddRegistrationService.cs" />
+    <Compile Include="StreamExtensiosn.cs" />
     <Compile Include="Tag\CreateTagService.cs" />
     <Compile Include="Tag\AddTagToDeviceService.cs" />
     <Compile Include="Tag\DeleteTagService.cs" />

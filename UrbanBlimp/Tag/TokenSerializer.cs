@@ -1,4 +1,3 @@
-using System.IO;
 using System.Json;
 
 namespace UrbanBlimp.Tag
@@ -6,16 +5,12 @@ namespace UrbanBlimp.Tag
     internal static class TokenSerializer
     {
 
-        public static string Serialize(Tokens tokens)
+        public static string Serialize(this Tokens tokens)
         {
             var jsonObj = JsonObj(tokens);
             return jsonObj.ToString();
         }
-        public static void Serialize(Tokens tokens, Stream stream)
-        {
-            var jsonObj = JsonObj(tokens);
-            jsonObj.Save(stream);
-        }
+
 
         static JsonObject JsonObj(Tokens tokens)
         {
