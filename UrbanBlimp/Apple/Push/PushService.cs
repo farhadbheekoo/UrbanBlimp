@@ -9,7 +9,6 @@ namespace UrbanBlimp.Apple
         public void Execute(PushNotification notification, Action callback, Action<Exception> exceptionCallback)
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/push/");
-            request.ContentType = "application/json";
             request.Method = "POST";
             //TODO: must have tags or tokens... validate
 

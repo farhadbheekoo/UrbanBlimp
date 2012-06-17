@@ -10,7 +10,6 @@ namespace UrbanBlimp.Apple
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/device_tokens/" + deviceToken);
             request.Method = "PUT";
-            request.ContentType = "application/json";
 
             var asyncRequest = new AsyncRequest
             {

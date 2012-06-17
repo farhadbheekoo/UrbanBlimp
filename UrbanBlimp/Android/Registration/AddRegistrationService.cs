@@ -10,7 +10,6 @@ namespace UrbanBlimp.Android
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/apids/" + pushId);
             request.Method = "PUT";
-            request.ContentType = "application/json";
             var asyncRequest = new AsyncRequest
                 {
                     Request = request,
@@ -25,7 +24,6 @@ namespace UrbanBlimp.Android
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/apids/" + pushId);
             request.Method = "PUT";
-            request.ContentType = "application/json";
             var asyncRequest = new AsyncRequest
                 {
                     Request = request,

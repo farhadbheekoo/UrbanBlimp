@@ -11,7 +11,6 @@ namespace UrbanBlimp.Apple
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/push/batch/");
             request.Method = "POST";
-            request.ContentType = "application/json";
 
             var asyncRequest = new AsyncRequest
             {

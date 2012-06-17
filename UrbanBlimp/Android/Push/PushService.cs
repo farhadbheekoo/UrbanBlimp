@@ -10,7 +10,6 @@ namespace UrbanBlimp.Android
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/push/");
             request.Method = "POST";
-            request.ContentType = "application/json";
 
             var asyncRequest = new AsyncRequest
                 {

@@ -16,7 +16,8 @@ namespace UrbanBlimp
         IAsyncResult responseAsyncResult;
 
         public void Execute()
-        {
+		{
+			Request.ContentType = "application/json";
             if (WriteToRequest == null)
             {
                 DoRequest();
