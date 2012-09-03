@@ -32,16 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentDateTime, Version=1.6.1.0, Culture=neutral, PublicKeyToken=6ccbc613702e6c71, processorArchitecture=MSIL">
+    <Reference Include="FluentDateTime, Version=1.6.2.0, Culture=neutral, PublicKeyToken=6ccbc613702e6c71, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentDateTime.1.6.1.0\Lib\NET40\FluentDateTime.dll</HintPath>
+      <HintPath>..\packages\FluentDateTime.1.6.2.0\Lib\NET40\FluentDateTime.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Android\AddRegistrationServiceSamples.cs" />
@@ -71,6 +68,9 @@
       <Project>{05684E8A-4767-48F2-9F65-FA6EB44F37F5}</Project>
       <Name>UrbanBlimpDotNet</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="PepitaGet.RestorePackagesTask" AssemblyFile="$(SolutionDir)Tools\PepitaGet.dll" />
