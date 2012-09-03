@@ -13,7 +13,9 @@ namespace UrbanBlimp.Android
                        {
                            Alias = jsonValue.StringValue("alias"),
                            Active = jsonValue.BoolValue("active"),
+// ReSharper disable PossibleInvalidOperationException
                            Created = jsonValue.DateValue("created").Value,
+// ReSharper restore PossibleInvalidOperationException
                            Tags = jsonValue.ListValue("tags"),
                        };
         }

@@ -19,7 +19,7 @@ namespace UrbanBlimp.Tests.Tag
                 AddPushIds = new List<string> { "AddPushId1", "AddPushId2" },
                 RemovePushIds = new List<string> { "RemovePushId1", "RemovePushId2" }
             };
-            var text = TokenSerializer.Serialize(registration).FormatAsJsom();
+            var text = registration.Serialize().FormatAsJsom();
             var expected = @"
 {
   'device_tokens': {

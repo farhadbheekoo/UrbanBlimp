@@ -15,7 +15,7 @@ namespace UrbanBlimp.Tests.Android
                 Alias = "alias",
                 Tags = new List<string> { "tag1", "tag2" },
             };
-            var text = NewRegistrationSerializer.Serialize(registration).FormatAsJsom();
+            var text = registration.Serialize().FormatAsJsom();
             var expected = @"
 {
   'alias': 'alias',

@@ -39,7 +39,9 @@ namespace UrbanBlimp.Feed
                            Template = DeSerializeTemplate(value["template"]),
                            FeedUrl = value.StringValue("feed_url"),
                            BroadCast = value.BoolValue("broadcast"),
+// ReSharper disable PossibleInvalidOperationException
                            LastChecked = value.DateValue("last_checked").Value
+// ReSharper restore PossibleInvalidOperationException
                        };
         }
 

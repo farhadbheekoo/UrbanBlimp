@@ -25,7 +25,7 @@ namespace UrbanBlimp.Tests.Feed
                                    Tags = new List<string> { "tag1", "tag2" }
                                },
             };
-            var text = NewFeedSerializer.Serialize(newFeed).FormatAsJsom();
+            var text = newFeed.Serialize().FormatAsJsom();
             var expected = @"
 {
   'template': {

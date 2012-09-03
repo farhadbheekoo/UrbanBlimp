@@ -23,7 +23,7 @@ namespace UrbanBlimp.Tests.Apple
                                        DeviceTokens = new List<string> {"token1"},
                                        ExcludeTokens = new List<string> {"exclude1"},
                                    };
-            var text = PushNotificationSerializer.Serialize(notification).FormatAsJsom();
+            var text = notification.Serialize().FormatAsJsom();
             var expected = @"
 {
   'aps': {
@@ -72,7 +72,7 @@ namespace UrbanBlimp.Tests.Apple
                                                 Aliases = new List<string> {"alias1"}
                                             }
                                     };
-            var text = PushNotificationSerializer.Serialize(notifications).FormatAsJsom();
+            var text = notifications.Serialize().FormatAsJsom();
 
             var expected =@"
 [
