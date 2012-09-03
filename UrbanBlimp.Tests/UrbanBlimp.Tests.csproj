@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Android\Push\PushNotificationSerializerTests.cs" />
     <Compile Include="Android\Push\PushServiceTests.cs" />
+    <Compile Include="Apple\BadgeTests.cs" />
     <Compile Include="AsyncTestHelper.cs" />
     <Compile Include="Android\Registration\GetRegistrationServiceTests.cs" />
     <Compile Include="Android\Registration\RegistrationDeSerializerTests.cs" />

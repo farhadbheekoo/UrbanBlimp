@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apple\Push\Badge.cs" />
     <Compile Include="AsyncRequest.cs" />
     <Compile Include="ClientRequestBuilder.cs">
       <SubType>Code</SubType>

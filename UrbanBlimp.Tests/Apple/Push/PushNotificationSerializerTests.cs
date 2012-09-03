@@ -16,7 +16,7 @@ namespace UrbanBlimp.Tests.Apple
                                                      {
                                                          Alert = "My Alert",
                                                          Sound = "My Sound",
-                                                         Badge = "+1"
+                                                         Badge = Badge.Increment()
                                                      },
                                        Aliases = new List<string> {"alias1"},
                                        Tags = new List<string> {"tag1"},
@@ -57,7 +57,7 @@ namespace UrbanBlimp.Tests.Apple
                                                 Payload = new PushPayload
                                                               {
                                                                   Alert = "My Alert", Sound = "My Sound",
-                                                                  Badge = "+1"
+                                                                  Badge = Badge.Increment()
                                                               },
                                                 Aliases = new List<string> {"alias1"}
                                             },
@@ -67,7 +67,7 @@ namespace UrbanBlimp.Tests.Apple
                                                               {
                                                                   Alert = "My Alert",
                                                                   Sound = "My Sound",
-                                                                  Badge = "+1"
+                                                                  Badge = Badge.Increment()
                                                               },
                                                 Aliases = new List<string> {"alias1"}
                                             }

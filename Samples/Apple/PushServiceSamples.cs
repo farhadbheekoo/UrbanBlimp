@@ -22,7 +22,7 @@ namespace Apple
                                        Payload = new PushPayload
                                                      {
                                                          Alert = "Alert 2",
-                                                         Badge = "2",
+                                                         Badge = Badge.SetTo(2),
                                                          Sound = "Sound1"
                                                      }
                                    };
