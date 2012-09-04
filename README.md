@@ -198,7 +198,7 @@ All service calls take a callback of Action{Exception} as the final parameter. T
                                     Payload = new PushPayload
                                                     {
                                                         Alert = "Alert 2",
-                                                        Badge = "2",
+                                                        Badge = Badge.Increment(),
                                                         Sound = "Sound1"
                                                     }
                                 };
