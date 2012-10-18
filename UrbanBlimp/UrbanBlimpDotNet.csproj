@@ -119,7 +119,7 @@
     <CreateItem Include="@(ReferencePath)" Condition="'%(CopyLocal)'=='true'">
       <Output TaskParameter="Include" ItemName="IlmergeAssemblies" />
     </CreateItem>
-    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(TargetDir)Merged\$(TargetFileName)&quot; &quot;$(TargetPath)&quot; @(IlmergeAssemblies->'&quot;%(FullPath)&quot;', ' ') /target:library /internalize /targetplatform:v4,C:\Windows\Microsoft.NET\Framework\v4.0.30319" />
+    <Exec Command="&quot;$(SolutionDir)Tools\ilmerge.exe&quot; /out:&quot;$(TargetDir)Merged\$(TargetFileName)&quot; &quot;$(TargetPath)&quot; @(IlmergeAssemblies-&gt;'&quot;%(FullPath)&quot;', ' ') /target:library /internalize /targetplatform:v4,C:\Windows\Microsoft.NET\Framework\v4.0.30319" />
     <ItemGroup>
       <DeleteAfterBuild Include="$(TargetDir)*.*" />
     </ItemGroup>
@@ -129,9 +129,6 @@
     </ItemGroup>
     <Copy SourceFiles="@(MergedFiles)" DestinationFolder="$(TargetDir)" />
   </Target>
-  <UsingTask TaskName="PepitaGet.RestorePackagesTask" AssemblyFile="..\Tools\PepitaGet.dll" />
-  <Target Name="BeforeBuild">
-    <PepitaGet.RestorePackagesTask />
-  </Target>
   <Import Project="$(SolutionDir)\Tools\Fody\Fody.targets" />
+  <Import Project="$(ProjectPath)\..\..\Tools\Pepita\PepitaGet.targets" />
 </Project>
