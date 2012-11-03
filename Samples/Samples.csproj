@@ -32,9 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentDateTime, Version=1.6.2.0, Culture=neutral, PublicKeyToken=6ccbc613702e6c71, processorArchitecture=MSIL">
+    <Reference Include="FluentDateTime, Version=1.7.0.0, Culture=neutral, PublicKeyToken=6ccbc613702e6c71, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FluentDateTime.1.6.2.0\Lib\NET40\FluentDateTime.dll</HintPath>
+      <HintPath>..\packages\FluentDateTime.1.7.0.0\lib\NET40\FluentDateTime.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
