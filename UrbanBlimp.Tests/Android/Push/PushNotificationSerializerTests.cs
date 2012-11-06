@@ -39,7 +39,7 @@ namespace UrbanBlimp.Tests.Android
   'tags': [
     'tag1'
   ]
-}".Replace("\r\n",Environment.NewLine);
+}".Replace("\n","\r\n");
             Assert.AreEqual(expected, text);
         }
 

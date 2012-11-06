@@ -15,6 +15,7 @@ public static class JsonPretty
 
             formatted = JObject.Parse(value).ToString();
         }
-        return Environment.NewLine + formatted.Replace("\"","'");
+        var formatAsJsom = Environment.NewLine + formatted.Replace("\"", "'");
+        return formatAsJsom.Replace("\n", "\r\n");
     }
 }
