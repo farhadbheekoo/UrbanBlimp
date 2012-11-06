@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json.Linq;
 
 public static class JsonPretty
@@ -14,6 +15,6 @@ public static class JsonPretty
 
             formatted = JObject.Parse(value).ToString();
         }
-        return "\r\n" + formatted.Replace("\"","'");
+        return Environment.NewLine + formatted.Replace("\"","'");
     }
 }
