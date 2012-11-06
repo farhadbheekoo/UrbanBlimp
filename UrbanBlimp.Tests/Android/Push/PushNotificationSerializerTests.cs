@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UrbanBlimp.Android;
@@ -38,7 +39,7 @@ namespace UrbanBlimp.Tests.Android
   'tags': [
     'tag1'
   ]
-}";
+}".Replace("\r\n",Environment.NewLine);
             Assert.AreEqual(expected, text);
         }
 
