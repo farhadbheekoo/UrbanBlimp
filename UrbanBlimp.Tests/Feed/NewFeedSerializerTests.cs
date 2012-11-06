@@ -41,7 +41,7 @@ namespace UrbanBlimp.Tests.Feed
   },
   'feed_url': 'http://example.com/atom.',
   'broadcast': true
-}";
+}".Replace("\r\n", "\n");
             Assert.AreEqual(expected, text);
         }
     }

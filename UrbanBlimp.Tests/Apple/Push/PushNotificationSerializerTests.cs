@@ -43,7 +43,7 @@ namespace UrbanBlimp.Tests.Apple
   'exclude_tokens': [
     'exclude1'
   ]
-}";
+}".Replace("\r\n", "\n");
             Assert.AreEqual(expected, text);
         }
 
@@ -96,7 +96,7 @@ namespace UrbanBlimp.Tests.Apple
       'alias1'
     ]
   }
-]";
+]".Replace("\r\n", "\n");
             Assert.AreEqual(expected, text);
         }
     }

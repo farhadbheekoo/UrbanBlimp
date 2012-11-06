@@ -36,7 +36,7 @@ namespace UrbanBlimp.Tests.Apple
     'tag1',
     'tag2'
   ]
-}";
+}".Replace("\r\n", "\n");
             Assert.AreEqual(expected, text);
         }
     }

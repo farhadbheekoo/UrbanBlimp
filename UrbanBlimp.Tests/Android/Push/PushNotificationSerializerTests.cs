@@ -39,7 +39,7 @@ namespace UrbanBlimp.Tests.Android
   'tags': [
     'tag1'
   ]
-}".Replace("\n","\r\n");
+}".Replace("\r\n", "\n");
             Assert.AreEqual(expected, text);
         }
 
@@ -85,7 +85,7 @@ namespace UrbanBlimp.Tests.Android
       'alias1'
     ]
   }
-]";
+]".Replace("\r\n", "\n");
             Assert.AreEqual(expected, text);
         }
     }

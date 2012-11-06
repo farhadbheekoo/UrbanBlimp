@@ -52,7 +52,7 @@ namespace UrbanBlimp.Tests.Tag
       'RemovePushId2'
     ]
   }
-}";
+}".Replace("\r\n", "\n");
             Assert.AreEqual(expected, text);
         }
     }
