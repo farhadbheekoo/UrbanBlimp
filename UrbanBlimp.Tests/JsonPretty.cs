@@ -1,4 +1,3 @@
-using System;
 using Newtonsoft.Json.Linq;
 
 public static class JsonPretty
