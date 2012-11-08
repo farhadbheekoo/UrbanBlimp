@@ -16,10 +16,9 @@ namespace UrbanBlimp.Apple
             }
             var jsonValue = JsonValue.Load(content);
 
-            var tokens = jsonValue["device_tokens"];
-            for (var index = 0; index < tokens.Count; index++)
+            for (var index = 0; index < jsonValue.Count; index++)
             {
-                var token = tokens[index];
+                var token = jsonValue[index];
                 yield return new DeviceFeedback
                                  {
                                      Alias = token.StringValue("alias"),

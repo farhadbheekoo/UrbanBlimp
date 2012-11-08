@@ -10,7 +10,7 @@ namespace UrbanBlimp.Apple
 
         public void Execute(DateTime dateTime, Action<List<DeviceFeedback>> callback, Action<Exception> exceptionCallback)
         {
-            var url = "https://go.urbanairship.com/api/device_tokens/?since" + dateTime.ToIso8601();
+            var url = "https://go.urbanairship.com/api/device_tokens/feedback/?since=" + dateTime.ToIso8601();
             var request = RequestBuilder.Build(url);
             request.Method = "GET";
 
