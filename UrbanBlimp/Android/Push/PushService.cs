@@ -6,7 +6,7 @@ namespace UrbanBlimp.Android
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(PushNotification notification, Action callback, Action<Exception> exceptionCallback)
+        public void Execute(PushNotificationRequest notification, Action<PushNotificationResponse> responseCallback, Action<Exception> exceptionCallback)
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/push/");
             request.Method = "POST";
@@ -14,9 +14,11 @@ namespace UrbanBlimp.Android
             var asyncRequest = new AsyncRequest
                 {
                     Request = request,
-                    ReadFromResponse = o => callback(),
+                    ReadFromResponse = o => responseCallback(new PushNotificationResponse()),
                     ExceptionCallback = exceptionCallback,
-                    WriteToRequest = stream => stream.WriteToStream(notification.Serialize)
+                    WriteToRequest = stream => stream.WriteToStream(notification.Serialize),
+                    RequestContentType = "application/json"
+
                 };
             asyncRequest.Execute();
         }

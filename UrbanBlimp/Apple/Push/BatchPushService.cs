@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace UrbanBlimp.Apple
 {
@@ -7,17 +6,18 @@ namespace UrbanBlimp.Apple
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(IEnumerable<PushNotification> notifications, Action<Exception> exceptionCallback, Action callback)
+        public void Execute(BatchPushRequest request, Action<BatchPushResponse> responseCallback, Action<Exception> exceptionCallback)
         {
-            var request = RequestBuilder.Build("https://go.urbanairship.com/api/push/batch/");
-            request.Method = "POST";
+            var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/push/batch/");
+            webRequest.Method = "POST";
 
             var asyncRequest = new AsyncRequest
             {
-                WriteToRequest = stream =>stream.WriteToStream(notifications.Serialize),
-                Request = request,
-                ReadFromResponse = o => callback(),
+                WriteToRequest = stream =>stream.WriteToStream(request.Serialize),
+                Request = webRequest,
+                ReadFromResponse = o => responseCallback(new BatchPushResponse()),
                 ExceptionCallback = exceptionCallback,
+                RequestContentType = "application/json"
             };
 
             asyncRequest.Execute();;

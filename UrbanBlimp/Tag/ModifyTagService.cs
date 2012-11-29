@@ -6,17 +6,18 @@ namespace UrbanBlimp.Tag
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string tag, Tokens tokens, Action callback, Action<Exception> exceptionCallback)
+        public void Execute(ModifyTagRequest request, Action<ModifyTagResponse> responseCallback, Action<Exception> exceptionCallback)
         {
-            var request = RequestBuilder.Build("https://go.urbanairship.com/api/tags/" + tag);
-            request.Method = "POST";
+            var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/tags/" + request.Tag);
+            webRequest.Method = "POST";
 
             var asyncRequest = new AsyncRequest
             {
-				WriteToRequest = stream => stream.WriteToStream(tokens.Serialize),
-                Request = request,
-                ReadFromResponse = o => callback(),
+                WriteToRequest = stream => stream.WriteToStream(request.Serialize),
+                Request = webRequest,
+                ReadFromResponse = o => responseCallback(new ModifyTagResponse()),
                 ExceptionCallback = exceptionCallback,
+                RequestContentType = "application/json"
             };
             asyncRequest.Execute(); 
         }

@@ -6,19 +6,20 @@ namespace UrbanBlimp.Feed
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string feedId, UpdateFeed newFeed, Action callback, Action<Exception> exceptionCallback)
+        public void Execute(ModifyFeedRequest newFeed, Action<ModifyFeedResponse> responseCallback, Action<Exception> exceptionCallback)
         {
-            var request = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/" + feedId);
-            request.Method = "PUT";
+            var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/" + newFeed.FeedId);
+            webRequest.Method = "PUT";
 
             var asyncRequest = new AsyncRequest
-            {
-                WriteToRequest = stream => stream.WriteToStream(newFeed.Serialize),
-                Request = request,
-                ReadFromResponse = o => callback(),
-                ExceptionCallback = exceptionCallback,
-            };
-            asyncRequest.Execute(); 
+                                   {
+                                       WriteToRequest = stream => stream.WriteToStream(newFeed.Serialize),
+                                       Request = webRequest,
+                                       ReadFromResponse = o => responseCallback(new ModifyFeedResponse()),
+                                       ExceptionCallback = exceptionCallback,
+                                       RequestContentType = "application/json"
+                                   };
+            asyncRequest.Execute();
         }
     }
 }

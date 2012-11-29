@@ -13,13 +13,14 @@ namespace Apple
                               {
                                   RequestBuilder = ServerRequestBuilder.Instance
                               };
-            var registration = new Registration
-                                   {
+            var registration = new AddRegistrationRequest
+                                   { 
+                                       DeviceToken = "AppleDeviceId",
                                        Tags = new List<string> {"MyTag"},
                                        Alias = "MyAlias",
                                        Badge = 10
                                    };
-            service.Execute("AppleDeviceId", registration, () => Debug.WriteLine("Success"), ExceptionHandler.Handle);
+            service.Execute(registration, response => Debug.WriteLine("Success"), ExceptionHandler.Handle);
         }
 
     }

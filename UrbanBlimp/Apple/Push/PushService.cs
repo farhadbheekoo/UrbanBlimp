@@ -6,19 +6,20 @@ namespace UrbanBlimp.Apple
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(PushNotification notification, Action callback, Action<Exception> exceptionCallback)
+        public void Execute(PushNotificationRequest request, Action<PushNotificationResponse> responseCallback, Action<Exception> exceptionCallback)
         {
-            var request = RequestBuilder.Build("https://go.urbanairship.com/api/push/");
-            request.Method = "POST";
+            var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/push/");
+            webRequest.Method = "POST";
             //TODO: must have tags or tokens... validate
 
             var asyncRequest = new AsyncRequest
-            {
-				WriteToRequest = stream => stream.WriteToStream(notification.Serialize),
-                Request = request,
-                ReadFromResponse = o => callback(),
-                ExceptionCallback = exceptionCallback,
-            };
+                                   {
+                                       WriteToRequest = stream => stream.WriteToStream(request.Serialize),
+                                       Request = webRequest,
+                                       ReadFromResponse = o => responseCallback(new PushNotificationResponse()),
+                                       ExceptionCallback = exceptionCallback,
+                                       RequestContentType = "application/json"
+                                   };
 
             asyncRequest.Execute();
         }

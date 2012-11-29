@@ -13,7 +13,7 @@ namespace Android
                               {
                                   RequestBuilder = ServerRequestBuilder.Instance
                               };
-            var notification = new PushNotification
+            var notification = new PushNotificationRequest
                                    {
                                        Tags = new List<string> {"MyTag"},
                                        PushIds = new List<string> {"AndroidPushId"},
@@ -22,7 +22,7 @@ namespace Android
                                                          Alert = "Alert 2"
                                                      }
                                    };
-            service.Execute(notification,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
+            service.Execute(notification,response => Debug.WriteLine("Success"),ExceptionHandler.Handle);
         }
 
     }

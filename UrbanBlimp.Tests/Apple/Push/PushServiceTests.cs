@@ -18,7 +18,7 @@ namespace UrbanBlimp.Tests.Apple
                 {
                     RequestBuilder = RequestBuilderHelper.Build()
                 };
-            var pushNotification = new PushNotification
+            var pushNotification = new PushNotificationRequest
                 {
                     DeviceTokens = new List<string>
                         {
@@ -35,7 +35,7 @@ namespace UrbanBlimp.Tests.Apple
                 };
 
             var asyncTestHelper = new AsyncTestHelper();
-            service.Execute(pushNotification, () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
+            service.Execute(pushNotification, response => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
             asyncTestHelper.Wait();
         }
 
@@ -46,7 +46,7 @@ namespace UrbanBlimp.Tests.Apple
                 {
                     RequestBuilder = RequestBuilderHelper.Build()
                 };
-            var pushNotification = new PushNotification
+            var pushNotification = new PushNotificationRequest
                 {
                     Tags = new List<string> { "africa" },
                     Payload = new PushPayload
@@ -56,7 +56,7 @@ namespace UrbanBlimp.Tests.Apple
                 };
 
             var asyncTestHelper = new AsyncTestHelper();
-            service.Execute(pushNotification, () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
+            service.Execute(pushNotification, response => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
             asyncTestHelper.Wait();
         }
     }

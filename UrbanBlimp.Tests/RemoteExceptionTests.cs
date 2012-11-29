@@ -18,7 +18,7 @@ public class RemoteExceptionTests
             {
                 RequestBuilder = RequestBuilderHelper.Build()
             };
-        var pushNotification = new PushNotification
+        var request = new PushNotificationRequest
             {
                 DeviceTokens = new List<string>
                     {
@@ -35,7 +35,7 @@ public class RemoteExceptionTests
         {
 
             var asyncTestHelper = new AsyncTestHelper();
-            service.Execute(pushNotification, () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
+            service.Execute(request, respone => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
             asyncTestHelper.Wait();
         }
         catch (Exception e)

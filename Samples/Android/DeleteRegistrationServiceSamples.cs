@@ -11,7 +11,8 @@ namespace Android
                               {
                                   RequestBuilder = ServerRequestBuilder.Instance
                               };
-            service.Execute("AndroidPushId", () => Debug.WriteLine("Deleted"), ExceptionHandler.Handle);
+            var request = new DeleteRegistrationRequest {PushId = "AndroidPushId"};
+            service.Execute(request, response => Debug.WriteLine("Deleted"), ExceptionHandler.Handle);
         }
     }
 }

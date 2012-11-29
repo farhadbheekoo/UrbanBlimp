@@ -6,16 +6,17 @@ namespace UrbanBlimp.Feed
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string feedId, Action callback, Action<Exception> exceptionCallback)
+        public void Execute(DeleteFeedRequest request, Action<DeleteFeedResponse> responseCallback, Action<Exception> exceptionCallback)
         {
-            var request = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/" + feedId);
-            request.Method = "DELETE";
+            var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/" + request.FeedId);
+            webRequest.Method = "DELETE";
 
             var asyncRequest = new AsyncRequest
             {
-                Request = request,
-                ReadFromResponse = o => callback(),
+                Request = webRequest,
+                ReadFromResponse = o => responseCallback(new DeleteFeedResponse()),
                 ExceptionCallback = exceptionCallback,
+                RequestContentType = "application/json"
             };
             asyncRequest.Execute(); 
             

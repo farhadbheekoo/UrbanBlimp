@@ -1,38 +1,24 @@
-using System.Collections.Generic;
 using System.Diagnostics;
 using UrbanBlimp.Feed;
 
 public class GetFeedServiceSamples
 {
-    public void Single()
+    public void Simple()
     {
         var service = new GetFeedService
                           {
                               RequestBuilder = ServerRequestBuilder.Instance
                           };
-        service.Execute("feedId",Callback,ExceptionHandler.Handle);
-    }
-
-    void Callback(Feed feed)
-    { 
-        Debug.WriteLine(feed.FeedUrl);
-    }
-
-    public void Multiple()
-    {
-        var service = new GetFeedService
+        var request = new GetFeedRequest
                           {
-                              RequestBuilder = ServerRequestBuilder.Instance
+                              FeedId = "feedId"
                           };
-        service.Execute(Callback, ExceptionHandler.Handle);
-
+        service.Execute(request, Callback, ExceptionHandler.Handle);
     }
 
-    void Callback(List<Feed> feeds)
+    void Callback(GetFeedResponse response)
     {
-        foreach (var feed in feeds)
-        {
-            Debug.WriteLine(feed.FeedUrl);
-        }
+        Debug.WriteLine(response.FeedUrl);
     }
+
 }

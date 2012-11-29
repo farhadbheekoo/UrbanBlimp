@@ -11,7 +11,7 @@ namespace UrbanBlimp.Tests.Android
         [Test]
         public void Simple()
         {
-            Registration registration;
+            GetRegistrationResponse getRegistrationResponse;
             using (var stream = @"
 { 
   'alias' : 'alias',
@@ -24,14 +24,14 @@ namespace UrbanBlimp.Tests.Android
     ],
 }".GetStream())
             {
-                registration = RegistrationDeSerializer.DeSerialize(stream);
+                getRegistrationResponse = GetRegistrationResponseDeSerializer.DeSerialize(stream);
             }
 
-            Assert.AreEqual("alias", registration.Alias);
-            Assert.AreEqual(new DateTime(2009,11,06,20,41,6), registration.Created);
-            Assert.IsTrue(registration.Active);
-            Assert.AreEqual("tag1", registration.Tags[0]);
-            Assert.AreEqual("tag2", registration.Tags[1]);
+            Assert.AreEqual("alias", getRegistrationResponse.Alias);
+            Assert.AreEqual(new DateTime(2009,11,06,20,41,6), getRegistrationResponse.Created);
+            Assert.IsTrue(getRegistrationResponse.Active);
+            Assert.AreEqual("tag1", getRegistrationResponse.Tags[0]);
+            Assert.AreEqual("tag2", getRegistrationResponse.Tags[1]);
         }
 
     }

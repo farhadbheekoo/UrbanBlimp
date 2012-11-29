@@ -46,7 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apple\Feedback\FeedbackRequest.cs" />
+    <Compile Include="Apple\Feedback\FeedbackResponse.cs" />
+    <Compile Include="Apple\Feedback\FeedbackResponseDeSerializer.cs" />
     <Compile Include="Apple\Push\Badge.cs" />
+    <Compile Include="Apple\Push\BatchPushRequest.cs" />
+    <Compile Include="Apple\Push\BatchPushResponse.cs" />
+    <Compile Include="Apple\Push\PushNotificationRequest.cs" />
+    <Compile Include="Apple\Push\PushNotificationRequestSerializer.cs" />
+    <Compile Include="Apple\Push\PushNotificationResponse.cs" />
+    <Compile Include="Apple\Registration\AddRegistrationRequest.cs" />
+    <Compile Include="Apple\Registration\AddRegistrationRequestSerializer.cs" />
+    <Compile Include="Apple\Registration\AddRegistrationResponse.cs" />
+    <Compile Include="Apple\Registration\DeleteRegistrationRequest.cs" />
+    <Compile Include="Apple\Registration\DeleteRegistrationResponse.cs" />
+    <Compile Include="Apple\Registration\GetRegistrationRequest.cs" />
+    <Compile Include="Apple\Registration\GetRegistrationResponse.cs" />
+    <Compile Include="Apple\Registration\GetRegistrationResponseDeSerializer.cs" />
+    <Compile Include="Apple\Registration\GetRegistrationsRequest.cs" />
+    <Compile Include="Apple\Registration\GetRegistrationsResponse.cs" />
+    <Compile Include="Apple\Registration\GetRegistrationsResponseDeSerializer.cs" />
+    <Compile Include="Apple\Registration\GetRegistrationsService.cs" />
+    <Compile Include="Apple\Registration\RegistrationSummary.cs" />
     <Compile Include="AsyncRequest.cs" />
     <Compile Include="ClientRequestBuilder.cs">
       <SubType>Code</SubType>
@@ -54,21 +75,17 @@
     <Compile Include="HttpExtensions.cs" />
     <Compile Include="Dynamic.cs" />
     <Compile Include="Apple\Push\BatchPushService.cs" />
-    <Compile Include="Apple\Feedback\FeedbackSerializer.cs" />
-    <Compile Include="Apple\Push\PushNotificationSerializer.cs" />
+    <Compile Include="Apple\Push\BatchPushRequestSerializer.cs" />
     <Compile Include="Apple\Push\PushService.cs" />
     <Compile Include="Apple\Registration\DeleteRegistrationService.cs" />
     <Compile Include="..\AssemblyInfo.cs" />
     <Compile Include="DateTimeExtensions.cs" />
-    <Compile Include="Apple\Feedback\Feedback.cs" />
+    <Compile Include="Apple\Feedback\DeviceFeedback.cs" />
     <Compile Include="Apple\Feedback\FeedbackService.cs" />
     <Compile Include="Apple\Push\PushNotification.cs" />
     <Compile Include="Apple\Push\PushPayload.cs" />
     <Compile Include="Apple\Registration\GetRegistrationService.cs" />
-    <Compile Include="Apple\Registration\RegistrationDeSerializer.cs" />
-    <Compile Include="Apple\Registration\RegistrationSerializer.cs" />
     <Compile Include="Apple\Registration\QuietTime.cs" />
-    <Compile Include="Apple\Registration\Registration.cs" />
     <Compile Include="Apple\Registration\AddRegistrationService.cs" />
     <Compile Include="IRequestBuilder.cs" />
     <Compile Include="RemoteErrorInformation.cs" />

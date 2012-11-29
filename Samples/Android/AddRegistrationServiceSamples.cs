@@ -12,12 +12,13 @@ namespace Android
                               {
                                   RequestBuilder = ServerRequestBuilder.Instance
                               };
-            var registration = new NewRegistration
+            var registration = new AddRegistrationRequest
                                    {
+                                       PushId = "AndroidPushId",
                                        Tags = new List<string> {"MyTag"},
                                        Alias = "MyAlias"
                                    };
-            service.Execute("AndroidPushId", registration,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
+            service.Execute(registration, response => Debug.WriteLine("Success"), ExceptionHandler.Handle);
         }
     }
 }

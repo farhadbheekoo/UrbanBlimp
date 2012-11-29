@@ -11,7 +11,11 @@ namespace Apple
                               {
                                   RequestBuilder = ServerRequestBuilder.Instance
                               };
-            service.Execute("ApplePushId",() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
+            var request = new DeleteRegistrationRequest
+                              {
+                                  DeviceToken = "ApplePushId"
+                              };
+            service.Execute(request, response => Debug.WriteLine("Success"), ExceptionHandler.Handle);
         }
     }
 }

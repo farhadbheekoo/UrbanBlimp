@@ -15,10 +15,15 @@ namespace UrbanBlimp.Tests.Android
                               {
                                   RequestBuilder = RequestBuilderHelper.Build()
                               };
-            var helper = new AsyncTestHelper<Registration>();
-            service.Execute(RemoteSettings.AndroidPushId, helper.Callback, helper.HandleException);
+            var helper = new AsyncTestHelper<GetRegistrationResponse>();
+            var request = new GetRegistrationRequest
+                              {
+                                  PushId = RemoteSettings.AndroidPushId
+                              };
+            service.Execute(request, helper.Callback, helper.HandleException);
             helper.Wait();
         }
+
         [Test]
         [Ignore]
         public void NotFound()
@@ -28,8 +33,12 @@ namespace UrbanBlimp.Tests.Android
                                   RequestBuilder = RequestBuilderHelper.Build()
                               };
 
-            var helper = new AsyncTestHelper<Registration>();
-            service.Execute(RemoteSettings.AndroidPushId, helper.Callback, helper.HandleException);
+            var helper = new AsyncTestHelper<GetRegistrationResponse>();
+            var request = new GetRegistrationRequest
+                              {
+                                  PushId = RemoteSettings.AndroidPushId
+                              };
+            service.Execute(request, helper.Callback, helper.HandleException);
             helper.Wait();
             Assert.IsNull(helper.Response);
         }

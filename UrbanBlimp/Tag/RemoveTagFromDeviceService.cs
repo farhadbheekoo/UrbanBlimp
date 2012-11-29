@@ -6,17 +6,18 @@ namespace UrbanBlimp.Tag
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string deviceToken, string tagToRemove, Action callback, Action<Exception> exceptionCallback)
+        public void Execute(RemoveTagFromDeviceRequest request, Action<RemoveTagFromDeviceResponse> responseCallback, Action<Exception> exceptionCallback)
         {
-            var url = string.Format("https://go.urbanairship.com/api/device_tokens/{0}/tags/{1}", deviceToken, tagToRemove);
-            var request = RequestBuilder.Build(url);
-            request.Method = "DELETE";
+            var url = string.Format("https://go.urbanairship.com/api/device_tokens/{0}/tags/{1}", request.DeviceToken, request.TagToRemove);
+            var webRequest = RequestBuilder.Build(url);
+            webRequest.Method = "DELETE";
 
             var asyncRequest = new AsyncRequest
             {
-                Request = request,
-                ReadFromResponse = o => callback(),
+                Request = webRequest,
+                ReadFromResponse = o => responseCallback(new RemoveTagFromDeviceResponse()),
                 ExceptionCallback = exceptionCallback,
+                RequestContentType = "application/json"
             };
             asyncRequest.Execute(); 
         }

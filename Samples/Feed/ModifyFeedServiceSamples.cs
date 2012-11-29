@@ -10,21 +10,22 @@ public class ModifyFeedServiceSamples
                           {
                               RequestBuilder = ServerRequestBuilder.Instance
                           };
-        var updateFeed = new UpdateFeed
-                             {
-                                 FeedUrl = "http://example.com/atom.xml",
-                                 Template = new Template
-                                                {
-                                                    FeedPayload = new FeedPayload
-                                                                      {
-                                                                          Badge = 1,
-                                                                          Sound = "cat.caf",
-                                                                          Alert = "New item from some place! {{ title }}"
-                                                                      }
-                                                },
-                                 BroadCast = true
-                             };
-        service.Execute("feedId", updateFeed,() => Debug.WriteLine("Success"), ExceptionHandler.Handle);
+        var request = new ModifyFeedRequest
+                          {
+                              FeedId = "feedId",
+                              FeedUrl = "http://example.com/atom.xml",
+                              Template = new Template
+                                             {
+                                                 FeedPayload = new FeedPayload
+                                                                   {
+                                                                       Badge = 1,
+                                                                       Sound = "cat.caf",
+                                                                       Alert = "New item from some place! {{ title }}"
+                                                                   }
+                                             },
+                              BroadCast = true
+                          };
+        service.Execute(request, response => Debug.WriteLine("Success"), ExceptionHandler.Handle);
     }
 
 }

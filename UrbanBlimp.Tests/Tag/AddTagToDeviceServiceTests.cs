@@ -8,7 +8,6 @@ namespace UrbanBlimp.Tests.Tag
     {
 
         [Test]
-        [Ignore]
         public void TagToDevice()
         {
             var service = new AddTagToDeviceService
@@ -17,9 +16,15 @@ namespace UrbanBlimp.Tests.Tag
                               };
 
             var asyncTestHelper = new AsyncTestHelper();
-            service.Execute(RemoteSettings.AppleDeviceId, "africa", () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
+            var request = new AddTagToDeviceRequest
+                              {
+                                  DeviceToken = RemoteSettings.AppleDeviceId,
+                                  Tag = "africa"
+                              };
+            service.Execute(request, response => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
             asyncTestHelper.Wait();
         }
 
     }
+
 }

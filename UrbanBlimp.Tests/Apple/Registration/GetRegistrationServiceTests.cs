@@ -20,8 +20,12 @@ namespace UrbanBlimp.Tests.Apple
                               };
 
 
-            var helper = new AsyncTestHelper<Registration>();
-            service.Execute(RemoteSettings.AppleDeviceId, helper.Callback, helper.HandleException);
+            var helper = new AsyncTestHelper<GetRegistrationResponse>();
+            var getRegistrationRequest = new GetRegistrationRequest
+                                             {
+                                                 DeviceToken = RemoteSettings.AppleDeviceId
+                                             };
+            service.Execute(getRegistrationRequest, helper.Callback, helper.HandleException);
             helper.Wait();
 
             var registration = helper.Response;
@@ -43,8 +47,12 @@ namespace UrbanBlimp.Tests.Apple
                               };
 
 
-            var helper = new AsyncTestHelper<Registration>();
-            service.Execute("foo", helper.Callback, helper.HandleException);
+            var helper = new AsyncTestHelper<GetRegistrationResponse>();
+            var getRegistrationRequest = new GetRegistrationRequest
+                                             {
+                                                 DeviceToken = "foo"
+                                             };
+            service.Execute(getRegistrationRequest, helper.Callback, helper.HandleException);
             helper.Wait();
             Assert.IsNull(helper.Response);
         }

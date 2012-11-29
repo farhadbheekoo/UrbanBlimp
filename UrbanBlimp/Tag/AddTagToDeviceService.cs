@@ -6,16 +6,16 @@ namespace UrbanBlimp.Tag
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string deviceToken, string tag, Action callback, Action<Exception> exceptionCallback)
+        public void Execute(AddTagToDeviceRequest request, Action<AddTagToDeviceResponse> responseCallback, Action<Exception> exceptionCallback)
         {
-            var url = string.Format("https://go.urbanairship.com/api/device_tokens/{0}/tags/{1}", deviceToken, tag);
-            var request = RequestBuilder.Build(url);
-            request.Method = "PUT";
+            var url = string.Format("https://go.urbanairship.com/api/device_tokens/{0}/tags/{1}", request.DeviceToken, request.Tag);
+            var webRequest = RequestBuilder.Build(url);
+            webRequest.Method = "PUT";
 
             var asyncRequest = new AsyncRequest
             {
-                Request = request,
-                ReadFromResponse = o => callback(),
+                Request = webRequest,
+                ReadFromResponse = o => responseCallback(new AddTagToDeviceResponse()),
                 ExceptionCallback = exceptionCallback,
             };
             asyncRequest.Execute(); 

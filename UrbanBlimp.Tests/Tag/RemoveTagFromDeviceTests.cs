@@ -8,7 +8,6 @@ namespace UrbanBlimp.Tests.Tag
     {
 
         [Test]
-        [Ignore]
         public void Tags()
         {
             var service = new RemoveTagFromDeviceService
@@ -17,7 +16,12 @@ namespace UrbanBlimp.Tests.Tag
                               };
 
             var helper = new AsyncTestHelper();
-            service.Execute("DeviceId", "tag1434", () => helper.Callback(null), helper.HandleException);
+            var request = new RemoveTagFromDeviceRequest
+                              {
+                                  DeviceToken = "DeviceId",
+                                  TagToRemove = "tag1434"
+                              };
+            service.Execute(request, response => helper.Callback(null), helper.HandleException);
             helper.Wait();
         }
     }

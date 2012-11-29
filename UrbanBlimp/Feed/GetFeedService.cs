@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace UrbanBlimp.Feed
 {
@@ -8,30 +6,17 @@ namespace UrbanBlimp.Feed
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(Action<List<Feed>> callback, Action<Exception> exceptionCallback)
+        public void Execute(GetFeedRequest request, Action<GetFeedResponse> responseCallback, Action<Exception> exceptionCallback)
         {
-            var request = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/");
-            request.Method = "Get";
+            var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/" + request.FeedId);
+            webRequest.Method = "Get";
 
             var asyncRequest = new AsyncRequest
             {
-                ReadFromResponse = stream => callback(FeedDeSerializer.DeSerializeMultiple(stream).ToList()),
-                Request = request,
+                ReadFromResponse = stream => responseCallback(GetFeedResponseDeSerializer.DeSerialize(stream)),
+                Request = webRequest,
                 ExceptionCallback = exceptionCallback,
-            };
-            asyncRequest.Execute(); 
-        }
-
-        public void Execute(string feedId, Action<Feed> callback, Action<Exception> exceptionCallback)
-        {
-            var request = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/" + feedId);
-            request.Method = "Get";
-
-            var asyncRequest = new AsyncRequest
-            {
-                ReadFromResponse = stream => callback(FeedDeSerializer.DeSerialize(stream)),
-                Request = request,
-                ExceptionCallback = exceptionCallback,
+                RequestContentType = "application/json"
             };
             asyncRequest.Execute(); 
         }

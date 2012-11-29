@@ -4,18 +4,18 @@ namespace UrbanBlimp.Apple
 {
     public class DeleteRegistrationService
     {
-
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string deviceToken, Action callback, Action<Exception> exceptionCallback)
+        public void Execute(DeleteRegistrationRequest request, Action<DeleteRegistrationResponse> responseCallback, Action<Exception> exceptionCallback)
         {
-            var request = RequestBuilder.Build("https://go.urbanairship.com/api/device_tokens/" + deviceToken);
-            request.Method = "Delete";
+            var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/device_tokens/" + request.DeviceToken);
+            webRequest.Method = "Delete";
             var asyncRequest = new AsyncRequest
             {
-                Request = request,
-                ReadFromResponse = o => callback(),
+                Request = webRequest,
+                ReadFromResponse = o => responseCallback(new DeleteRegistrationResponse()),
                 ExceptionCallback = exceptionCallback,
+                RequestContentType = "application/json"
             };
 
             asyncRequest.Execute();

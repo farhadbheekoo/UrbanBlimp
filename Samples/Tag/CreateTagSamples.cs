@@ -10,6 +10,7 @@ public class CreateTagSamples
                           {
                               RequestBuilder = ServerRequestBuilder.Instance
                           };
-        service.Execute("tag1", () => Debug.WriteLine("Success"), ExceptionHandler.Handle);
+        var request = new CreateTagRequest {Tag = "tag1"};
+        service.Execute(request, response => Debug.WriteLine("Success"), ExceptionHandler.Handle);
     }
 }

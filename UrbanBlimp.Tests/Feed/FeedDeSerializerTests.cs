@@ -30,7 +30,7 @@ namespace UrbanBlimp.Tests.Feed
     }
 ]";
             var feeds = value.ToObject(FeedDeSerializer.DeSerializeMultiple);
-            var feed0 = feeds[0];
+            var feed0 = feeds.Feeds[0];
             Assert.AreEqual("1", feed0.Id);
             var feedPayload = feed0.Template.FeedPayload;
             Assert.AreEqual("alert1", feedPayload.Alert);

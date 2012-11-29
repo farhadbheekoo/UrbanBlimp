@@ -11,8 +11,9 @@ public class ModifyTagServiceSamples
                           {
                               RequestBuilder = ServerRequestBuilder.Instance
                           };
-        var tokens = new Tokens
+        var tokens = new ModifyTagRequest
                          {
+                             Tag = "tag1",
                              AddDevicePins = new List<string> {"AddDevicePin1", "AddDevicePin2"},
                              RemoveDevicePins = new List<string> {"RemoveDevicePin1", "RemoveDevicePin2"},
                              AddDeviceTokens = new List<string> {"AddDeviceToken1", "AddDeviceToken2"},
@@ -20,6 +21,6 @@ public class ModifyTagServiceSamples
                              AddPushIds = new List<string> {"AddPushId1", "AddPushId2"},
                              RemovePushIds = new List<string> {"RemovePushId1", "RemovePushId2"}
                          };
-        service.Execute("tage1", tokens,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
+        service.Execute(tokens, response => Debug.WriteLine("Success"),ExceptionHandler.Handle);
     }
 }

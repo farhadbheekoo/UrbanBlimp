@@ -10,7 +10,7 @@ public class CreateFeedServiceSamples
                           {
                               RequestBuilder = ServerRequestBuilder.Instance
                           };
-        var notification = new NewFeed
+        var notification = new CreateFeedRequest
                                {
                                    FeedUrl = "http://example.com/atom.xml",
                                    Template = new Template
@@ -27,8 +27,8 @@ public class CreateFeedServiceSamples
         service.Execute(notification,Callback,ExceptionHandler.Handle);
     }
 
-    void Callback(NewFeedId id)
+    void Callback(CreateFeedResponse response)
     {
-        Debug.WriteLine(id);
+        Debug.WriteLine(response);
     }
 }

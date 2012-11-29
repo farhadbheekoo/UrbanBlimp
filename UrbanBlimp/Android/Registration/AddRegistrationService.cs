@@ -6,31 +6,20 @@ namespace UrbanBlimp.Android
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string pushId, NewRegistration registration, Action callback, Action<Exception> exceptionCallback)
+        public void Execute(AddRegistrationRequest registrationRequest, Action<AddRegistrationResponse> responseCallback, Action<Exception> exceptionCallback)
         {
-            var request = RequestBuilder.Build("https://go.urbanairship.com/api/apids/" + pushId);
+            var request = RequestBuilder.Build("https://go.urbanairship.com/api/apids/" + registrationRequest.PushId);
             request.Method = "PUT";
             var asyncRequest = new AsyncRequest
                 {
                     Request = request,
-                    ReadFromResponse = o => callback(),
+                    ReadFromResponse = o => responseCallback(new AddRegistrationResponse()),
                     ExceptionCallback = exceptionCallback,
-					WriteToRequest = stream => stream.WriteToStream(registration.Serialize)
+                    WriteToRequest = stream => stream.WriteToStream(registrationRequest.Serialize),
+                    RequestContentType = "application/json"
                 };
             asyncRequest.Execute();
         }
 
-        public void Execute(string pushId, Action callback, Action<Exception> exceptionCallback)
-        {
-            var request = RequestBuilder.Build("https://go.urbanairship.com/api/apids/" + pushId);
-            request.Method = "PUT";
-            var asyncRequest = new AsyncRequest
-                {
-                    Request = request,
-                    ReadFromResponse = o => callback(),
-                    ExceptionCallback = exceptionCallback,
-                };
-            asyncRequest.Execute();
-        }
     }
 }

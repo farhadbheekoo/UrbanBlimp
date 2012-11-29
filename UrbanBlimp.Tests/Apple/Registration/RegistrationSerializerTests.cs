@@ -5,12 +5,12 @@ using UrbanBlimp.Apple;
 namespace UrbanBlimp.Tests.Apple
 {
     [TestFixture]
-    public class RegistrationSerializerTests
+    public class AddRegistrationRequestSerializerTests
     {
         [Test]
         public void Single2()
         {
-            var registration = new Registration
+            var registration = new AddRegistrationRequest
             {
                 Alias = "alias",
                 Badge = 2,

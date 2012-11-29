@@ -1,20 +1,18 @@
-using System.Collections.Generic;
 using System.Json;
-using System.Linq;
 
 namespace UrbanBlimp.Android
 {
-    internal static class PushNotificationSerializer
+    static class PushNotificationSerializer
     {
 
-        public static string Serialize(this PushNotification notification)
+        public static string Serialize(this PushNotificationRequest notification)
         {
             var jsonObj = JsonObj(notification);
             return jsonObj.ToString();
         }
- 
 
-        static JsonObject JsonObj(PushNotification notification)
+
+        static JsonObject JsonObj(PushNotificationRequest notification)
         {
             var jsonObj = new JsonObject();
 
@@ -27,10 +25,10 @@ namespace UrbanBlimp.Android
             if (notification.Payload.Extra != null)
             {
                 var extra = new JsonObject();
-                    foreach (var pair in notification.Payload.Extra)
-                    {
-                        extra[pair.Key] = pair.Value;
-                    }
+                foreach (var pair in notification.Payload.Extra)
+                {
+                    extra[pair.Key] = pair.Value;
+                }
                 android["extra"] = extra;
             }
             jsonObj["android"] = android;
@@ -51,11 +49,6 @@ namespace UrbanBlimp.Android
             return jsonObj;
         }
 
-        public static string Serialize(IEnumerable<PushNotification> notifications)
-        {
-
-            return new JsonArray(notifications.Select(JsonObj)).ToString();
-        }
 
     }
 }

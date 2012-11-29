@@ -10,7 +10,7 @@ namespace UrbanBlimp.Tests.Android
         [Test]
         public void Single()
         {
-            var notification = new PushNotification
+            var notification = new PushNotificationRequest
                                    {
                                        Payload = new PushPayload
                                                      {
@@ -42,50 +42,5 @@ namespace UrbanBlimp.Tests.Android
             Assert.AreEqual(expected, text);
         }
 
-        [Test]
-        public void List()
-        {
-            var notifications = new[]
-                                    {
-                                        new PushNotification
-                                            {
-                                                Payload = new PushPayload
-                                                              {
-                                                                  Alert = "My Alert"
-                                                              },
-                                                Aliases = new List<string> {"alias1"}
-                                            },
-                                        new PushNotification
-                                            {
-                                                Payload = new PushPayload
-                                                              {
-                                                                  Alert = "My Alert",
-                                                              },
-                                                Aliases = new List<string> {"alias1"}
-                                            }
-                                    };
-            var text = PushNotificationSerializer.Serialize(notifications).FormatAsJsom();
-
-            var expected = @"
-[
-  {
-    'android': {
-      'alert': 'My Alert'
-    },
-    'aliases': [
-      'alias1'
-    ]
-  },
-  {
-    'android': {
-      'alert': 'My Alert'
-    },
-    'aliases': [
-      'alias1'
-    ]
-  }
-]".Replace("\r\n", "\n");
-            Assert.AreEqual(expected, text);
-        }
     }
 }

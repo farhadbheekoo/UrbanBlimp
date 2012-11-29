@@ -11,16 +11,20 @@ namespace Apple
                               {
                                   RequestBuilder = ServerRequestBuilder.Instance
                               };
-             service.Execute("ApplePushId",Callback,ExceptionHandler.Handle);
+            var request = new GetRegistrationRequest
+                                             {
+                                                 DeviceToken = "ApplePushId"
+                                             };
+            service.Execute(request, Callback, ExceptionHandler.Handle);
         }
 
-        void Callback(Registration registration)
+        void Callback(GetRegistrationResponse response)
         {
-            Debug.WriteLine(registration.Badge);
-            Debug.WriteLine(registration.Alias);
-            Debug.WriteLine(registration.QuietTime);
-            Debug.WriteLine(registration.TimeZone);
-            Debug.WriteLine(string.Join(" ", registration.Tags));
+            Debug.WriteLine(response.Badge);
+            Debug.WriteLine(response.Alias);
+            Debug.WriteLine(response.QuietTime);
+            Debug.WriteLine(response.TimeZone);
+            Debug.WriteLine(string.Join(" ", response.Tags));
         }
     }
 }

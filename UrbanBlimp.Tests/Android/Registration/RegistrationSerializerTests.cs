@@ -10,7 +10,7 @@ namespace UrbanBlimp.Tests.Android
         [Test]
         public void Single2()
         {
-            var registration = new NewRegistration
+            var registration = new AddRegistrationRequest
             {
                 Alias = "alias",
                 Tags = new List<string> { "tag1", "tag2" },

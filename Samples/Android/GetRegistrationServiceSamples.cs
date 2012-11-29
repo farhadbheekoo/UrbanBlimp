@@ -11,15 +11,16 @@ namespace Android
                 {
                     RequestBuilder = ServerRequestBuilder.Instance
                 };
-            service.Execute("AndroidPushId", Callback, ExceptionHandler.Handle);
+            var request = new GetRegistrationRequest {PushId = "AndroidPushId"};
+            service.Execute(request, Callback, ExceptionHandler.Handle);
         }
 
-        void Callback(Registration registration)
+        void Callback(GetRegistrationResponse response)
         {
-            Debug.WriteLine(registration.Active);
-            Debug.WriteLine(registration.Alias);
-            Debug.WriteLine(registration.Created);
-            Debug.WriteLine(string.Join(" ", registration.Tags));
+            Debug.WriteLine(response.Active);
+            Debug.WriteLine(response.Alias);
+            Debug.WriteLine(response.Created);
+            Debug.WriteLine(string.Join(" ", response.Tags));
         }
     }
 }

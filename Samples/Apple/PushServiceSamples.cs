@@ -13,7 +13,7 @@ namespace Apple
                               {
                                   RequestBuilder = ServerRequestBuilder.Instance
                               };
-            var notification = new PushNotification
+            var notification = new PushNotificationRequest
                                    {
                                        Tags = new List<string> {"MyTag"},
                                        ExcludeTokens = new List<string> {"TokenToExclude"},
@@ -26,7 +26,7 @@ namespace Apple
                                                          Sound = "Sound1"
                                                      }
                                    };
-            service.Execute(notification,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
+            service.Execute(notification, response => Debug.WriteLine("Success"),ExceptionHandler.Handle);
         }
 
     }

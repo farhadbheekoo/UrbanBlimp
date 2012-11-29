@@ -5,7 +5,7 @@ using System.Json;
 namespace UrbanBlimp.Tag
 {
 
-    internal static class TagDeSerializer
+    static class TagDeSerializer
     {
 
         public static IEnumerable<string> DeSerialize(Stream content)

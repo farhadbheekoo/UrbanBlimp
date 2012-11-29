@@ -10,6 +10,10 @@ public class DeleteTagSamples
                           {
                               RequestBuilder = ServerRequestBuilder.Instance
                           };
-        service.Execute("tag1", () => Debug.WriteLine("Deleted"), ExceptionHandler.Handle);
+        var request = new DeleteTagRequest
+                          {
+                              Tag = "tag1"
+                          };
+        service.Execute(request, response => Debug.WriteLine("Deleted"), ExceptionHandler.Handle);
     }
 }

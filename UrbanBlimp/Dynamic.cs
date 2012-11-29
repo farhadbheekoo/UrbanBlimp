@@ -8,9 +8,8 @@ namespace UrbanBlimp
     static class Dynamic
     {
 
-        public static DateTime? DateValue(this JsonValue json, string key)
+        public static DateTime? NullableDateValue(this JsonValue json, string key)
         {
-
             if (!json.ContainsKey(key))
             {
                 return null;
@@ -20,7 +19,18 @@ namespace UrbanBlimp
             return DateTime.ParseExact(value, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
         }
 
-        public static int? IntValue(this JsonValue json, string key)
+        public static DateTime DateValue(this JsonValue json, string key)
+        {
+            if (!json.ContainsKey(key))
+            {
+                throw new Exception("Could not find key " + key);
+            }
+            var value = (string)json[key];
+
+            return DateTime.ParseExact(value, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+        }
+
+        public static int? NullIntValue(this JsonValue json, string key)
         {
             if (json.ContainsKey(key))
             {
@@ -30,10 +40,17 @@ namespace UrbanBlimp
             }
             return null;
         }
+        public static int IntValue(this JsonValue json, string key)
+        {
+            if (!json.ContainsKey(key))
+            {
+                throw new Exception("Could not find key " + key);
+            }
+            return (int) json[key];
+        }
 
         public static List<string> ListValue(this JsonValue jsonValue, string key)
         {
-
             if (!jsonValue.ContainsKey(key))
             {
                 return null;
@@ -52,9 +69,12 @@ namespace UrbanBlimp
         public static JsonArray ToJsonArray(this List<string> list)
         {
             var tagArray = new JsonArray();
-            foreach (var tag in list)
+            if (list != null)
             {
-                tagArray.Add(tag);
+                foreach (var tag in list)
+                {
+                    tagArray.Add(tag);
+                }
             }
             return tagArray;
 

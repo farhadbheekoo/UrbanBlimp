@@ -16,7 +16,7 @@ namespace UrbanBlimp.Tests.Android
                 {
                     RequestBuilder = RequestBuilderHelper.Build()
                 };
-            var pushNotification = new PushNotification
+            var pushNotification = new PushNotificationRequest
                 {
                     PushIds = new List<string> {RemoteSettings.AndroidPushId},
                     Payload = new PushPayload
@@ -25,7 +25,7 @@ namespace UrbanBlimp.Tests.Android
                         }
                 };
             var asyncTestHelper = new AsyncTestHelper();
-            service.Execute(pushNotification, () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
+            service.Execute(pushNotification, x => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
             asyncTestHelper.Wait();
         }
 
@@ -37,7 +37,7 @@ namespace UrbanBlimp.Tests.Android
                 {
                     RequestBuilder = RequestBuilderHelper.Build()
                 };
-            var pushNotification = new PushNotification
+            var pushNotification = new PushNotificationRequest
                 {
                     Tags = new List<string> {"africa"},
                     Payload = new PushPayload
@@ -46,7 +46,7 @@ namespace UrbanBlimp.Tests.Android
                         }
                 };
             var asyncTestHelper = new AsyncTestHelper();
-            service.Execute(pushNotification, () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
+            service.Execute(pushNotification, x => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
             asyncTestHelper.Wait();
         }
     }

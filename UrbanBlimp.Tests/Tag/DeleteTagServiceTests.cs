@@ -8,7 +8,6 @@ namespace UrbanBlimp.Tests.Tag
     {
 
         [Test]
-        [Ignore]
         public void Tags()
         {
             var service = new DeleteTagService
@@ -17,7 +16,8 @@ namespace UrbanBlimp.Tests.Tag
                               };
 
             var helper = new AsyncTestHelper();
-            service.Execute("tag1434", () => { helper.Callback(null); }, helper.HandleException);
+            var request = new DeleteTagRequest {Tag = "myTag"};
+            service.Execute(request, response => helper.Callback(null), helper.HandleException);
             helper.Wait();
         }
     }

@@ -8,7 +8,6 @@ namespace UrbanBlimp.Tests.Tag
     {
 
         [Test]
-        [Ignore]
         public void Tags()
         {
             var service = new CreateTagService
@@ -17,7 +16,8 @@ namespace UrbanBlimp.Tests.Tag
                               };
 
             var asyncTestHelper = new AsyncTestHelper();
-            service.Execute("africa", () => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
+            var request = new CreateTagRequest {Tag = "myTag"};
+            service.Execute(request, response => asyncTestHelper.Callback(null), asyncTestHelper.HandleException);
             asyncTestHelper.Wait();
         }
     }

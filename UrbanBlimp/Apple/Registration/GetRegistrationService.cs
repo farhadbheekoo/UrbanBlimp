@@ -6,16 +6,17 @@ namespace UrbanBlimp.Apple
     {
         public IRequestBuilder RequestBuilder;
 
-        public void Execute(string deviceToken, Action<Registration> callback, Action<Exception> exceptionCallback)
+        public void Execute(GetRegistrationRequest request, Action<GetRegistrationResponse> responseCallback, Action<Exception> exceptionCallback)
         {
-            var request = RequestBuilder.Build("https://go.urbanairship.com/api/device_tokens/" + deviceToken);
-            request.Method = "Get";
+            var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/device_tokens/" + request.DeviceToken);
+            webRequest.Method = "Get";
 
             var asyncRequest = new AsyncRequest
             {
-                ReadFromResponse = stream => callback( RegistrationDeSerializer.DeSerialize(stream)),
-                Request = request,
+                ReadFromResponse = stream => responseCallback(GetRegistrationResponseDeSerializer.DeSerialize(stream)),
+                Request = webRequest,
                 ExceptionCallback = exceptionCallback,
+                RequestContentType = "application/json"
             };
 
             asyncRequest.Execute(); 

@@ -5,14 +5,14 @@ namespace UrbanBlimp.Tag
     public class CreateTagService
     {
         public IRequestBuilder RequestBuilder;
-        public void Execute(string tag, Action callback, Action<Exception> exceptionCallback)
+        public void Execute(CreateTagRequest request, Action<CreateTagResponse> responseCallback, Action<Exception> exceptionCallback)
         {
-            var request = RequestBuilder.Build("https://go.urbanairship.com/api/tags/" + tag);
-            request.Method = "PUT";
+            var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/tags/" + request.Tag);
+            webRequest.Method = "PUT";
             var asyncRequest = new AsyncRequest
             {
-                Request = request,
-                ReadFromResponse = o => callback(),
+                Request = webRequest,
+                ReadFromResponse = o => responseCallback(new CreateTagResponse()),
                 ExceptionCallback = exceptionCallback,
             };
             asyncRequest.Execute(); 

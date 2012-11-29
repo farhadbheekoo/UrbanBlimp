@@ -8,18 +8,19 @@ namespace UrbanBlimp.Feed
     static class FeedDeSerializer
     {
 
-        public static IEnumerable<Feed> DeSerializeMultiple(Stream content)
+        public static GetAllFeedsResponse DeSerializeMultiple(Stream content)
         {
-            if (content == null)
+            var getAllFeedsResponse = new GetAllFeedsResponse { Feeds = new List<Feed>() };
+            if (content != null)
             {
-                yield break;
-            }
-            var array = JsonValue.Load(content);
+                var array = JsonValue.Load(content);
 
-            foreach (var value in array.Select(x => x.Value))
-            {
-                yield return DeSerializeFeed(value);
+                foreach (var value in array.Select(x => x.Value))
+                {
+                    getAllFeedsResponse.Feeds.Add(DeSerializeFeed(value));
+                }
             }
+            return getAllFeedsResponse;
         }
         public static Feed DeSerialize(Stream content)
         {
@@ -40,7 +41,7 @@ namespace UrbanBlimp.Feed
                            FeedUrl = value.StringValue("feed_url"),
                            BroadCast = value.BoolValue("broadcast"),
 // ReSharper disable PossibleInvalidOperationException
-                           LastChecked = value.DateValue("last_checked").Value
+                           LastChecked = value.NullableDateValue("last_checked").Value
 // ReSharper restore PossibleInvalidOperationException
                        };
         }
@@ -59,7 +60,7 @@ namespace UrbanBlimp.Feed
             return new FeedPayload
                        {
                            Alert = value.StringValue("alert"),
-                           Badge = value.IntValue("badge"),
+                           Badge = value.NullIntValue("badge"),
                            Sound = value.StringValue("sound"),
                        };
         }
