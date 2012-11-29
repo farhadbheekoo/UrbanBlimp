@@ -5,6 +5,9 @@ using UrbanBlimp.Tag;
 namespace UrbanBlimp.Tests.Tag
 {
     [TestFixture]
+#if (RELEASE)
+[Ignore]
+#endif
     public class GetTagServiceTests
     {
 
