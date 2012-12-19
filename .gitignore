@@ -29,6 +29,7 @@ NuGetBuild
 *.tlb
 *.tli
 *.tlh
+*.ncrunchsolution
 *.tmp
 *.vspscc
 .builds
