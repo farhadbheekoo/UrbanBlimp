@@ -1,0 +1,5 @@
+ApplicationKey _YourApplicationKey_
+ApplicationSecret _YourApplicationSecret_
+ApplicationMasterSecret _YourApplicationMasterSecret_
+AndroidPushId _YourAndroidPushId_
+AppleDeviceId _YourAppleDeviceId_
