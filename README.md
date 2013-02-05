@@ -263,4 +263,23 @@ All service calls take a callback of Action{Exception} as the final parameter. T
                                 };
         service.Execute(notification,() => Debug.WriteLine("Success"),ExceptionHandler.Handle);
     }        
+    
+# Running the unit tests
+
+Many of the unit tests are actually integration tests. So they do real calls to the UrbanAirship API.
+To perform these calls you will need real UrbanAirship connection details. 
+
+This is achieved by having a file named `UrbanAirshipRemoteSettings.txt` at the root of the solution.
+
+This file should contain the following
+
+    ApplicationKey _YourApplicationKey_
+    ApplicationSecret _YourApplicationSecret_
+    ApplicationMasterSecret _YourApplicationMasterSecret_
+    AndroidPushId _YourAndroidPushId_
+    AppleDeviceId _YourAppleDeviceId_
+    
+There is a file `UrbanAirshipRemoteSettingsTemplate.txt` at the root with the above contents. You can use this as a basis for creating a `UrbanAirshipRemoteSettings.txt`
+
+**Do not check in your UrbanAirshipRemoteSettings.txt**
          
