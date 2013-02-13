@@ -22,7 +22,7 @@ namespace UrbanBlimp.Tests.Apple
                 Tags = new List<string> { "tag1", "tag2" },
                 TimeZone = "America/Los_Angeles"
             };
-            var text = registration.Serialize().FormatAsJsom();
+            var text = registration.Serialize().FormatAsJson();
             var expected = @"
 {
   'quiettime': {

@@ -2,7 +2,7 @@ using Newtonsoft.Json.Linq;
 
 public static class JsonPretty
 {
-    public static string FormatAsJsom(this string value)
+    public static string FormatAsJson(this string value)
     {
         string formatted;
         if (value.StartsWith("["))

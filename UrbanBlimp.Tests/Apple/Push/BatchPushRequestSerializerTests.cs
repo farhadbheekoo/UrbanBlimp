@@ -37,7 +37,7 @@ namespace UrbanBlimp.Tests.Apple
                                                               }
                                                       }
                               };
-            var text = request.Serialize().FormatAsJsom();
+            var text = request.Serialize().FormatAsJson();
 
             var expected = @"
 [
