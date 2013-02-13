@@ -23,7 +23,7 @@ namespace UrbanBlimp.Tests.Android
                                        Aliases = new List<string> {"alias1"},
                                        Tags = new List<string> {"tag1"},
                                    };
-            var text = notification.Serialize().FormatAsJsom();
+            var text = notification.Serialize().FormatAsJson();
             var expected = @"
 {
   'android': {

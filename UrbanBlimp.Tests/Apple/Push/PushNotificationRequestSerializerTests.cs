@@ -23,7 +23,7 @@ namespace UrbanBlimp.Tests.Apple
                                        DeviceTokens = new List<string> {"token1"},
                                        ExcludeTokens = new List<string> {"exclude1"},
                                    };
-            var text = notification.Serialize().FormatAsJsom();
+            var text = notification.Serialize().FormatAsJson();
             var expected = @"
 {
   'aps': {

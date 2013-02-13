@@ -26,7 +26,7 @@ namespace UrbanBlimp.Tests.Feed
                                },
                 Url = "myUrl"
             };
-            var text = newFeed.Serialize().FormatAsJsom();
+            var text = newFeed.Serialize().FormatAsJson();
             var expected = @"
 {
   'template': {
