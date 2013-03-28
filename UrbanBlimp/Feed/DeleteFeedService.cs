@@ -10,13 +10,13 @@ namespace UrbanBlimp.Feed
         {
             var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/" + request.FeedId);
             webRequest.Method = "DELETE";
+			webRequest.ContentType = "application/json";
 
             var asyncRequest = new AsyncRequest
             {
                 Request = webRequest,
                 ReadFromResponse = o => responseCallback(new DeleteFeedResponse()),
                 ExceptionCallback = exceptionCallback,
-                RequestContentType = "application/json"
             };
             asyncRequest.Execute(); 
             

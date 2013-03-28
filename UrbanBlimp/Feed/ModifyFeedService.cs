@@ -9,7 +9,8 @@ namespace UrbanBlimp.Feed
         public void Execute(ModifyFeedRequest newFeed, Action<ModifyFeedResponse> responseCallback, Action<Exception> exceptionCallback)
         {
             var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/" + newFeed.FeedId);
-            webRequest.Method = "PUT";
+			webRequest.Method = "PUT";
+			webRequest.ContentType = "application/json";
 
             var asyncRequest = new AsyncRequest
                                    {
@@ -17,8 +18,7 @@ namespace UrbanBlimp.Feed
                                        Request = webRequest,
                                        ReadFromResponse = o => responseCallback(new ModifyFeedResponse()),
                                        ExceptionCallback = exceptionCallback,
-                                       RequestContentType = "application/json"
-                                   };
+                                  };
             asyncRequest.Execute();
         }
     }

@@ -9,7 +9,8 @@ namespace UrbanBlimp.Apple
         public void Execute(AddRegistrationRequest request, Action<AddRegistrationResponse> responseCallback, Action<Exception> exceptionCallback)
         {
             var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/device_tokens/" + request.DeviceToken);
-            webRequest.Method = "PUT";
+			webRequest.Method = "PUT";
+			webRequest.ContentType = "application/json";
 
             var asyncRequest = new AsyncRequest
             {
@@ -17,7 +18,6 @@ namespace UrbanBlimp.Apple
                 Request = webRequest,
                 ReadFromResponse = o => responseCallback(new AddRegistrationResponse()),
                 ExceptionCallback = exceptionCallback,
-                    RequestContentType = "application/json"
             };
 
             asyncRequest.Execute();

@@ -11,13 +11,11 @@ namespace UrbanBlimp
         public Action<Exception> ExceptionCallback;
         public Action<Stream> ReadFromResponse;
         public Action<Stream> WriteToRequest;
-	    public string RequestContentType;
         IAsyncResult requestAsyncResult;
         IAsyncResult responseAsyncResult;
 
         public void Execute()
         {
-            Request.ContentType = RequestContentType; ;
             if (WriteToRequest == null)
             {
                 DoRequest();

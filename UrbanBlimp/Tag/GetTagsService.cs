@@ -10,14 +10,14 @@ namespace UrbanBlimp.Tag
         public void Execute(Action<GetTagsResponse> responseCallback, Action<Exception> exceptionCallback)
         {
             var request = RequestBuilder.Build("https://go.urbanairship.com/api/tags/");
-            request.Method = "GET";
+			request.Method = "GET";
+			request.ContentType = "application/json";
 
             var asyncRequest = new AsyncRequest
                                    {
                                        ReadFromResponse = stream => responseCallback(new GetTagsResponse { Tags = TagDeSerializer.DeSerialize(stream).ToList() }),
                                        Request = request,
                                        ExceptionCallback = exceptionCallback,
-                                       RequestContentType = "application/json"
                                    };
             asyncRequest.Execute();
 

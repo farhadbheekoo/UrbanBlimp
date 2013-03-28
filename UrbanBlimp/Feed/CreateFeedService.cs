@@ -10,6 +10,7 @@ namespace UrbanBlimp.Feed
         {
             var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/feeds/");
             webRequest.Method = "POST";
+	        webRequest.ContentType = "application/json";
 
             var asyncRequest = new AsyncRequest
                                    {
@@ -17,7 +18,6 @@ namespace UrbanBlimp.Feed
                                        Request = webRequest,
                                        ReadFromResponse = stream => responseCallback(CreateFeedResponseDeSerializer.DeSerialize(stream)),
                                        ExceptionCallback = exceptionCallback,
-                                       RequestContentType = "application/json"
                                    };
 
             asyncRequest.Execute();

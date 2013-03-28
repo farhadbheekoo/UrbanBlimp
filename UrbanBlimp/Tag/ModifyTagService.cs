@@ -9,7 +9,8 @@ namespace UrbanBlimp.Tag
         public void Execute(ModifyTagRequest request, Action<ModifyTagResponse> responseCallback, Action<Exception> exceptionCallback)
         {
             var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/tags/" + request.Tag);
-            webRequest.Method = "POST";
+			webRequest.Method = "POST";
+			webRequest.ContentType = "application/json";
 
             var asyncRequest = new AsyncRequest
             {
@@ -17,7 +18,6 @@ namespace UrbanBlimp.Tag
                 Request = webRequest,
                 ReadFromResponse = o => responseCallback(new ModifyTagResponse()),
                 ExceptionCallback = exceptionCallback,
-                RequestContentType = "application/json"
             };
             asyncRequest.Execute(); 
         }

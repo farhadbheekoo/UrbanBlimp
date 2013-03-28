@@ -9,7 +9,8 @@ namespace UrbanBlimp.Apple
         public void Execute(BatchPushRequest request, Action<BatchPushResponse> responseCallback, Action<Exception> exceptionCallback)
         {
             var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/push/batch/");
-            webRequest.Method = "POST";
+			webRequest.Method = "POST";
+			webRequest.ContentType = "application/json";
 
             var asyncRequest = new AsyncRequest
             {
@@ -17,7 +18,6 @@ namespace UrbanBlimp.Apple
                 Request = webRequest,
                 ReadFromResponse = o => responseCallback(new BatchPushResponse()),
                 ExceptionCallback = exceptionCallback,
-                RequestContentType = "application/json"
             };
 
             asyncRequest.Execute();;

@@ -9,7 +9,8 @@ namespace UrbanBlimp.Apple
         public void Execute(PushNotificationRequest request, Action<PushNotificationResponse> responseCallback, Action<Exception> exceptionCallback)
         {
             var webRequest = RequestBuilder.Build("https://go.urbanairship.com/api/push/");
-            webRequest.Method = "POST";
+			webRequest.Method = "POST";
+			webRequest.ContentType = "application/json";
             //TODO: must have tags or tokens... validate
 
             var asyncRequest = new AsyncRequest
@@ -18,7 +19,6 @@ namespace UrbanBlimp.Apple
                                        Request = webRequest,
                                        ReadFromResponse = o => responseCallback(new PushNotificationResponse()),
                                        ExceptionCallback = exceptionCallback,
-                                       RequestContentType = "application/json"
                                    };
 
             asyncRequest.Execute();
