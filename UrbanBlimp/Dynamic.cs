@@ -46,7 +46,9 @@ namespace UrbanBlimp
             {
                 throw new Exception("Could not find key " + key);
             }
+// ReSharper disable RedundantCast
             return (int) json[key];
+// ReSharper restore RedundantCast
         }
 
         public static List<string> ListValue(this JsonValue jsonValue, string key)
