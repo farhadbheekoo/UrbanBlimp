@@ -283,3 +283,9 @@ There is a file `UrbanAirshipRemoteSettingsTemplate.txt` at the root with the ab
 
 **Do not check in your UrbanAirshipRemoteSettings.txt**
          
+
+## Icon
+
+Icon courtesy of [The Noun Project](http://thenounproject.com)
+
+
