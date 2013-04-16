@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Android\AddRegistrationServiceSamples.cs" />
+    <Compile Include="Apple\BroadcastServiceSample.cs" />
     <Compile Include="Feed\GetAllFeedsServiceSamples.cs" />
     <Compile Include="ServerRequestBuilder.cs" />
     <Compile Include="Android\DeleteRegistrationServiceSamples.cs" />

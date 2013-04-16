@@ -50,6 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apple\Broadcast\BroadcastNotificationRequest.cs" />
+    <Compile Include="Apple\Broadcast\BroadcastNotificationRequestSerializer.cs" />
+    <Compile Include="Apple\Broadcast\BroadcastNotificationResponse.cs" />
+    <Compile Include="Apple\Broadcast\BroadcastService.cs" />
     <Compile Include="Apple\Feedback\FeedbackRequest.cs" />
     <Compile Include="Apple\Feedback\FeedbackResponse.cs" />
     <Compile Include="Apple\Feedback\FeedbackResponseDeSerializer.cs" />
@@ -99,6 +103,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.13.0.0\Fody.targets" Condition="Exists('..\packages\Fody.1.13.0.0\Fody.targets')" />
   <Import Project="$(ProjectPath)\..\..\Tools\Pepita\PepitaGet.targets" />

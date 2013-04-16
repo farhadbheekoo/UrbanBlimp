@@ -59,6 +59,10 @@
     <Compile Include="Android\Registration\DeleteRegistrationRequest.cs" />
     <Compile Include="Android\Registration\DeleteRegistrationResponse.cs" />
     <Compile Include="Android\Registration\GetRegistrationRequest.cs" />
+    <Compile Include="Apple\Broadcast\BroadcastNotificationRequest.cs" />
+    <Compile Include="Apple\Broadcast\BroadcastNotificationRequestSerializer.cs" />
+    <Compile Include="Apple\Broadcast\BroadcastNotificationResponse.cs" />
+    <Compile Include="Apple\Broadcast\BroadcastService.cs" />
     <Compile Include="Apple\Feedback\DeviceFeedback.cs" />
     <Compile Include="Apple\Feedback\FeedbackRequest.cs" />
     <Compile Include="Apple\Feedback\FeedbackResponse.cs" />
