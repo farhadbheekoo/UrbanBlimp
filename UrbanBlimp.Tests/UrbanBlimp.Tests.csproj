@@ -58,6 +58,8 @@
     <Compile Include="Android\Push\PushNotificationSerializerTests.cs" />
     <Compile Include="Android\Push\PushServiceTests.cs" />
     <Compile Include="Apple\BadgeTests.cs" />
+    <Compile Include="Apple\Broadcast\BroadcastNotificationRequestSerializerTests.cs" />
+    <Compile Include="Apple\Broadcast\BroadcastServiceTest.cs" />
     <Compile Include="Apple\Push\PushNotificationRequestSerializerTests.cs" />
     <Compile Include="Apple\Feedback\FeedbackResponseDeSerializerTests.cs" />
     <Compile Include="Apple\Registration\GetRegistrationsServiceTests.cs" />
