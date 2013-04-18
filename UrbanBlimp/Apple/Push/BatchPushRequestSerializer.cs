@@ -51,7 +51,18 @@ namespace UrbanBlimp.Apple
             }
             if (pushPayload.Badge != null)
             {
-                aps["badge"] = pushPayload.Badge;
+                if (pushPayload.Badge is string)
+                {
+                    aps["badge"] = pushPayload.Badge as string;
+                }
+                else if (pushPayload.Badge is int)
+                {
+                    aps["badge"] = (int)pushPayload.Badge;
+                }
+                else
+                {
+                    throw new Exception("Badge is not in valid format");
+                }
             }
             if (pushPayload.Sound != null)
             {
