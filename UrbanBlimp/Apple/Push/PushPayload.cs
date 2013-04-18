@@ -2,7 +2,7 @@ namespace UrbanBlimp.Apple
 {
     public class PushPayload
     {
-        public string Badge;
+        public object Badge;
 
         public string Alert;
 
