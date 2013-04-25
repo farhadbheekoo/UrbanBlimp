@@ -11,20 +11,31 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <ConfigurationName>Release</ConfigurationName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NET40|AnyCPU'">
+    <OutputPath>bin\NET40\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NET45|AnyCPU'">
+    <OutputPath>bin\NET45\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
   <Target Name="Clean">
     <RemoveDir Directories="$(SolutionDir)NuGetBuild" />
   </Target>
   <Target Name="Build" DependsOnTargets="NuGetBuild" />
   <Target Name="ReBuild" DependsOnTargets="NuGetBuild" />
-  <UsingTask TaskName="PepitaPackage.WeavingTask" AssemblyFile="$(SolutionDir)Tools\\Pepita\PepitaPackage.dll" />
+  <UsingTask TaskName="PepitaPackage.WeavingTask" AssemblyFile="$(SolutionDir)Tools\Pepita\PepitaPackage.dll" />
   <Target Name="NuGetBuild" DependsOnTargets="Clean">
     <MakeDir Directories="$(SolutionDir)NuGetBuild" />
     <MakeDir Directories="$(SolutionDir)NuGetBuild\Lib" />
-    <MakeDir Directories="$(SolutionDir)NuGetBuild\Lib\net40" />
-    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\$(Configuration)DotNet\UrbanBlimp.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET40" />
-    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\$(Configuration)DotNet\UrbanBlimp.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET40" />
+    <MakeDir Directories="$(SolutionDir)NuGetBuild\Lib\$(ConfigurationName)" />
+    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\NET40DotNet\UrbanBlimp.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET40" />
+    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\NET40DotNet\UrbanBlimp.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET40" />
+    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\NET45DotNet\UrbanBlimp.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET45" />
+    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\NET45DotNet\UrbanBlimp.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET45" />
     <Copy SourceFiles="$(SolutionDir)NuGet\UrbanBlimp.nuspec" DestinationFolder="$(SolutionDir)NuGetBuild" />
-    <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild" MetadataAssembly="$(SolutionDir)UrbanBlimp\bin\$(ConfigurationName)DotNet\UrbanBlimp.dll" />
+    <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild" MetadataAssembly="$(SolutionDir)UrbanBlimp\bin\NET40DotNet\UrbanBlimp.dll" />
+    <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild" MetadataAssembly="$(SolutionDir)UrbanBlimp\bin\NET45DotNet\UrbanBlimp.dll" />
   </Target>
   <ItemGroup>
     <None Include="UrbanBlimp.nuspec" />
