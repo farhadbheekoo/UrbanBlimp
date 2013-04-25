@@ -29,13 +29,13 @@
     <MakeDir Directories="$(SolutionDir)NuGetBuild" />
     <MakeDir Directories="$(SolutionDir)NuGetBuild\Lib" />
     <MakeDir Directories="$(SolutionDir)NuGetBuild\Lib\$(ConfigurationName)" />
-    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\NET40DotNet\UrbanBlimp.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET40" />
-    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\NET40DotNet\UrbanBlimp.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET40" />
-    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\NET45DotNet\UrbanBlimp.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET45" />
-    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\NET45DotNet\UrbanBlimp.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET45" />
+    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\NET40DotNet\UrbanBlimp.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET40" Condition="Exists('$(SolutionDir)UrbanBlimp\bin\NET40DotNet\UrbanBlimp.dll')" />
+    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\NET40DotNet\UrbanBlimp.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET40" Condition="Exists('$(SolutionDir)UrbanBlimp\bin\NET40DotNet\UrbanBlimp.pdb')" />
+    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\NET45DotNet\UrbanBlimp.dll" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET45" Condition="Exists('$(SolutionDir)UrbanBlimp\bin\NET45DotNet\UrbanBlimp.dll')" />
+    <Copy SourceFiles="$(SolutionDir)UrbanBlimp\bin\NET45DotNet\UrbanBlimp.pdb" DestinationFolder="$(SolutionDir)NuGetBuild\Lib\NET45" Condition="Exists('$(SolutionDir)UrbanBlimp\bin\NET45DotNet\UrbanBlimp.pdb')" />
     <Copy SourceFiles="$(SolutionDir)NuGet\UrbanBlimp.nuspec" DestinationFolder="$(SolutionDir)NuGetBuild" />
-    <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild" MetadataAssembly="$(SolutionDir)UrbanBlimp\bin\NET40DotNet\UrbanBlimp.dll" />
-    <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild" MetadataAssembly="$(SolutionDir)UrbanBlimp\bin\NET45DotNet\UrbanBlimp.dll" />
+    <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild" MetadataAssembly="$(SolutionDir)UrbanBlimp\bin\NET40DotNet\UrbanBlimp.dll" Condition="Exists('$(SolutionDir)UrbanBlimp\bin\NET40DotNet\UrbanBlimp.dll')" />
+    <PepitaPackage.WeavingTask NuGetBuildDirectory="$(SolutionDir)NuGetBuild" MetadataAssembly="$(SolutionDir)UrbanBlimp\bin\NET45DotNet\UrbanBlimp.dll" Condition="Exists('$(SolutionDir)UrbanBlimp\bin\NET45DotNet\UrbanBlimp.dll')" />
   </Target>
   <ItemGroup>
     <None Include="UrbanBlimp.nuspec" />
